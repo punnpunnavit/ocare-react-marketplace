@@ -11,7 +11,7 @@ import SignUpPage from "./Pages/SignUpPage";
 function App() {
   return (
       <div className="App">
-        <LoginPage/>
+        <Home/>
         <GlobalStyle />
       </div>
   );

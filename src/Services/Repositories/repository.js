@@ -1,5 +1,5 @@
 import axios from "axios";
-import store from "../store";
+// import store from "../store";
 
 // You can use your own logic to set your local or production domain
 const baseDomain = window.configExim.hostApi.url;
@@ -24,11 +24,11 @@ axiosExport.interceptors.request.use(
       config.headers._RefId_ = refId;
     }
 
-    store.set("Loading/Loading!");
+    // store.set("Loading/Loading!");
     return config;
   },
   (error) => {
-    store.set("Loading/Unloading!");
+    // store.set("Loading/Unloading!");
     return Promise.reject(error);
   }
 );
@@ -43,21 +43,21 @@ axiosExport.interceptors.response.use(
           if (data.warning.length > 0) {
             for (let m = 0; m < data.warning.length; m++) {
               let msg = data.warning[m];
-              store.set("Loading/addMessage", {
-                message: msg,
-                status: 400,
-              });
+              // store.set("Loading/addMessage", {
+              //   message: msg,
+              //   status: 400,
+              // });
             }
           } else {
-            store.set("Loading/addMessage", {
-              message: "",
-              status: 200,
-            });
+            // store.set("Loading/addMessage", {
+            //   message: "",
+            //   status: 200,
+            // });
           }
         }
       }
     }
-    store.set("Loading/Unloading!");
+    // store.set("Loading/Unloading!");
     return response;
   },
   (error) => {
@@ -72,26 +72,26 @@ axiosExport.interceptors.response.use(
         }
         let has500 = messages.filter((p) => p.status == 500).length;
         if (messages.length > 0) {
-          store.set("Loading/addMessage", {
-            message: messages
-              .map((f) => {
-                return f.message;
-              })
-              .join(","),
-            status: has500 > 0 ? 500 : 400,
-          });
+          // store.set("Loading/addMessage", {
+          //   message: messages
+          //     .map((f) => {
+          //       return f.message;
+          //     })
+          //     .join(","),
+          //   status: has500 > 0 ? 500 : 400,
+          // });
         }
       }
     } else {
       if (error.message) {
-        store.set("Loading/addMessage", {
-          message: error.message,
-          status: 500,
-        });
+        // store.set("Loading/addMessage", {
+        //   message: error.message,
+        //   status: 500,
+        // });
       }
     }
 
-    store.set("Loading/Unloading!");
+    // store.set("Loading/Unloading!");
     return response;
   }
 );

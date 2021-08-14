@@ -1,6 +1,6 @@
 import React from "react";
 //router
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter as Router,Switch,Route } from "react-router-dom";
 //global style
 import { GlobalStyle } from "./Globalstyles/Globalstyles";
 //pages
@@ -10,10 +10,10 @@ import SignUpPage from "./Pages/SignUpPage";
 
 function App() {
   return (
-      <div className="App">
-        <Home/>
-        <GlobalStyle />
-      </div>
+    <div className="App">
+      <SignUpPage />
+      <GlobalStyle />
+    </div>
   );
 }
 

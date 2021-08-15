@@ -1,94 +1,88 @@
-import React, { useState } from "react";
-
-//Styles
+import React, { useRef, useState } from "react";
+import { Form, Button, Card, Alert } from "react-bootstrap";
+import { useAuth } from "../../Context/AuthContext";
+import { Link, useHistory } from "react-router-dom";
+import { Wrapper, CardWrapper } from "./LoginCard.styles";
 import {
-  CardWrapper,
-  CardHeader,
-  CardHeading,
-  CardBody,
-  CardIcon,
-  CardFieldset,
-  CardInput,
-  CardOptionsNote,
-  CardButton,
-  CardLink,
-} from "./LoginCard.styles";
+  ContentWrapper,
+  StyledButton,
+  StyledForm,
+  StyledLink,
+} from "../LoginCard/LoginCard.styles";
 
-//validations
-import SignInValidation from "../../Validations/SignInValidation";
+function Login() {
+  const emailRef = useRef();
+  const passwordRef = useRef();
 
-const LoginCard = () => {
-  const [values, setValues] = useState({
-    email: "",
-    password: "",
-  });
-  const handleFormSubmit = (event) => {
-    event.preventDefault();
-    setErrors(SignInValidation(values));
-  };
+  const { login } = useAuth();
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const history = useHistory();
 
-  const [errors, setErrors] = useState({});
+  async function handleSubmit(e) {
+    e.preventDefault();
 
-  const handleChange = (event) => {
-    setValues({
-      ...values,
-      [event.target.name]: event.target.value,
-    });
-  };
-
+    try {
+      setError("");
+      setLoading(true);
+      await login(emailRef.current.value, passwordRef.current.value);
+      history.push("/");
+    } catch {
+      setError("Failed to sign in");
+    }
+    setLoading(false);
+  }
   return (
-    <CardWrapper>
-      <CardHeader>
-        <CardHeading>OCARE</CardHeading>
-        <CardHeading>MARKETPLACE</CardHeading>
-      </CardHeader>
+    <>
+     
+          <div style={{minHeight: "100vh"}}>
+            <Card.Body>
+              <h1 className="text-center mb-1" style={{fontSize: "50px",color: "#534683"}}>OCARE</h1>
+              <h1 className="text-center mb-4" style={{fontSize: "50px",color: "#534683"}}>MARKETPLACE</h1>
+              <h5 className="text-center mb-4">Sign-in with your Email</h5>
+              {error && <Alert variant="danger">{error}</Alert>}
+              <StyledForm onSubmit={handleSubmit}>
+                <StyledForm.Group id="email" className="text-center mb-4">
+                  <StyledForm.Control
+                    type="email"
+                    ref={emailRef}
+                    required
+                    placeholder="Email"
+                  ></StyledForm.Control>
+                </StyledForm.Group>
+                <StyledForm.Group id="password">
+                  <StyledForm.Control
+                    type="password"
+                    ref={passwordRef}
+                    required
+                    placeholder="Password"
+                  ></StyledForm.Control>
+                </StyledForm.Group>
+                <div className="w-100 text-center mt-3">
+                  <StyledLink to="/forgot-password" className="mb-100">
+                    Forgot your Password?
+                  </StyledLink>
+                </div>
 
-      <CardBody>
-        <CardOptionsNote>Sign-in with your Email</CardOptionsNote>
+                <StyledButton
+                  disabled={loading}
+                  className="w-100"
+                  type="submit"
+                  style={{marginTop:"10px"}}
+                >
+                  SIGN IN
+                </StyledButton>
+              </StyledForm>
 
-        <CardFieldset>
-          <CardInput
-            placeholder="Email"
-            type="text"
-            name="email"
-            value={values.email}
-            onChange={handleChange}
-            required
-          />
-        </CardFieldset>
-
-        {errors.email && <p>{errors.email}</p>}
-
-        <CardFieldset>
-          <CardInput
-            placeholder="Password"
-            type="password"
-            name="password"
-            value={values.password}
-            onChange={handleChange}
-            required
-          />
-          <CardIcon className="fa fa-eye" eye small />
-        </CardFieldset>
-
-        {errors.password && <p>{errors.password}</p>}
-
-        <CardFieldset>
-          <CardOptionsNote>Or sign up with</CardOptionsNote>
-        </CardFieldset>
-
-        <CardFieldset>
-          <CardButton type="button" onClick={handleFormSubmit}>
-            SIGN IN
-          </CardButton>
-        </CardFieldset>
-
-        <CardFieldset>
-          <CardLink>I already have an account</CardLink>
-        </CardFieldset>
-      </CardBody>
-    </CardWrapper>
+ <div className="w-100 text-center mt-2">
+            Need an account? <StyledLink to="/signup">Sign Up</StyledLink>
+          </div>
+            </Card.Body>
+          </div>
+         
+        
+    </>
   );
-};
+}
 
-export default LoginCard;
+export default Login;

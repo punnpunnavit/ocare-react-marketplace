@@ -2,11 +2,10 @@ import React from "react";
 //router
 import { BrowserRouter as Router,Switch,Route } from "react-router-dom";
 //global style
-import { GlobalStyle } from "./Globalstyles/Globalstyles";
+import { GlobalStyle } from "./Helpers/Globalstyles";
 //pages
 import Home from "./Pages/Home";
-import LoginPage from "./Pages/LoginPage";
-import SignUpPage from "./Pages/SignUpPage";
+import SignUpPage from "./Pages/AuthenPage/AuthenPage";
 
 function App() {
   return (

@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import { Form, Button, Card, Alert } from "react-bootstrap";
 import { useAuth } from "../../Context/AuthContext";
 import { Link } from "react-router-dom";
+import { StyledButton,StyledForm,StyledLink } from "./ForgotPasswordCard.styles";
 
 function ForgotPassword() {
   const emailRef = useRef();
@@ -27,28 +28,56 @@ function ForgotPassword() {
   return (
     <>
       <Card>
-        <Card.Body>
-          <h2 className="text-center mb-4">Password Reset</h2>
-          {error && <Alert variant="danger">{error}</Alert>}
-          {message && <Alert variant="success">{message}</Alert>}
-          <Form onSubmit={handleSubmit}>
-            <Form.Group id="email">
-              <Form.Label>Email</Form.Label>
-              <Form.Control type="email" ref={emailRef} required></Form.Control>
-            </Form.Group>
+        <div>
+          <Card.Body style={{ height: "100vh", display: "flex" }}>
+            <div
+              style={{
+                margin: "auto",
+                marginTop: "100px",
+              }}
+            >
+              <h1
+                className="text-center mb-4"
+                style={{ fontSize: "4rem", color: "#534683" }}
+              >
+                OCARE
+                <br />
+                MARKETPLACE
+              </h1>
+              <p className="text-center mb-3">Password Reset</p>
 
-            <Button disabled={loading} className="w-100" type="submit">
-              Reset Password
-            </Button>
-          </Form>
-          <div className="w-100 text-center mt-3">
-            <Link to="/login">Log In</Link>
-          </div>
-        </Card.Body>
+              {error && <Alert variant="danger">{error}</Alert>}
+              {message && <Alert variant="success">{message}</Alert>}
+              <StyledForm onSubmit={handleSubmit}>
+                <StyledForm.Group id="email">
+                  
+                  <StyledForm.Control
+                    type="email"
+                    ref={emailRef}
+                    required
+                    placeholder="Email"
+                    className="mb-3"
+                  ></StyledForm.Control>
+                </StyledForm.Group>
+
+                <StyledButton
+                  disabled={loading}
+                  className="w-100"
+                  type="submit"
+                >
+                  Reset Password
+                </StyledButton>
+              </StyledForm>
+              <p className="w-100 text-center mt-2">
+                Need an account? <StyledLink to="/signup">Sign Up</StyledLink>
+              </p>
+              <p className="w-100 text-center mt-3">
+                Already have an account? <StyledLink to="/login">Log In</StyledLink>
+              </p>
+            </div>
+          </Card.Body>
+        </div>
       </Card>
-      <div className="w-100 text-center mt-2">
-        Need an account? <Link to="/signup">Sign Up</Link>
-      </div>
     </>
   );
 }

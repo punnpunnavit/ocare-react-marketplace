@@ -3,21 +3,17 @@ import { AuthProvider } from "../../Context/AuthContext";
 import SignUp from "../../Components/SignUpCard";
 import { Container } from "react-bootstrap";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Dashboard from "../Dashboard";
+import Dashboard from "../HomePage/Dashboard";
 import Login from "../../Components/LoginCard";
 import PrivateRoute from "../../Helpers/PrivateRoute";
 import ForgotPassword from "../../Components/ForgotPasswordCard";
-import UpdateProfile from "../UpdateProfile";
+import UpdateProfile from "../HomePage/UpdateProfile";
+import { StyledContainer } from "./AuthenPage.styles.js";
 
 const SignUpPage = () => {
   return (
-    <Container
+    <StyledContainer
       className="d-flex align-items-center justify-content-center"
-      style={{
-        minHeight: "100vh",
-        backgroundImage: "url('https://picsum.photos/id/970/800/1900?grayscale&blur=2')",
-        minWidth: "100vw",
-      }}
     >
       <div className="w-100" style={{ maxWidth: "45%", minHeight: "100vh" }}>
         <Router>
@@ -32,7 +28,7 @@ const SignUpPage = () => {
           </AuthProvider>
         </Router>
       </div>
-    </Container>
+    </StyledContainer>
   );
 };
 

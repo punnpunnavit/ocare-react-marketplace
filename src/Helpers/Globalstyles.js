@@ -1,7 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
- @import url('https://fonts.googleapis.com/css?family=Poppins:100,400,700');
 
 
   :root {
@@ -20,7 +19,7 @@ export const GlobalStyle = createGlobalStyle`
 
   * {
     box-sizing: border-box;
-    font-family: Poppins, sans-serif;
+    font-family: 'Poppins', sans-serif;
     background-color: #FFFFFF;
     
   }
@@ -31,17 +30,18 @@ export const GlobalStyle = createGlobalStyle`
     
     h1 {
       font-size: 2rem;
-      font-weight: 600;
+      font-weight: 700;
       color: black;
     }
 
     h3 {
       font-size: 1.1rem;
-      font-weight: 600;
+      font-weight: 500;
     }
 
     p {
       font-size: 1rem;
+      font-weight: 100;
       color: black;
     }
 

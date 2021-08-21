@@ -35,6 +35,13 @@ export function AuthProvider({ children }) {
     return currentUser.updatePassword(password);
   }
 
+  function getAccessToken() {
+    currentUser.getIdToken().then(function (data) {
+      window.localStorage.setItem('accessToken', data);
+      return data
+    });
+  }
+
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setCurrentUser(user);
@@ -52,6 +59,7 @@ export function AuthProvider({ children }) {
     resetPassword,
     updateEmail,
     updatePassword,
+    getAccessToken,
   };
 
   return (

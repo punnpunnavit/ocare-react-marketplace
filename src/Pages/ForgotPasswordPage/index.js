@@ -3,6 +3,8 @@ import { Form, Button, Card, Alert } from "react-bootstrap";
 import { useAuth } from "../../Context/AuthContext";
 import { Link } from "react-router-dom";
 import { StyledButton,StyledForm,StyledLink } from "./ForgotPasswordCard.styles";
+import {StyledContainer} from '../../Components/AuthenPage.styles'
+
 
 function ForgotPassword() {
   const emailRef = useRef();
@@ -26,7 +28,8 @@ function ForgotPassword() {
     setLoading(false);
   }
   return (
-    <>
+    <StyledContainer className="d-flex align-items-center justify-content-center">
+      <div className="w-100" style={{ maxWidth:"45%",minHeight:"100vh"}}>
       <Card>
         <div>
           <Card.Body style={{ height: "100vh", display: "flex" }}>
@@ -78,7 +81,8 @@ function ForgotPassword() {
           </Card.Body>
         </div>
       </Card>
-    </>
+      </div>
+    </StyledContainer>
   );
 }
 

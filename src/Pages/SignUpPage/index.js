@@ -3,12 +3,13 @@ import { Form, Button, Card, Alert } from "react-bootstrap";
 import { useAuth } from "../../Context/AuthContext";
 import { Link, useHistory } from "react-router-dom";
 import { StyledForm,StyledButton } from "./SignUpCard.styles";
+import {StyledContainer} from '../../Components/AuthenPage.styles'
 
 function SignUp() {
   const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
-  const { signUp } = useAuth();
+  const { signUp,getAccessToken } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const history = useHistory();
@@ -23,7 +24,9 @@ function SignUp() {
     try {
       setError("");
       setLoading(true);
-      await signUp(emailRef.current.value, passwordRef.current.value);
+      await signUp(emailRef.current.value, passwordRef.current.value).then(
+        getAccessToken()
+       );
       history.push("/");
     } catch {
       setError("Failed to create an account");
@@ -31,7 +34,8 @@ function SignUp() {
     setLoading(false);
   }
   return (
-    <>
+    <StyledContainer className="d-flex align-items-center justify-content-center">
+    <div className="w-100" style={{ maxWidth:"45%",minHeight:"100vh"}}>
       <Card>
         <Card.Body style={{ height: "100vh", display: "flex" }}>
           <div
@@ -85,7 +89,8 @@ function SignUp() {
           </div>
         </Card.Body>
       </Card>
-    </>
+      </div>
+    </StyledContainer>
   );
 }
 

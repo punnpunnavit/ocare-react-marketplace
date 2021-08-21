@@ -23,14 +23,7 @@ function Login() {
       setLoading(true);
       await login(emailRef.current.value, passwordRef.current.value).then(
        getAccessToken()
-      );
-      // firebase.auth().onAuthStateChanged(function (user) {
-      //   if (user) {
-      //     user.getIdToken().then(function (data) {
-      //       console.log(data);
-      //     });
-      //   }
-      // });
+      )
 
       history.push("/");
     } catch {

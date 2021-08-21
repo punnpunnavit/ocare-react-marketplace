@@ -3,24 +3,27 @@ import axios from "axios";
 const axiosInstance = axios.create({
   baseURL: "https://example/api",
   timeout: 10000,
-  headers: { },
+  headers: {},
 });
 
-axiosInstance
-  .get("/user")
-  .then((response) => {
-    console.log("response: ", response);
-    // do something about response
-  })
-  .catch((error) => {
-    console.error(error);
-    Promise.reject(error);
-  });
+const requestHandler = (request) => {
 
+  request.headers.Authorization = window.localStorage.getItem("accessToken");
 
-// Step-3: Configure/make use of request & response interceptors from Axios
-// Note: You can create one method say configureInterceptors, add below in that,
-// export and call it in an init function of the application/page.
+  return request;
+};
+
+const responseHandler = (response) => {
+  if (response.status === 401) {
+  }
+
+  return response;
+};
+
+const errorHandler = (error) => {
+  return Promise.reject(error);
+};
+
 axiosInstance.interceptors.request.use(
   (request) => requestHandler(request),
   (error) => errorHandler(error)

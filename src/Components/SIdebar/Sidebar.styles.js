@@ -16,7 +16,10 @@ export const Navbar2 = styled.div`
   display: flex;
   justify-content: start;
   align-items: center;
-  
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+
   &.active {
     background-color: #060b26;
     width: 100px;
@@ -42,6 +45,7 @@ export const NavMenu = styled.div`
   top: 0;
   left: -100%;
   transition: 850ms;
+
   &.active {
     left: 0;
     transition: 10ms;

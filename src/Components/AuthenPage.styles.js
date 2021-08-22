@@ -1,10 +1,9 @@
-import React from "react";
 import styled, { css } from "styled-components";
 import { Container, Button, Form } from "react-bootstrap";
-import { Link } from "react-router-dom";
 
 export const StyledContainer = styled(Container)`
   min-height: 100vh;
+  
 
   background: linear-gradient(
       90deg,

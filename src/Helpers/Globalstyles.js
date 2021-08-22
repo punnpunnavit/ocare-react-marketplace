@@ -20,8 +20,8 @@ export const GlobalStyle = createGlobalStyle`
   * {
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
-    background-color: #FFFFFF;
-    
+    /* background-color: #FFFFFF;
+     */
   }
 
   body {
@@ -34,8 +34,14 @@ export const GlobalStyle = createGlobalStyle`
       color: black;
     }
 
+    h2{
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: black;
+    }
+
     h3 {
-      font-size: 1.1rem;
+      font-size: 1.5rem;
       font-weight: 500;
     }
 

@@ -1,12 +1,15 @@
-import React, { useState, useRef, useCallback } from "react";
-import InsideNavbar from "../../Components/SIdebar/ShownNavbar";
+//Hooks
+import React, { useState, useEffect, useRef, useCallback } from "react";
+import InsideNavbar from "../../Components/Sidebar/ShownNavbar";
 import useBookSearch from "../../Hooks/useBookSearch";
+//Components
 import Profile from "../../Components/Profile";
 import ProductFeed from "../../Components/ProductFeed";
 import { SearchBar } from "../../Components/SearchBar/SearchBar.styles";
+//APIs
+import { useMainInfoFetch } from "../../Hooks/useMainInfoFetch";
+//Styles
 import { FaFilter } from "react-icons/fa";
-import { InputGroup } from "react-bootstrap";
-//styles
 import {
   Header,
   Wrapper,
@@ -16,30 +19,32 @@ import {
 } from "./MainFeed.styles";
 
 function MainFeed() {
-  const [query, setQuery] = useState("");
-  const [pageNumber, setPageNumber] = useState(1);
+  const { state, loading, error } = useMainInfoFetch();
 
-  const { books, hasMore, loading, error } = useBookSearch(query, pageNumber);
+  // const [query, setQuery] = useState("");
+  // const [pageNumber, setPageNumber] = useState(1);
 
-  const observer = useRef();
-  const lastBookElementRef = useCallback(
-    (node) => {
-      if (loading) return;
-      if (observer.current) observer.current.disconnect();
-      observer.current = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting && hasMore) {
-          setPageNumber((prevPageNumber) => prevPageNumber + 1);
-        }
-      });
-      if (node) observer.current.observe(node);
-    },
-    [loading, hasMore]
-  );
+  // const { books, hasMore, loading, error } = useBookSearch(query, pageNumber);
 
-  function handleSearch(e) {
-    setQuery(e.target.value);
-    setPageNumber(1);
-  }
+  // const observer = useRef();
+  // const lastBookElementRef = useCallback(
+  //   (node) => {
+  //     if (loading) return;
+  //     if (observer.current) observer.current.disconnect();
+  //     observer.current = new IntersectionObserver((entries) => {
+  //       if (entries[0].isIntersecting && hasMore) {
+  //         setPageNumber((prevPageNumber) => prevPageNumber + 1);
+  //       }
+  //     });
+  //     if (node) observer.current.observe(node);
+  //   },
+  //   [loading, hasMore]
+  // );
+
+  // function handleSearch(e) {
+  //   setQuery(e.target.value);
+  //   setPageNumber(1);
+  // }
 
   return (
     <div
@@ -55,10 +60,10 @@ function MainFeed() {
       />
       <Wrapper>
         <div style={{}}>
-          <HeaderWrapper >
+          <HeaderWrapper>
             <Header>YOUR FRIENDS</Header>
-            <SearchbarWrapper >
-            <FaFilter
+            <SearchbarWrapper>
+              <FaFilter
                 style={{ color: "var(--green)", marginRight: "-200px" }}
               />
               <SearchBar>
@@ -66,46 +71,11 @@ function MainFeed() {
                   <SearchBar.Control placeholder="Search"></SearchBar.Control>
                 </SearchBar.Group>
               </SearchBar>
-             
             </SearchbarWrapper>
           </HeaderWrapper>
           <FeedWrapper>
-            <div style={{ display: "flex", marginBottom: "15px" }}>
-              <Profile />
-              <ProductFeed />
-            </div>
-            <div style={{ display: "flex", marginBottom: "15px" }}>
-              <Profile />
-              <ProductFeed />
-            </div>
-            <div style={{ display: "flex", marginBottom: "15px" }}>
-              <Profile />
-              <ProductFeed />
-            </div>
-            <div style={{ display: "flex", marginBottom: "15px" }}>
-              <Profile />
-              <ProductFeed />
-            </div>
-            <div style={{ display: "flex", marginBottom: "15px" }}>
-              <Profile />
-              <ProductFeed />
-            </div>
-            <div style={{ display: "flex", marginBottom: "15px" }}>
-              <Profile />
-              <ProductFeed />
-            </div>
-            <div style={{ display: "flex", marginBottom: "15px" }}>
-              <Profile />
-              <ProductFeed />
-            </div>
-            <div style={{ display: "flex", marginBottom: "15px" }}>
-              <Profile />
-              <ProductFeed />
-            </div>
-            <div style={{ display: "flex", marginBottom: "15px" }}>
-              <Profile />
-              <ProductFeed />
-            </div>
+            <h1>{state}</h1>
+
             <div style={{ display: "flex", marginBottom: "15px" }}>
               <Profile />
               <ProductFeed />

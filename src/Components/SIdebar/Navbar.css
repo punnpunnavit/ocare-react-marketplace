@@ -1,20 +1,20 @@
 .navbar {
-  background-image:linear-gradient(var(--green),var(--blue) );
+  background-image: linear-gradient(var(--green), var(--blue));
+  opacity: 0.98;
   width: 100px;
   height: 100%;
   display: flex;
   justify-content: start;
   align-items: center;
-  
 }
 
 .navbar.active {
-  background-color: #060b26;
   width: 100px;
   height: 100vh;
   display: flex;
   justify-content: start;
   align-items: center;
+  z-index: 100;
 
   animation-name: displaceContent;
   animation-duration: 1ms;
@@ -26,13 +26,13 @@
     transform: translateX(0px);
   }
   to {
-    transform: translateX(250px);
+    transform: translateX(500px);
   } /* slide down to make room for advertisements */
 }
 
 .nav-menu {
   background-color: white;
-  width: 250px;
+  width: 500px;
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -45,4 +45,5 @@
 .nav-menu.active {
   left: 0;
   transition: 1ms;
+  z-index: 100;
 }

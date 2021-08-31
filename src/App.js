@@ -28,7 +28,6 @@ function App() {
               path="/update-profile"
               component={UpdateProfilePage}
             />
-            {/* <PrivateRoute exact path="/" component={HomePage} /> */}
             <PrivateRoute exact path="/" component={MainFeed} />
             <PrivateRoute exact path="/productdetail" component={ProductDetail} />
             <Route path="/signup" component={SignUpPage} />

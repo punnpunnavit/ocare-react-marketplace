@@ -35,16 +35,44 @@ export const TextDes = styled.p`
 
 export const Description = styled.div`
   background-color: rgba(168, 168, 168, 0.25);
-  width: 500px;
-  height: 170px;
+  width: 300px;
+  height: 250px;
   padding-left: 20px;
   padding-right: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
+  
 `;
 
-export const StyledAnnulus = styled(Annulus)`
+export const SubImg = styled.img`
+  background-color: rgba(168, 168, 168, 0.25);
+  width: 200px;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
+`;
 
+export const Horizontal = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  
+`;
+
+export const LeftContentWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
  
-`;
+  
+
+`
+
+export const StyledAnnulus = styled(Annulus)``;

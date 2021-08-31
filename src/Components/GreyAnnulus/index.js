@@ -4,9 +4,9 @@ import {
   InnerCircle,
   MiddleCircle,
   Wrapper,
-} from "./Annulus.styles";
+} from "./GreyAnnulus.styles";
 
-export default function Annulus() {
+export default function GreyAnnulus() {
   return (
     <div style={{ overflow: "hidden",margin: "0:", height: "100%" }}>
       <Wrapper>

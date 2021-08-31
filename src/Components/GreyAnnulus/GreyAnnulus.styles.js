@@ -9,9 +9,7 @@ export const OuterCircle = styled.div`
   border-radius: 50%;
   width: 600px;
   height: 600px;
-  background-image: linear-gradient(to right, var(--green), var(--blue));
-  background-image: linear-gradient(to right, var(--green), var(--blue));
-  background-image: linear-gradient(to right, var(--green), var(--blue));
+  background-image: linear-gradient(to right, rgba(168, 168, 168, 0.3),rgba(168, 168, 168, 0.3));
 `;
 
 export const MiddleCircle = styled.div`
@@ -24,9 +22,7 @@ export const MiddleCircle = styled.div`
   width: 100%;
   height: 100%;
   padding: 90px;
-  background-image: linear-gradient(to right, var(--green), var(--blue));
-  background-image: linear-gradient(to right, var(--green), var(--blue));
-  background-image: linear-gradient(to right, var(--green), var(--blue));
+  background-image: linear-gradient(to right, rgba(168, 168, 168, 0.3), rgba(168, 168, 168, 0.3));
 `;
 
 export const InnerCircle = styled.div`
@@ -42,8 +38,8 @@ export const InnerCircle = styled.div`
 `;
 
 export const Wrapper = styled.div`
-position: fixed;
-right: -220px;
- top: -250px;
+  position: fixed;
+  right: -200px;
+  bottom: -500px;
   overflow: hidden;
 `;

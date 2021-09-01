@@ -15,9 +15,8 @@ import UpdateProfilePage from "./Pages/UpdateProfilePage";
 import { AuthProvider } from "./Context/AuthContext";
 
 import MainFeed from "./Pages/MainFeed";
-import ProductDetail from './Pages/ProductDetail'
-import Profile from "./Components/Profile";
-import ProductFeed from "./Components/ProductFeed";
+import ProductDetail from "./Pages/ProductDetail";
+
 function App() {
   return (
     <div className="App">
@@ -28,8 +27,13 @@ function App() {
               path="/update-profile"
               component={UpdateProfilePage}
             />
-            <PrivateRoute exact path="/" component={MainFeed} />
-            <PrivateRoute exact path="/productdetail" component={ProductDetail} />
+            <Route exact path="/" component={MainFeed} />
+            {/* <Route exact path="/" component={MainFeed} /> */}
+            <PrivateRoute
+              exact
+              path="/productdetail"
+              component={ProductDetail}
+            />
             <Route path="/signup" component={SignUpPage} />
             <Route path="/login" component={LoginPage} />
             <Route path="/forgot-password" component={ForgotPasswordPage} />

@@ -1,14 +1,15 @@
 import axios from "axios";
+import { API_URL } from "../Config/config";
 
 const axiosInstance = axios.create({
-  baseURL: "https://jsonplaceholder.typicode.com",
+  baseURL: API_URL,
   timeout: 10000,
   headers: {},
 });
 
 const requestHandler = (request) => {
   request.headers.Authorization = window.localStorage.getItem("accessToken");
-
+  console.log(request);
   return request;
 };
 

@@ -15,7 +15,7 @@
 
 # production
 /build
-Auth/
+# Auth/
 # misc
 .DS_Store
 .env.local

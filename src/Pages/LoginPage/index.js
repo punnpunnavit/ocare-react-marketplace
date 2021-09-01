@@ -5,7 +5,6 @@ import { Link, useHistory } from "react-router-dom";
 import { StyledButton, StyledForm, StyledLink } from "./LoginCard.styles";
 import { StyledContainer } from "../../Components/AuthenPage.styles";
 
-
 function Login() {
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -21,9 +20,8 @@ function Login() {
     try {
       setError("");
       setLoading(true);
-      await login(emailRef.current.value, passwordRef.current.value).then(
-       getAccessToken()
-      )
+      await login(emailRef.current.value, passwordRef.current.value);
+      //get token here
 
       history.push("/");
     } catch {

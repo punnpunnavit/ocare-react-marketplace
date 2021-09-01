@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { auth } from "../Services/Auth/Firebase";
+import AuthAPI from "../Services/Auth/AuthAPI";
 
 const AuthContext = React.createContext();
 
@@ -12,11 +13,11 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
 
   function signUp(email, password) {
-    return auth.createUserWithEmailAndPassword(email, password);
+    return AuthAPI.signUp(email, password);
   }
 
   function login(email, password) {
-    return auth.signInWithEmailAndPassword(email, password);
+    return AuthAPI.login(email, password);
   }
 
   function logout() {
@@ -37,8 +38,8 @@ export function AuthProvider({ children }) {
 
   function getAccessToken() {
     currentUser.getIdToken().then(function (data) {
-      window.localStorage.setItem('accessToken', data);
-      return data
+      window.localStorage.setItem("accessToken", data);
+      return data;
     });
   }
 

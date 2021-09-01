@@ -7,27 +7,23 @@ import {
   Header,
   TextDes,
   TextWrapper,
-  ArrowIcon
+  ArrowIcon,
 } from "./Product.styles";
 
-export default function ProductFeed() {
+export default function ProductFeed(props) {
   return (
     <Wrapper>
-      <ProductImage src="https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" />
+      <ProductImage src={props.productPicture} />
       <Description>
         <TextWrapper>
           <div>
-            <Header>Hey</Header>
-            <TextDes>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum
-              tempora aut eum labore saepe? Qui iure ducimus adipisci neque
-              veniam!
-            </TextDes>
+            <Header>{props.Header}</Header>
+            <TextDes>{props.Description}</TextDes>
           </div>
         </TextWrapper>
       </Description>
       <Button>
-          <ArrowIcon/>
+        <ArrowIcon />
       </Button>
     </Wrapper>
   );

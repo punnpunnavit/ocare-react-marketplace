@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import InsideNavbar from "../../Components/Sidebar/ShownNavbar";
 import useBookSearch from "../../Hooks/useBookSearch";
+import useMainFeedFetch from "../../Hooks/useMainFeedFetch";
 //Components
 import Profile from "../../Components/Profile";
 import ProductFeed from "../../Components/ProductFeed";
@@ -19,7 +20,7 @@ import {
 } from "./MainFeed.styles";
 
 function MainFeed() {
-  const { state, loading, error } = useMainInfoFetch();
+  // const { state, loading, error } = useMainInfoFetch();
 
   // const [query, setQuery] = useState("");
   // const [pageNumber, setPageNumber] = useState(1);
@@ -45,6 +46,33 @@ function MainFeed() {
   //   setQuery(e.target.value);
   //   setPageNumber(1);
   // }
+  const [category, setCategory] = useState("");
+  const [pageNumber, setPageNumber] = useState(1);
+
+  const { products, hasMore, loading, error } = useMainFeedFetch(
+    category,
+    pageNumber
+  );
+
+  const observer = useRef();
+  const lastProductElementRef = useCallback(
+    (node) => {
+      if (loading) return;
+      if (observer.current) observer.current.disconnect();
+      observer.current = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting && hasMore) {
+          setPageNumber((prevPageNumber) => prevPageNumber + 1);
+        }
+      });
+      if (node) observer.current.observe(node);
+    },
+    [loading, hasMore]
+  );
+
+  function handleSearch(e) {
+    setCategory(e.target.value);
+    setPageNumber(1);
+  }
 
   return (
     <div
@@ -74,11 +102,29 @@ function MainFeed() {
             </SearchbarWrapper>
           </HeaderWrapper>
           <FeedWrapper>
-            <h1>{state}</h1>
-
             <div style={{ display: "flex", marginBottom: "15px" }}>
-              <Profile />
-              <ProductFeed />
+              {products.map((products, index) => {
+                if (products.length === index + 1) {
+                  return (
+                    <div ref={lastProductElementRef} key={products}>
+                      {products}
+                    </div>
+                  );
+                } else {
+                  return <div key={products}>{products}</div>;
+                }
+              })}
+              <div>{loading && "Loading..."}</div>
+              <div>{error && "Error"}</div>
+              {/* <Profile
+                profileURL="https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"
+                username="Jolie"
+              />
+              <ProductFeed
+                productPicture="https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"
+                Header="efegrgrgrgrgf"
+                Description="wefrewf"
+              /> */}
             </div>
           </FeedWrapper>
         </div>

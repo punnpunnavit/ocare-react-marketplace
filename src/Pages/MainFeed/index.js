@@ -102,7 +102,8 @@ function MainFeed() {
             </SearchbarWrapper>
           </HeaderWrapper>
           <FeedWrapper>
-            <div style={{ display: "flex", marginBottom: "15px" }}>
+            {/* <div style={{ display: "flex", marginBottom: "15px" }}> */}
+            <div style={{ marginBottom: "15px" }}>
               {products.map((products, index) => {
                 if (products.length === index + 1) {
                   return (

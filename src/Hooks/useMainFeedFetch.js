@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import MainFeedAPI from "../Services/APIs/FetchMainFeed";
+import { useCancelToken } from './useCancelToken';
+
 
 export default function useMainFeedFetch(category, index) {
   const [loading, setLoading] = useState(true);
@@ -7,24 +9,27 @@ export default function useMainFeedFetch(category, index) {
   const [products, setProducts] = useState([]);
   const [lastDocTimeStamp, setLastDocTimestamp] = useState(0);
   const [hasMore, setHasMore] = useState(false);
+  const { createNewToken, isCancel } = useCancelToken();
 
   useEffect(() => {
     setProducts([]);
     setLastDocTimestamp(0);
   }, [category]);
 
-   useEffect(() => {
+  useEffect(() => {
     setLoading(true);
     setError(false);
     let cancel;
-    MainFeedAPI.fetchMainFeed(category, index, lastDocTimeStamp)
+
+
+    MainFeedAPI.fetchMainFeed(category, index,createNewToken,isCancel)
       .then((res) => {
         setProducts((prevProducts) => {
           return [
-            ...new Set([
+            ...[
               ...prevProducts,
               ...res.data.map((b) => b.productName),
-            ]),
+            ],
           ];
         });
         setHasMore(res.data.length > 0);

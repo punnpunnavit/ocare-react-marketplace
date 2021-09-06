@@ -4,8 +4,8 @@ import InsideNavbar from "../../Components/Sidebar/ShownNavbar";
 import useBookSearch from "../../Hooks/useBookSearch";
 import useMainFeedFetch from "../../Hooks/useMainFeedFetch";
 //Components
-import Profile from "../../Components/Profile";
-import ProductFeed from "../../Components/ProductFeed";
+import { Profile, SkeletonLoadingProfile } from "../../Components/Profile";
+import { ProductFeed, ProductFeedLoading } from "../../Components/ProductFeed";
 import { SearchBar } from "../../Components/SearchBar/SearchBar.styles";
 //APIs
 import { useMainInfoFetch } from "../../Hooks/useMainInfoFetch";
@@ -17,15 +17,25 @@ import {
   FeedWrapper,
   HeaderWrapper,
   SearchbarWrapper,
-  Horizontal
+  Horizontal,
 } from "./MainFeed.styles";
+import { RiDivideFill } from "react-icons/ri";
+import { CircularImageLoading } from "../../Components/Profile/Profile.styles";
 
 function MainFeed() {
   const [category, setCategory] = useState("");
   const [pageNumber, setPageNumber] = useState(0);
 
-  const { products, productsDes, productsImg, hasMore, loading, error } =
-    useMainFeedFetch(category, pageNumber);
+  const {
+    products,
+    productsDes,
+    productsImg,
+    productsUsername,
+    productsUserImg,
+    hasMore,
+    loading,
+    error,
+  } = useMainFeedFetch(category, pageNumber);
 
   const observer = useRef();
   const lastProductElementRef = useCallback(
@@ -55,6 +65,7 @@ function MainFeed() {
     setPageNumber(1);
   }
 
+  console.log("XXX");
   return (
     <div
       style={{
@@ -72,60 +83,76 @@ function MainFeed() {
         <div>
           <HeaderWrapper>
             <Header>YOUR FRIENDS</Header>
-            <SearchbarWrapper>
-              <FaFilter
-                style={{ color: "var(--green)", marginRight: "-200px" }}
-              />
-              <SearchBar>
-                <SearchBar.Group id="email" className="text-center">
-                  <SearchBar.Control placeholder="Search"></SearchBar.Control>
-                </SearchBar.Group>
-              </SearchBar>
-            </SearchbarWrapper>
+
+            <FaFilter
+              style={{ color: "var(--green)", marginRight: "-200px" }}
+            />
+            <SearchBar marginRight="0px">
+              <SearchBar.Group id="email" className="text-center">
+                <SearchBar.Control placeholder="Search"></SearchBar.Control>
+              </SearchBar.Group>
+            </SearchBar>
           </HeaderWrapper>
-          <FeedWrapper>
-            {products.map((products, index) => {
-              if (products.length === index + 1) {
-                return (
-                  <div
-                    ref={lastProductElementRef}
-                    key={products.productId}
-                    style={{ display: "flex", marginBottom: "15px" }}
-                  >
-                    <Profile
-                      profileURL="https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"
-                      username="Jolie"
-                    />
-                    <ProductFeed
-                      productPicture={productsImg}
-                      Header={products}
-                      Description={productsDes}
-                    />
-                  </div>
-                );
-              } else {
-                return (
-                  <div
-                    ref={lastProductElementRef}
-                    key={products.productId}
-                    style={{ display: "flex", marginBottom: "15px" }}
-                  >
-                    <Profile
-                      profileURL="https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"
-                      username="Jolie"
-                    />
-                    <ProductFeed
-                      productPicture={productsImg[index]}
-                      Header={products}
-                      Description={productsDes[index]}
-                    />
-                  </div>
-                );
-              }
-            })}
-            <div>{loading && "Loading..."}</div>
-            <div>{error && "Error"}</div>
-          </FeedWrapper>
+
+          {products.map((products, index) => {
+            console.log("YYY");
+            if (products.length === index + 1) {
+              return (
+                <div
+                  ref={lastProductElementRef}
+                  key={products.productId}
+                  style={{
+                    display: "flex",
+                    marginBottom: "15px",
+                  }}
+                >
+                  <Profile
+                    profileURL={productsUserImg}
+                    username={productsUsername}
+                    loading={loading}
+                  />
+                  <ProductFeed
+                    productPicture={productsImg}
+                    Header={products}
+                    Description={productsDes}
+                    loading={loading}
+                  />
+                </div>
+              );
+            } else {
+              return (
+                <div
+                  ref={lastProductElementRef}
+                  key={products.productId}
+                  style={{
+                    display: "flex",
+                    marginBottom: "15px",
+                  }}
+                >
+                  <Profile
+                    profileURL={productsUserImg[index]}
+                    username={productsUsername[index]}
+                    loading={loading}
+                  />
+                  <ProductFeed
+                    productPicture={productsImg[index]}
+                    Header={products}
+                    Description={productsDes[index]}
+                    loading={loading}
+                  />
+                </div>
+              );
+            }
+          })}
+          {/* <div>
+              {true && (
+                <div style={{ display: "flex", marginBottom: "15px" }}>
+                  <SkeletonLoadingProfile />
+                  <ProductFeedLoading />
+                </div>
+              )}
+            </div> */}
+          <div>{error && "Error"}</div>
         </div>
       </Wrapper>
     </div>

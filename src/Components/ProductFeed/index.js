@@ -8,18 +8,36 @@ import {
   TextDes,
   TextWrapper,
   ArrowIcon,
+  HeaderLoading,
+  TextDesLoading,
+  ProductImageLoading,
 } from "./Product.styles";
 
-export default function ProductFeed(props) {
+export function ProductFeed(props) {
   return (
     <Wrapper>
       <ProductImage src={props.productPicture} />
       <Description>
         <TextWrapper>
-          <div>
-            <Header>{props.Header}</Header>
-            <TextDes>{props.Description}</TextDes>
-          </div>
+          <Header>{props.Header}</Header>
+          <TextDes>{props.Description}</TextDes>
+        </TextWrapper>
+      </Description>
+      <Button>
+        <ArrowIcon />
+      </Button>
+    </Wrapper>
+  );
+}
+
+export function ProductFeedLoading() {
+  return (
+    <Wrapper>
+      <ProductImageLoading />
+      <Description>
+        <TextWrapper>
+          <HeaderLoading />
+          <TextDesLoading />
         </TextWrapper>
       </Description>
       <Button>

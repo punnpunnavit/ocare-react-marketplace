@@ -1,19 +1,40 @@
 import styled, { css } from "styled-components";
 import { FaAngleRight } from "react-icons/fa";
+import { Skeleton, SkeletonLine } from "../../Helpers/Skeleton.styles";
 
 export const Wrapper = styled.div`
   display: flex;
   margin-left: 50px;
 `;
 
-export const TextWrapper = styled.div``;
+export const TextWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-left: 50px;
+  margin-right: 50px;
+  margin-top: 10px;
+`;
 
 export const ProductImage = styled.img`
-  width: 260px;
-  height: 170px;
+  min-width: 260px;
+  max-width: 260px;
+  min-height: 170px;
+  max-height: 170px;
+`;
+
+export const ProductImageLoading = styled(Skeleton)`
+  min-width: 260px;
+  max-width: 260px;
+  min-height: 170px;
+  max-height: 170px;
 `;
 
 export const Header = styled.h2`
+  font-weight: 400;
+`;
+
+export const HeaderLoading = styled(SkeletonLine)`
   font-weight: 400;
 `;
 
@@ -22,15 +43,18 @@ export const TextDes = styled.p`
   color: black;
 `;
 
+export const TextDesLoading = styled(SkeletonLine)`
+  font-weight: 100;
+  color: black;
+`;
+
 export const Description = styled.div`
   background-color: rgba(168, 168, 168, 0.25);
-  width: 500px;
+  width: 400px;
   height: 170px;
-  padding-left: 20px;
-  padding-right: 20px;
   display: flex;
   justify-content: center;
-  align-items: center;
+  padding-top: 15px;
 `;
 
 export const Button = styled.div`

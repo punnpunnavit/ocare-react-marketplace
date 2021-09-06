@@ -8,6 +8,8 @@ export default function useMainFeedFetch(category, index) {
   const [products, setProducts] = useState([]);
   const [productsDes, setProductsDes] = useState([]);
   const [productsImg, setProductsImg] = useState([]);
+  const [productsUsername, setProductsUsername] = useState([]);
+  const [productsUserImg, setProductsUserImg] = useState([]);
   const [lastDocTimeStamp, setLastDocTimestamp] = useState(0);
   const [hasMore, setHasMore] = useState(false);
   const { createNewToken, isCancel } = useCancelToken();
@@ -16,6 +18,8 @@ export default function useMainFeedFetch(category, index) {
     setProducts([]);
     setProductsDes([]);
     setProductsImg([]);
+    setProductsUsername([]);
+    setProductsUserImg([]);
     setLastDocTimestamp(0);
   }, [category]);
 
@@ -38,12 +42,19 @@ export default function useMainFeedFetch(category, index) {
           setProductsImg((prevProducts) => {
             return [...prevProducts, ...res.data.map((b) => b.mainImage)];
           });
+          setProductsUsername((prevProducts) => {
+            return [...prevProducts, ...res.data.map((b) => b.username)];
+          });
+          setProductsUserImg((prevProducts) => {
+            return [...prevProducts, ...res.data.map((b) => b.imageUser)];
+          });
 
           setHasMore(res.data.length > 0);
           setLoading(false);
           setLastDocTimestamp(res.data[res.data.length - 1].time);
         } else {
           setHasMore(false);
+          setLoading(false)
         }
 
         console.log(res.data);
@@ -54,5 +65,5 @@ export default function useMainFeedFetch(category, index) {
       });
   }, [index, category]);
 
-  return { loading, error, products, productsDes, productsImg, hasMore };
+  return { loading, error, products, productsDes, productsImg,productsUsername,productsUserImg, hasMore };
 }

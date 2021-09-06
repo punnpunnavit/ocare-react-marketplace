@@ -73,14 +73,14 @@ export default function AddProducts() {
               fontColor="black"
               bgColor="rgba(168, 168, 168, 0.25)"
               fontWeight="100"
+              marginLeft="370px"
             />
             <Button
               text="Confirm"
               width="9rem"
               height="3.75rem"
               fontSize="1.5rem"
-              marginLeft="30px"
-              marginRight="10px"
+              marginLeft="15px"
             />
           </div>
           <div>
@@ -129,25 +129,25 @@ export default function AddProducts() {
           </div>
           <Horizontal>
             <div>
-              <div>
+              <div style={{ fontWeight: "100", fontSize: "1.75rem" }}>
                 Product Name
-                <SearchBar>
+                <SearchBar height="3.5rem" width="20rem">
                   <SearchBar.Group id="email" className="text-center">
                     <SearchBar.Control></SearchBar.Control>
                   </SearchBar.Group>
                 </SearchBar>
               </div>
-              <div>
+              <div style={{ fontWeight: "100", fontSize: "1.75rem" }}>
                 Category
-                <SearchBar>
+                <SearchBar height="3.5rem" width="20rem">
                   <SearchBar.Group id="email" className="text-center">
                     <SearchBar.Control></SearchBar.Control>
                   </SearchBar.Group>
                 </SearchBar>
               </div>
-              <div>
+              <div style={{ fontWeight: "100", fontSize: "1.75rem" }}>
                 Price
-                <SearchBar>
+                <SearchBar height="3.5rem" width="20rem">
                   <SearchBar.Group id="email" className="text-center">
                     <SearchBar.Control></SearchBar.Control>
                   </SearchBar.Group>
@@ -155,6 +155,60 @@ export default function AddProducts() {
               </div>
             </div>
             <div>
+              <div style={{ fontWeight: "100", fontSize: "1.75rem" }}>
+                Product Description
+                <SearchBar height="15.8rem" width="22rem">
+                  <SearchBar.Group id="email" className="text-center">
+                    <SearchBar.Control></SearchBar.Control>
+                  </SearchBar.Group>
+                </SearchBar>
+              </div>
+            </div>
+            <div>
+              <div style={{ marginBottom: "10px" }}>
+                <UploadImageWrapper
+                  onClick={() => {
+                    fileRef.current.click();
+                  }}
+                >
+                  <div style={{ width: "100px" }}>
+                    <div
+                      style={{
+                        fontSize: "15px",
+                        color: "rgba(168, 168, 168, 1)",
+                      }}
+                    >
+                      Upload your image here
+                    </div>
+                    <div>
+                      <RiFileLine
+                        style={{
+                          fontSize: "25px",
+                          color: "rgba(168, 168, 168, 1)",
+                        }}
+                      />
+                    </div>
+                  </div>
+                  {fileUrl && (
+                    <img
+                      style={{
+                        width: "200px",
+                        maxHeight: "200px",
+                        objectFit: "cover",
+                      }}
+                      src={fileUrl}
+                      alt="Preview"
+                    />
+                  )}
+                </UploadImageWrapper>
+                <input
+                  onChange={pickImageHandler}
+                  style={{ display: "none" }}
+                  ref={fileRef}
+                  type="file"
+                  accept=".jpg,.jpeg,.png"
+                />
+              </div>{" "}
               <div>
                 <UploadImageWrapper
                   onClick={() => {
@@ -200,8 +254,9 @@ export default function AddProducts() {
                 />
               </div>{" "}
             </div>
+
             <div>
-              <div>
+              <div style={{marginBottom:"10px"}}>
                 <UploadImageWrapper
                   onClick={() => {
                     fileRef.current.click();

@@ -8,7 +8,6 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-
 `;
 
 export const HeaderWrapper = styled.div`
@@ -33,10 +32,9 @@ export const SearchbarWrapper = styled.div`
 export const UploadImageWrapper = styled.div`
   display: flex;
   align-items: center;
-  width: 200px;
+  width: 220px;
   max-height: 200px;
-  height: 200px;
-  margin: auto;
+  height: 170px;
   outline: 4px dashed rgba(168, 168, 168, 0.45);
   outline-offset: -20px;
   background-color: rgba(168, 168, 168, 0.25);
@@ -50,7 +48,8 @@ export const Horizontal = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: flex-end;
   margin-bottom: 10px;
   margin-top: 10px;
 `;

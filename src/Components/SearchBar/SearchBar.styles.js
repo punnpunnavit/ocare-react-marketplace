@@ -5,8 +5,8 @@ export const SearchBar = styled(Form)`
   .form-control {
     background-color: rgba(168, 168, 168, 0.25);
     border: none;
-    width: 13rem;
-    height: 2rem;
+    width: ${(props) => props.width || "13rem"};
+    height: ${(props) => props.height || "2rem"};
     box-shadow: none;
     &::placeholder {
       color: rgba(168, 168, 168, 0.8);

@@ -17,6 +17,9 @@ import { AuthProvider } from "./Context/AuthContext";
 import MainFeed from "./Pages/MainFeed";
 import ProductDetail from "./Pages/ProductDetail";
 import AddProducts from './Pages/AddProductsPage'
+import EditProfile from './Pages/EditProfile'
+
+
 
 function App() {
   return (
@@ -30,6 +33,7 @@ function App() {
             />
             <Route exact path="/" component={MainFeed} />
             <Route exact path="/addproducts" component={AddProducts} />
+            <Route exact path="/editprofile" component={EditProfile} />
             {/* <Route exact path="/" component={MainFeed} /> */}
             <PrivateRoute
               exact

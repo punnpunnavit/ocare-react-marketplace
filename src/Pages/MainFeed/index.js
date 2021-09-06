@@ -17,42 +17,15 @@ import {
   FeedWrapper,
   HeaderWrapper,
   SearchbarWrapper,
+  Horizontal
 } from "./MainFeed.styles";
 
 function MainFeed() {
-  // const { state, loading, error } = useMainInfoFetch();
-
-  // const [query, setQuery] = useState("");
-  // const [pageNumber, setPageNumber] = useState(1);
-
-  // const { books, hasMore, loading, error } = useBookSearch(query, pageNumber);
-
-  // const observer = useRef();
-  // const lastBookElementRef = useCallback(
-  //   (node) => {
-  //     if (loading) return;
-  //     if (observer.current) observer.current.disconnect();
-  //     observer.current = new IntersectionObserver((entries) => {
-  //       if (entries[0].isIntersecting && hasMore) {
-  //         setPageNumber((prevPageNumber) => prevPageNumber + 1);
-  //       }
-  //     });
-  //     if (node) observer.current.observe(node);
-  //   },
-  //   [loading, hasMore]
-  // );
-
-  // function handleSearch(e) {
-  //   setQuery(e.target.value);
-  //   setPageNumber(1);
-  // }
   const [category, setCategory] = useState("");
-  const [pageNumber, setPageNumber] = useState(1);
+  const [pageNumber, setPageNumber] = useState(0);
 
-  const { products, hasMore, loading, error } = useMainFeedFetch(
-    category,
-    pageNumber
-  );
+  const { products, productsDes, productsImg, hasMore, loading, error } =
+    useMainFeedFetch(category, pageNumber);
 
   const observer = useRef();
   const lastProductElementRef = useCallback(
@@ -61,6 +34,7 @@ function MainFeed() {
       if (observer.current) observer.current.disconnect();
       observer.current = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting && hasMore) {
+          console.log("next pls");
           setPageNumber((prevPageNumber) => prevPageNumber + 1);
         }
       });
@@ -68,6 +42,13 @@ function MainFeed() {
     },
     [loading, hasMore]
   );
+
+  function handleScroll(e) {
+    console.log(e.target.scrollHeight);
+    if (e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight) {
+      console.log("bottom");
+    }
+  }
 
   function handleSearch(e) {
     setCategory(e.target.value);
@@ -82,12 +63,13 @@ function MainFeed() {
         width: "100vw",
         height: "100vh",
       }}
+      onScroll={handleScroll}
     >
       <InsideNavbar
         style={{ position: "-webkit-sticky", position: "sticky", top: "0" }}
       />
       <Wrapper>
-        <div style={{}}>
+        <div>
           <HeaderWrapper>
             <Header>YOUR FRIENDS</Header>
             <SearchbarWrapper>
@@ -102,48 +84,49 @@ function MainFeed() {
             </SearchbarWrapper>
           </HeaderWrapper>
           <FeedWrapper>
-            {/* <div style={{ display: "flex", marginBottom: "15px" }}> */}
-            <div style={{ marginBottom: "15px" }}>
-              {products.map((products, index) => {
-                if (products.length === index + 1) {
-                  return (
-                    <div ref={lastProductElementRef} key={products}>
-                      {products}
-                    </div>
-                  );
-                } else {
-                  return <div key={products}>{products}</div>;
-                }
-              })}
-              <div>{loading && "Loading..."}</div>
-              <div>{error && "Error"}</div>
-              {/* <Profile
-                profileURL="https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"
-                username="Jolie"
-              />
-              <ProductFeed
-                productPicture="https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"
-                Header="efegrgrgrgrgf"
-                Description="wefrewf"
-              /> */}
-            </div>
+            {products.map((products, index) => {
+              if (products.length === index + 1) {
+                return (
+                  <div
+                    ref={lastProductElementRef}
+                    key={products.productId}
+                    style={{ display: "flex", marginBottom: "15px" }}
+                  >
+                    <Profile
+                      profileURL="https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"
+                      username="Jolie"
+                    />
+                    <ProductFeed
+                      productPicture={productsImg}
+                      Header={products}
+                      Description={productsDes}
+                    />
+                  </div>
+                );
+              } else {
+                return (
+                  <div
+                    ref={lastProductElementRef}
+                    key={products.productId}
+                    style={{ display: "flex", marginBottom: "15px" }}
+                  >
+                    <Profile
+                      profileURL="https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"
+                      username="Jolie"
+                    />
+                    <ProductFeed
+                      productPicture={productsImg[index]}
+                      Header={products}
+                      Description={productsDes[index]}
+                    />
+                  </div>
+                );
+              }
+            })}
+            <div>{loading && "Loading..."}</div>
+            <div>{error && "Error"}</div>
           </FeedWrapper>
         </div>
-
-        {/* <input type="text" value={query} onChange={handleSearch}></input>
-          {books.map((book, index) => {
-            if (books.length === index + 1) {
-              return (
-                <div ref={lastBookElementRef} key={book}>
-                  {book}
-                </div>
-              );
-            } else {
-              return <div key={book}>{book}</div>;
-            }
-          })}
-          <div>{loading && "Loading..."}</div>
-          <div>{error && "Error"}</div> */}
       </Wrapper>
     </div>
   );

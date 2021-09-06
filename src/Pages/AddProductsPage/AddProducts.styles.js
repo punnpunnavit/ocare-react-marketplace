@@ -6,14 +6,15 @@ export const Wrapper = styled.div`
   min-width: 93%;
   flex-wrap: wrap;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
+
 `;
 
 export const HeaderWrapper = styled.div`
   display: flex;
   align-items: center;
-  margin-top: 100px;
+
   margin-bottom: 50px;
 `;
 
@@ -27,6 +28,21 @@ export const SearchbarWrapper = styled.div`
   align-items: center;
   margin-left: auto;
   margin-right: 0;
+`;
+
+export const UploadImageWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  width: 200px;
+  max-height: 200px;
+  height: 200px;
+  margin: auto;
+  outline: 4px dashed rgba(168, 168, 168, 0.45);
+  outline-offset: -20px;
+  background-color: rgba(168, 168, 168, 0.25);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `;
 
 export const FeedWrapper = styled.div``;

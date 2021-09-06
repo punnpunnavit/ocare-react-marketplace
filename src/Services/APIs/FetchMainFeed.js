@@ -2,16 +2,22 @@
 import axiosInstance from "../AxiosInstance.js";
 //react hooks
 
-
 const MainFeedAPI = {
-  fetchMainFeed: async (category, index, lastestDocTime,createNewToken, isCancel) => {
-    
+  fetchMainFeed: async (
+    category,
+    index,
+    lastestDocTime,
+    createNewToken,
+    isCancel
+  ) => {
     return axiosInstance
       .get("/main", {
-        categor: category,
-        index: index,
-        lastestDocTime: lastestDocTime,
-        cancelToken: createNewToken()
+        params: {
+          category: category,
+          index: index,
+          lastestDocTime: lastestDocTime,
+        },
+        cancelToken: createNewToken(),
       })
       .catch((error) => {
         console.log("Error has occured");

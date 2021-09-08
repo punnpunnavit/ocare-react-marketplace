@@ -1,5 +1,11 @@
 //Hooks
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  useCallback,
+  useMemo,
+} from "react";
 import InsideNavbar from "../../Components/Sidebar/ShownNavbar";
 import useBookSearch from "../../Hooks/useBookSearch";
 import useMainFeedFetch from "../../Hooks/useMainFeedFetch";
@@ -21,6 +27,7 @@ import {
 } from "./MainFeed.styles";
 import { RiDivideFill } from "react-icons/ri";
 import { CircularImageLoading } from "../../Components/Profile/Profile.styles";
+import { Link } from "react-router-dom";
 
 function MainFeed() {
   const [category, setCategory] = useState("");
@@ -32,6 +39,7 @@ function MainFeed() {
     productsImg,
     productsUsername,
     productsUserImg,
+    productsId,
     hasMore,
     loading,
     error,
@@ -64,7 +72,7 @@ function MainFeed() {
     setCategory(e.target.value);
     setPageNumber(1);
   }
-
+  console.log(loading);
   console.log("XXX");
   return (
     <div
@@ -85,7 +93,7 @@ function MainFeed() {
             <Header>YOUR FRIENDS</Header>
 
             <FaFilter
-              style={{ color: "var(--green)", marginRight: "-200px" }}
+              style={{ color: "var(--green)", marginRight: "-670px" }}
             />
             <SearchBar marginRight="0px">
               <SearchBar.Group id="email" className="text-center">
@@ -93,6 +101,7 @@ function MainFeed() {
               </SearchBar.Group>
             </SearchBar>
           </HeaderWrapper>
+          {console.log(383)}
 
           {products.map((products, index) => {
             console.log("YYY");
@@ -100,7 +109,7 @@ function MainFeed() {
               return (
                 <div
                   ref={lastProductElementRef}
-                  key={products.productId}
+                  key={productsId[index]}
                   style={{
                     display: "flex",
                     marginBottom: "15px",
@@ -111,12 +120,14 @@ function MainFeed() {
                     username={productsUsername}
                     loading={loading}
                   />
-                  <ProductFeed
-                    productPicture={productsImg}
-                    Header={products}
-                    Description={productsDes}
-                    loading={loading}
-                  />
+                  <Link to={`/blogs/${productsId[index]}`}>
+                    <ProductFeed
+                      productPicture={productsImg}
+                      Header={products}
+                      Description={productsDes}
+                      loading={loading}
+                    />
+                  </Link>
                 </div>
               );
             } else {
@@ -134,12 +145,14 @@ function MainFeed() {
                     username={productsUsername[index]}
                     loading={loading}
                   />
-                  <ProductFeed
-                    productPicture={productsImg[index]}
-                    Header={products}
-                    Description={productsDes[index]}
-                    loading={loading}
-                  />
+                  <Link to={`/blogs/${productsId[index]}`}>
+                    <ProductFeed
+                      productPicture={productsImg[index]}
+                      Header={products}
+                      Description={productsDes[index]}
+                      loading={loading}
+                    />
+                  </Link>
                 </div>
               );
             }

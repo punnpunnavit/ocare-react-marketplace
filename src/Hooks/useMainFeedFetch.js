@@ -10,6 +10,7 @@ export default function useMainFeedFetch(category, index) {
   const [productsImg, setProductsImg] = useState([]);
   const [productsUsername, setProductsUsername] = useState([]);
   const [productsUserImg, setProductsUserImg] = useState([]);
+  const [productsId, setProductsId] = useState([]);
   const [lastDocTimeStamp, setLastDocTimestamp] = useState(0);
   const [hasMore, setHasMore] = useState(false);
   const { createNewToken, isCancel } = useCancelToken();
@@ -20,6 +21,7 @@ export default function useMainFeedFetch(category, index) {
     setProductsImg([]);
     setProductsUsername([]);
     setProductsUserImg([]);
+    setProductsId([]);
     setLastDocTimestamp(0);
   }, [category]);
 
@@ -38,7 +40,7 @@ export default function useMainFeedFetch(category, index) {
           setProductsDes((prevProducts) => {
             return [...prevProducts, ...res.data.map((b) => b.description)];
           });
-          console.log(productsDes)
+          console.log(productsDes);
           setProductsImg((prevProducts) => {
             return [...prevProducts, ...res.data.map((b) => b.mainImage)];
           });
@@ -48,13 +50,17 @@ export default function useMainFeedFetch(category, index) {
           setProductsUserImg((prevProducts) => {
             return [...prevProducts, ...res.data.map((b) => b.imageUser)];
           });
+          setProductsId((prevProducts) => {
+            return [...prevProducts, ...res.data.map((b) => b.productId)];
+          });
+
 
           setHasMore(res.data.length > 0);
           setLoading(false);
           setLastDocTimestamp(res.data[res.data.length - 1].time);
         } else {
           setHasMore(false);
-          setLoading(false)
+          setLoading(false);
         }
 
         console.log(res.data);
@@ -65,5 +71,16 @@ export default function useMainFeedFetch(category, index) {
       });
   }, [index, category]);
 
-  return { loading, error, products, productsDes, productsImg,productsUsername,productsUserImg, hasMore };
+  return {
+    loading,
+    error,
+    products,
+    productsDes,
+    productsImg,
+    productsUsername,
+    productsUserImg,
+    productsId,
+    hasMore,
+
+  };
 }

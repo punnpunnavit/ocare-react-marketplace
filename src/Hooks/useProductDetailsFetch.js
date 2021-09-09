@@ -14,28 +14,12 @@ export default function useProductDetailsFetch(id) {
   const [productsCategory, setProductsCategory] = useState([]);
   FetchProductDetails.fetchDetails(id)
     .then((res) => {
-      
         setProductsName(res.data.productName);
-        console.log(productsName);
         setProductsMainImg(res.data.mainImage);
         setProductsImg(res.data.images)
         setProductsDes(res.data.description)
         setProductsPrice(res.data.price)
         setProductsCategory(res.data.category)
-    //     setProductsImg(() => {
-    //       return [res.data.map((b) => b.images)];
-    //     });
-    //     setProductsDes(() => {
-    //       return [res.data.map((b) => b.description)];
-    //     });
-    //     setProductsPrice(() => {
-    //       return [res.data.map((b) => b.price)];
-    //     });
-    //     setProductsCategory(() => {
-    //       return [res.data.map((b) => b.category)];
-    //     });
-    //   } 
-     
       }  )
     .catch((e) => {
       console.log(e);

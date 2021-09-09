@@ -3,13 +3,17 @@ import { API_URL } from "../Config/config";
 
 const axiosInstance = axios.create({
   baseURL: API_URL,
-  timeout: 10000,
+  timeout: 100000,
   headers: {},
 });
 
 const requestHandler = (request) => {
-  request.headers.Authorization = window.localStorage.getItem("accessToken");
+  request.headers.Authorization =
+    "Bearer eyJhbGciOiJIUzI1NiJ9.YzQ5YzgyZTgwYTA0ZjJhYWI5OWNhMmJjMjhhYzRlZjU1MDFjMzY4MGI0YzdmOWMxMDE4OTE2ZWM4ZjE0NmU5Yg.pDuwuMKI7tqt6ftVkrzZZYZIuoB7lwDyIQykYz5UTYQ";
+  // request.headers.Authorization = window.localStorage.getItem("accessToken");
   console.log(request);
+  console.log(JSON.stringify(request));
+
   return request;
 };
 

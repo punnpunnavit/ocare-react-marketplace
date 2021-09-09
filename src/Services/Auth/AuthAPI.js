@@ -10,6 +10,7 @@ const AuthAPI = {
         password: password,
       })
       .then((response) => {
+        console.log(response);
         console.log(response.status + "yay");
         console.log(response.statusText);
       })

@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import InsideNavbar from "../../Components/Sidebar/ShownNavbar";
+import AddProductsAPI from "../../Services/APIs/AddProducts";
+
 import {
   Wrapper,
   Header,
@@ -11,12 +13,36 @@ import {
 import Button from "../../Components/Button";
 import { SearchBar } from "../../Components/SearchBar/SearchBar.styles";
 import { RiFileLine } from "react-icons/ri";
+import useProductsAdd from "../../Hooks/useProductsAdd";
+import image1 from "../../Assets/Images/test1.jpg";
+import image2 from "../../Assets/Images/test2.jpg";
+import image3 from "../../Assets/Images/test3.jpg";
+import image4 from "../../Assets/Images/test4.jpg";
 
 export default function AddProducts() {
   const fileRef = useRef();
 
   const [file, setFile] = useState();
   const [fileUrl, setFileUrl] = useState();
+  const [productName, setProductName] = useState([]);
+  const [uploadImages, setUploadImages] = useState([]);
+  const [description, setDescription] = useState([]);
+  const [price, setPrice] = useState([]);
+  const [category, setCategory] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+
+  const confirmAdd = async () => {
+    console.log("hi");
+
+    const res = await AddProductsAPI.addProduct(
+      productName,
+      uploadImages,
+      description,
+      price,
+      category
+    );
+  };
 
   const pickImageHandler = (event) => {
     if (event.target.files && event.target.files.length === 1) {
@@ -25,6 +51,11 @@ export default function AddProducts() {
   };
 
   useEffect(() => {
+    setProductName("Yo");
+    setUploadImages([image1, image2, image3, image4]);
+    setDescription("testing in vscode");
+    setPrice(998);
+    setCategory("delicious");
     if (!file) {
       return;
     }
@@ -81,6 +112,7 @@ export default function AddProducts() {
               height="3.75rem"
               fontSize="1.5rem"
               marginLeft="15px"
+              onClick={confirmAdd}
             />
           </div>
           <div>
@@ -256,7 +288,7 @@ export default function AddProducts() {
             </div>
 
             <div>
-              <div style={{marginBottom:"10px"}}>
+              <div style={{ marginBottom: "10px" }}>
                 <UploadImageWrapper
                   onClick={() => {
                     fileRef.current.click();

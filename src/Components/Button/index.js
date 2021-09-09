@@ -14,6 +14,7 @@ export default function Button(props) {
       marginBottom={props.marginBottom}
       marginLeft ={props.marginLeft}
       marginRight={props.marginRight}
+      onClick={props.onClick}
     >
       {props.text}
     </StyledButton>

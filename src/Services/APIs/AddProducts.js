@@ -8,25 +8,22 @@ const AddProductsAPI = {
     price,
     category
   ) => {
-    var bodyFormData = new FormData();
-    console.log(uploadImages);
-    bodyFormData.append("productName", productName);
-    for (let i = 0; i < uploadImages.length; i++) {
-      bodyFormData.append(i, uploadImages[i]);
-    }
-    bodyFormData.append("description", description);
-    bodyFormData.append("price", price);
-    bodyFormData.append("category", category);
-    for (var pair of bodyFormData.entries()) {
-      console.log(pair[0] + ":" + pair[1]);
-    }
+    var FormData = require("form-data");
+    var data = new FormData();
+    data.append("productName", productName);
+    data.append("uploadImages", uploadImages);
+    // data.append("uploadImages", uploadImages[1]);
+    // data.append("uploadImages", uploadImages[2]);
+    data.append("description", "รis it gonna work?");
+    data.append("price", Date().toLocaleString());
+    data.append("category", "test");
+    console.log(Date().toLocaleString());
     return axiosInstance
-      .post("/product/add", bodyFormData, {
+      .post("/product/add", data, {
         headers: {
           "Content-Type": "multipart/form-data",
           Authorization:
-            "Bearer " +
-            "eyJhbGciOiJIUzI1NiJ9.YzQ5YzgyZTgwYTA0ZjJhYWI5OWNhMmJjMjhhYzRlZjU1MDFjMzY4MGI0YzdmOWMxMDE4OTE2ZWM4ZjE0NmU5Yg.pDuwuMKI7tqt6ftVkrzZZYZIuoB7lwDyIQykYz5UTYQ",
+            "Bearer eyJhbGciOiJIUzI1NiJ9.YzQ5YzgyZTgwYTA0ZjJhYWI5OWNhMmJjMjhhYzRlZjU1MDFjMzY4MGI0YzdmOWMxMDE4OTE2ZWM4ZjE0NmU5Yg.pDuwuMKI7tqt6ftVkrzZZYZIuoB7lwDyIQykYz5UTYQ",
         },
       })
       .catch((error) => {

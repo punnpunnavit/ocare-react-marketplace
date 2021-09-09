@@ -37,7 +37,7 @@ export default function AddProducts() {
 
     const res = await AddProductsAPI.addProduct(
       productName,
-      uploadImages,
+      file,
       description,
       price,
       category

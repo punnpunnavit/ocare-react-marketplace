@@ -23,13 +23,13 @@ export default function useMainFeedFetch(category, index) {
     setProductsUserImg([]);
     setProductsId([]);
     setLastDocTimestamp(0);
-  }, [category]);
+  }, [category,index]);
 
   useEffect(() => {
     setLoading(true);
     setError(false);
     let cancel;
-    console.log(index);
+    console.log(index + "hereeee is the indexxx");
 
     MainFeedAPI.fetchMainFeed(category, index, createNewToken, isCancel)
       .then((res) => {
@@ -40,7 +40,6 @@ export default function useMainFeedFetch(category, index) {
           setProductsDes((prevProducts) => {
             return [...prevProducts, ...res.data.map((b) => b.description)];
           });
-          console.log(productsDes);
           setProductsImg((prevProducts) => {
             return [...prevProducts, ...res.data.map((b) => b.mainImage)];
           });
@@ -51,25 +50,23 @@ export default function useMainFeedFetch(category, index) {
             return [...prevProducts, ...res.data.map((b) => b.imageUser)];
           });
           setProductsId((prevProducts) => {
-            return [...prevProducts, ...res.data.map((b) => b.productId)];
+            return [...new Set([...prevProducts, ...res.data.map((b) => b.productId)])];
           });
-
 
           setHasMore(res.data.length > 0);
           setLoading(false);
-          setLastDocTimestamp(res.data[res.data.length - 1].time);
         } else {
           setHasMore(false);
           setLoading(false);
         }
 
-        console.log(res.data);
+        console.log(res.data );
       })
       .catch((e) => {
         console.log(e);
         setError(true);
       });
-  }, [index, category]);
+  }, [category,index]);
 
   return {
     loading,
@@ -81,6 +78,5 @@ export default function useMainFeedFetch(category, index) {
     productsUserImg,
     productsId,
     hasMore,
-
   };
 }

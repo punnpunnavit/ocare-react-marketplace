@@ -35,7 +35,7 @@ const AuthAPI = {
         Promise.reject(error);
       });
   },
-  forgetPassword: async () => {
+  forgetPassword: async (email) => {
     return axiosInstance
       .get("/users")
       .then((response) => {

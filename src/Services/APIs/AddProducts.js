@@ -12,8 +12,6 @@ const AddProductsAPI = {
     var data = new FormData();
     data.append("productName", productName);
     data.append("uploadImages", uploadImages);
-    // data.append("uploadImages", uploadImages[1]);
-    // data.append("uploadImages", uploadImages[2]);
     data.append("description", "รis it gonna work?");
     data.append("price", Date().toLocaleString());
     data.append("category", "test");

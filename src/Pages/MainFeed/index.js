@@ -60,20 +60,74 @@ function MainFeed() {
     },
     [loading, hasMore]
   );
-
-  function handleScroll(e) {
-    console.log(e.target.scrollHeight);
-    if (e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight) {
-      console.log("bottom");
-    }
-  }
-
   function handleSearch(e) {
     setCategory(e.target.value);
     setPageNumber(1);
   }
-  console.log(loading);
   console.log("XXX");
+
+  const cards = useMemo(() => {
+    {
+      products.map((products, index) => {
+        console.log("YYY");
+        if (products.length === index + 1) {
+          console.log(83838);
+          return (
+            <div
+              ref={lastProductElementRef}
+              key={index}
+              style={{
+                display: "flex",
+                marginBottom: "15px",
+              }}
+            >
+              <Profile
+                profileURL={productsUserImg}
+                username={productsUsername}
+                loading={loading}
+              />
+              <Link to={`/blogs/${productsId[index]}`}>
+                <ProductFeed
+                  productPicture={productsImg}
+                  Header={products}
+                  Description={productsDes}
+                  loading={loading}
+                />
+              </Link>
+            </div>
+          );
+        } else {
+          console.log(83839009);
+          return (
+            <div
+              ref={lastProductElementRef}
+              key={index}
+              style={{
+                display: "flex",
+                marginBottom: "15px",
+              }}
+            >
+              hey
+              <Profile
+                profileURL={productsUserImg[index]}
+                username={productsUsername[index]}
+                loading={loading}
+              />
+              <Link to={`/blogs/${productsId[index]}`}>
+                <ProductFeed
+                  productPicture={productsImg[index]}
+                  Header={products}
+                  Description={productsDes[index]}
+                  loading={loading}
+                />
+              </Link>
+            </div>
+          );
+        }
+      });
+    }
+  }, [products]);
+
   return (
     <div
       style={{
@@ -82,7 +136,6 @@ function MainFeed() {
         width: "100vw",
         height: "100vh",
       }}
-      onScroll={handleScroll}
     >
       <InsideNavbar
         style={{ position: "-webkit-sticky", position: "sticky", top: "0" }}
@@ -96,67 +149,14 @@ function MainFeed() {
               style={{ color: "var(--green)", marginRight: "-670px" }}
             />
             <SearchBar marginRight="0px">
-              <SearchBar.Group id="email" className="text-center">
+              <SearchBar.Group id="email" className="text-center" onChange={handleSearch}>
                 <SearchBar.Control placeholder="Search"></SearchBar.Control>
               </SearchBar.Group>
             </SearchBar>
           </HeaderWrapper>
           {console.log(383)}
 
-          {products.map((products, index) => {
-            console.log("YYY");
-            if (products.length === index + 1) {
-              return (
-                <div
-                  ref={lastProductElementRef}
-                  key={productsId[index]}
-                  style={{
-                    display: "flex",
-                    marginBottom: "15px",
-                  }}
-                >
-                  <Profile
-                    profileURL={productsUserImg}
-                    username={productsUsername}
-                    loading={loading}
-                  />
-                  <Link to={`/blogs/${productsId[index]}`}>
-                    <ProductFeed
-                      productPicture={productsImg}
-                      Header={products}
-                      Description={productsDes}
-                      loading={loading}
-                    />
-                  </Link>
-                </div>
-              );
-            } else {
-              return (
-                <div
-                  ref={lastProductElementRef}
-                  key={products.productId}
-                  style={{
-                    display: "flex",
-                    marginBottom: "15px",
-                  }}
-                >
-                  <Profile
-                    profileURL={productsUserImg[index]}
-                    username={productsUsername[index]}
-                    loading={loading}
-                  />
-                  <Link to={`/blogs/${productsId[index]}`}>
-                    <ProductFeed
-                      productPicture={productsImg[index]}
-                      Header={products}
-                      Description={productsDes[index]}
-                      loading={loading}
-                    />
-                  </Link>
-                </div>
-              );
-            }
-          })}
+          {cards}
           {/* <div>
               {true && (
                 <div style={{ display: "flex", marginBottom: "15px" }}>

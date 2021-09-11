@@ -2,8 +2,10 @@ import React, { useRef, useState } from "react";
 import { Form, Button, Card, Alert } from "react-bootstrap";
 import { useAuth } from "../../Context/AuthContext";
 import { Link, useHistory } from "react-router-dom";
-import { StyledForm, StyledButton } from "./SignUpCard.styles";
-import { StyledContainer } from "../../Components/AuthenPage.styles";
+import { StyledForm, StyledContainer,
+  StyledButton,
+  StyledLink, } from "./SignUpCard.styles";
+
 
 function SignUp() {
   const emailRef = useRef();
@@ -35,69 +37,80 @@ function SignUp() {
     setLoading(false);
   }
   return (
-    <StyledContainer className="d-flex align-items-center justify-content-center">
-      <div className="w-100" style={{ maxWidth: "45%", minHeight: "100vh" }}>
-        <Card>
-          <Card.Body style={{ height: "100vh", display: "flex" }}>
-            <div
-              style={{
-                margin: "auto",
-                marginTop: "100px",
-              }}
+    <StyledContainer>
+      <Card
+        style={{
+          height: "100vh",
+          maxWidth: "700px",
+          flexShrink: "0",
+          width: "100%",
+        }}
+      >
+        <Card.Body>
+          <div
+            style={{
+              margin: "auto",
+              marginTop: "100px",
+            }}
+          >
+            <h1
+              className="text-center mb-4"
+              style={{ fontSize: "3.75rem", color: "#534683" }}
             >
-              <h1
-                className="text-center mb-4"
-                style={{ fontSize: "4rem", color: "#534683" }}
+              OCARE
+              <br />
+              MARKETPLACE
+            </h1>
+            <p className="text-center mb-3">Sign-up with your Email</p>
+            {error && <Alert variant="danger">{error}</Alert>}
+            <StyledForm onSubmit={handleSubmit}>
+              <StyledForm.Group className="text-center mb-4">
+                <StyledForm.Control
+                  type="email"
+                  ref={emailRef}
+                  required
+                  placeholder="Email"
+                ></StyledForm.Control>
+              </StyledForm.Group>
+              <StyledForm.Group id="password">
+                <StyledForm.Control
+                  type="password"
+                  ref={passwordRef}
+                  required
+                  placeholder="Password"
+                  className="mb-3"
+                ></StyledForm.Control>
+              </StyledForm.Group>
+              <StyledForm.Group id="password">
+                <StyledForm.Control
+                  type="password"
+                  ref={passwordConfirmRef}
+                  required
+                  placeholder="Confirm Password"
+                  className="mb-3"
+                ></StyledForm.Control>
+              </StyledForm.Group>
+
+              <StyledButton
+                disabled={loading}
+                className="mb-3 mt-3"
+                type="submit"
+                style={{
+                  marginTop: "10px",
+                  width: "30%",
+                  margin: "0 auto",
+                }}
               >
-                OCARE
-                <br />
-                MARKETPLACE
-              </h1>
-              <p className="text-center mb-4">
-                Create an account with your Email
-              </p>
-              {error && <Alert variant="danger">{error}</Alert>}
-              <StyledForm onSubmit={handleSubmit}>
-                <StyledForm.Group id="email" className="text-center mb-3">
-                  <StyledForm.Control
-                    type="email"
-                    ref={emailRef}
-                    placeholder="Email"
-                    required
-                  ></StyledForm.Control>
-                </StyledForm.Group>
-                <StyledForm.Group id="password" className="text-center mb-3">
-                  <StyledForm.Control
-                    type="password"
-                    ref={passwordRef}
-                    placeholder="Password"
-                    required
-                  ></StyledForm.Control>
-                </StyledForm.Group>
-                <StyledForm.Group id="password-confirm">
-                  <StyledForm.Control
-                    type="password"
-                    ref={passwordConfirmRef}
-                    required
-                    placeholder="Password Confirmation"
-                  ></StyledForm.Control>
-                </StyledForm.Group>
-                <StyledButton
-                  disabled={loading}
-                  className="text-center mt-3"
-                  style={{ width: "50%", margin: "0 auto" }}
-                  type="submit"
-                >
-                  SIGN UP
-                </StyledButton>
-              </StyledForm>
-              <p className="w-100 text-center mt-2">
-                Already have an account? <Link to="/login">Log In</Link>
-              </p>
-            </div>
-          </Card.Body>
-        </Card>
-      </div>
+                SIGN UP
+              </StyledButton>
+            </StyledForm>
+
+            <p className="w-100 text-center mt-4">
+              Already have an account <StyledLink to="/login">Sign In</StyledLink>
+            </p>
+          </div>
+        </Card.Body>
+      </Card>
     </StyledContainer>
   );
 }

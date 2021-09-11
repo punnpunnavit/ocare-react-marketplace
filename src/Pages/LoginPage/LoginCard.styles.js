@@ -16,13 +16,11 @@ export const StyledForm = styled(Form)`
     border: none;
     height: 50px;
     box-shadow: none;
-    &::placeholder{
-      color:rgba(168, 168, 168, 0.8);
+    &::placeholder {
+      color: rgba(168, 168, 168, 0.8);
       font-weight: 100;
+    }
   }
-  }
-
-  
 `;
 
 export const ContentWrapper = styled.div.attrs((props) => ({
@@ -39,7 +37,7 @@ export const StyledButton = styled(Button)`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 12rem;
+
   height: 3rem;
   color: var(--white);
   background-color: var(--green);
@@ -67,4 +65,23 @@ export const StyledButton = styled(Button)`
     border-color: var(--green);
     color: var(--green);
   }
+`;
+
+export const StyledContainer = styled(Container)`
+  min-height: 100vh;
+  min-width: 100vw;
+  display: flex;
+  justify-content: center;
+
+  background: linear-gradient(
+      90deg,
+      rgb(63, 189, 167, 0.85) 50%,
+      rgb(60, 122, 190, 0.85) 50%
+    ),
+    url("https://i.ibb.co/wW9KxNx/UI.jpg") no-repeat top center;
+
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 `;

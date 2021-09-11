@@ -33,17 +33,10 @@ function MainFeed() {
   const [category, setCategory] = useState("");
   const [pageNumber, setPageNumber] = useState(0);
 
-  const {
-    products,
-    productsDes,
-    productsImg,
-    productsUsername,
-    productsUserImg,
-    productsId,
-    hasMore,
-    loading,
-    error,
-  } = useMainFeedFetch(category, pageNumber);
+  const { products, hasMore, loading, error } = useMainFeedFetch(
+    category,
+    pageNumber
+  );
 
   const observer = useRef();
   const lastProductElementRef = useCallback(
@@ -67,67 +60,35 @@ function MainFeed() {
   console.log("XXX");
 
   const cards = useMemo(() => {
-    {
-      products.map((products, index) => {
-        console.log("YYY");
-        if (products.length === index + 1) {
-          console.log(83838);
-          return (
-            <div
-              ref={lastProductElementRef}
-              key={index}
-              style={{
-                display: "flex",
-                marginBottom: "15px",
-              }}
-            >
-              <Profile
-                profileURL={productsUserImg}
-                username={productsUsername}
-                loading={loading}
-              />
-              <Link to={`/blogs/${productsId[index]}`}>
-                <ProductFeed
-                  productPicture={productsImg}
-                  Header={products}
-                  Description={productsDes}
-                  loading={loading}
-                />
-              </Link>
-            </div>
-          );
-        } else {
-          console.log(83839009);
-          return (
-            <div
-              ref={lastProductElementRef}
-              key={index}
-              style={{
-                display: "flex",
-                marginBottom: "15px",
-              }}
-            >
-              hey
-              <Profile
-                profileURL={productsUserImg[index]}
-                username={productsUsername[index]}
-                loading={loading}
-              />
-              <Link to={`/blogs/${productsId[index]}`}>
-                <ProductFeed
-                  productPicture={productsImg[index]}
-                  Header={products}
-                  Description={productsDes[index]}
-                  loading={loading}
-                />
-              </Link>
-            </div>
-          );
-        }
-      });
-    }
-  }, [products]);
-
+    console.log("YYY");
+    return products.map((products, index) => {
+      return (
+        <div
+          ref={lastProductElementRef}
+          key={index}
+          style={{
+            display: "flex",
+            marginBottom: "15px",
+          }}
+        >
+          <Profile
+            profileURL={products.userImage}
+            username={products.username}
+            loading={loading}
+          />
+          <Link to={`/blogs/${products.id}`}>
+            <ProductFeed
+              productPicture={products.image}
+              Header={products.name}
+              Description={products.description}
+              loading={loading}
+            />
+          </Link>
+        </div>
+      );
+    });
+  }, [products, loading]);
+  //group objects into one object + absolute path + error boundary + debouncing axios + backแก้ตัวสุดท้าย + fix bg height + button width + minmax???
   return (
     <div
       style={{
@@ -149,22 +110,25 @@ function MainFeed() {
               style={{ color: "var(--green)", marginRight: "-670px" }}
             />
             <SearchBar marginRight="0px">
-              <SearchBar.Group id="email" className="text-center" onChange={handleSearch}>
+              <SearchBar.Group
+                id="email"
+                className="text-center"
+                onChange={handleSearch}
+              >
                 <SearchBar.Control placeholder="Search"></SearchBar.Control>
               </SearchBar.Group>
             </SearchBar>
           </HeaderWrapper>
           {console.log(383)}
-
-          {cards}
-          {/* <div>
-              {true && (
-                <div style={{ display: "flex", marginBottom: "15px" }}>
-                  <SkeletonLoadingProfile />
-                  <ProductFeedLoading />
-                </div>
-              )}
-            </div> */}
+          <div>
+            {cards}
+            {loading && (
+              <div style={{ display: "flex", marginBottom: "15px" }}>
+                <SkeletonLoadingProfile />
+                <ProductFeedLoading />
+              </div>
+            )}
+          </div>
           <div>{error && "Error"}</div>
         </div>
       </Wrapper>

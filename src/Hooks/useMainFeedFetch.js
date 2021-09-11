@@ -6,24 +6,14 @@ export default function useMainFeedFetch(category, index) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [products, setProducts] = useState([]);
-  const [productsDes, setProductsDes] = useState([]);
-  const [productsImg, setProductsImg] = useState([]);
-  const [productsUsername, setProductsUsername] = useState([]);
-  const [productsUserImg, setProductsUserImg] = useState([]);
-  const [productsId, setProductsId] = useState([]);
   const [lastDocTimeStamp, setLastDocTimestamp] = useState(0);
   const [hasMore, setHasMore] = useState(false);
   const { createNewToken, isCancel } = useCancelToken();
 
   useEffect(() => {
     setProducts([]);
-    setProductsDes([]);
-    setProductsImg([]);
-    setProductsUsername([]);
-    setProductsUserImg([]);
-    setProductsId([]);
     setLastDocTimestamp(0);
-  }, [category,index]);
+  }, [category]);
 
   useEffect(() => {
     setLoading(true);
@@ -35,24 +25,20 @@ export default function useMainFeedFetch(category, index) {
       .then((res) => {
         if (Array.isArray(res.data)) {
           setProducts((prevProducts) => {
-            return [...prevProducts, ...res.data.map((b) => b.productName)];
+            return [
+              ...prevProducts,
+              ...res.data.map((_product) => {
+                return {
+                  id: _product.productId,
+                  name: _product.productName,
+                  description: _product.description,
+                  image: _product.mainImage,
+                  username: _product.username,
+                  userImage: _product.imageUser,
+                };
+              }),
+            ];
           });
-          setProductsDes((prevProducts) => {
-            return [...prevProducts, ...res.data.map((b) => b.description)];
-          });
-          setProductsImg((prevProducts) => {
-            return [...prevProducts, ...res.data.map((b) => b.mainImage)];
-          });
-          setProductsUsername((prevProducts) => {
-            return [...prevProducts, ...res.data.map((b) => b.username)];
-          });
-          setProductsUserImg((prevProducts) => {
-            return [...prevProducts, ...res.data.map((b) => b.imageUser)];
-          });
-          setProductsId((prevProducts) => {
-            return [...new Set([...prevProducts, ...res.data.map((b) => b.productId)])];
-          });
-
           setHasMore(res.data.length > 0);
           setLoading(false);
         } else {
@@ -60,23 +46,18 @@ export default function useMainFeedFetch(category, index) {
           setLoading(false);
         }
 
-        console.log(res.data );
+        console.log(res.data);
       })
       .catch((e) => {
         console.log(e);
         setError(true);
       });
-  }, [category,index]);
+  }, [category, index]);
 
   return {
     loading,
     error,
     products,
-    productsDes,
-    productsImg,
-    productsUsername,
-    productsUserImg,
-    productsId,
     hasMore,
   };
 }

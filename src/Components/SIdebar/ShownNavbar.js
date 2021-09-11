@@ -34,7 +34,7 @@ function Navbar() {
           style={{
             color: "white",
             fontSize: "2.25em",
-            marginBottom: "700px",
+            marginTop: "50px",
             marginLeft: "30px",
             marginRight: "30px"
           }}

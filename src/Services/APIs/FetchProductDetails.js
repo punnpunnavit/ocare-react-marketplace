@@ -7,8 +7,10 @@ const ProductDetailAPI = {
     id
   ) => {
     return axiosInstance
-      .get(`/product/:id?id=${id}`, {
-       
+      .get(`/product`, {
+       params:{
+         id
+       }
       })
       .catch((error) => {
         console.log("Error has occured");

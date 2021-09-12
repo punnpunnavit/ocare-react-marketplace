@@ -9,7 +9,7 @@ const ProductDetailAPI = {
     return axiosInstance
       .get(`/product`, {
        params:{
-         id
+         productId:id
        }
       })
       .catch((error) => {

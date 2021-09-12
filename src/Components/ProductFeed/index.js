@@ -36,9 +36,9 @@ export function ProductFeedLoading() {
       <ProductImageLoading />
       <Description>
         <TextWrapper>
-          <HeaderLoading />
-          <TextDesLoading />
-        </TextWrapper>
+          <HeaderLoading/>
+          <TextDesLoading/>
+          </TextWrapper>
       </Description>
       <Button>
         <ArrowIcon />

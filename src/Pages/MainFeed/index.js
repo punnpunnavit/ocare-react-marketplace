@@ -57,10 +57,8 @@ function MainFeed() {
     setCategory(e.target.value);
     setPageNumber(1);
   }
-  console.log("XXX");
 
   const cards = useMemo(() => {
-    console.log("YYY");
     return products.map((products, index) => {
       return (
         <div
@@ -88,49 +86,46 @@ function MainFeed() {
       );
     });
   }, [products, loading]);
-  //group objects into one object + absolute path + error boundary + debouncing axios + backแก้ตัวสุดท้าย + fix bg height + button width + minmax???
+  //absolute path + error boundary + debouncing axios + backแก้ตัวสุดท้าย + fix bg height + button width + minmax???
   return (
     <div
       style={{
         display: "flex",
         flexDirection: "row",
-        width: "100vw",
-        height: "100vh",
+        maxWidth: "100vw",
+        maxHeight: "100vh",
+        height: "100%",
       }}
     >
       <InsideNavbar
         style={{ position: "-webkit-sticky", position: "sticky", top: "0" }}
       />
       <Wrapper>
-        <div>
-          <HeaderWrapper>
-            <Header>YOUR FRIENDS</Header>
+        <HeaderWrapper>
+          <Header>YOUR FRIENDS</Header>
 
-            <FaFilter
-              style={{ color: "var(--green)", marginRight: "-670px" }}
-            />
-            <SearchBar marginRight="0px">
-              <SearchBar.Group
-                id="email"
-                className="text-center"
-                onChange={handleSearch}
-              >
-                <SearchBar.Control placeholder="Search"></SearchBar.Control>
-              </SearchBar.Group>
-            </SearchBar>
-          </HeaderWrapper>
-          {console.log(383)}
-          <div>
-            {cards}
-            {loading && (
-              <div style={{ display: "flex", marginBottom: "15px" }}>
-                <SkeletonLoadingProfile />
-                <ProductFeedLoading />
-              </div>
-            )}
-          </div>
-          <div>{error && "Error"}</div>
+          <FaFilter style={{ color: "var(--green)", marginRight: "-670px" }} />
+          <SearchBar marginRight="0px">
+            <SearchBar.Group
+              id="email"
+              className="text-center"
+              onChange={handleSearch}
+            >
+              <SearchBar.Control placeholder="Search"></SearchBar.Control>
+            </SearchBar.Group>
+          </SearchBar>
+        </HeaderWrapper>
+        {console.log(383)}
+        <div style={{maxWidth:"100vw",width:"100%"}}>
+          {cards}
+          {loading && (
+            <div style={{ display: "flex", marginBottom: "15px" }}>
+              <SkeletonLoadingProfile />
+              <ProductFeedLoading />
+            </div>
+          )}
         </div>
+        <div>{error && "Error"}</div>
       </Wrapper>
     </div>
   );

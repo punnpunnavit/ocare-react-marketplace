@@ -18,6 +18,7 @@ import MainFeed from "./Pages/MainFeed";
 import ProductDetail from "./Pages/ProductDetail";
 import AddProducts from "./Pages/AddProductsPage";
 import EditProfile from "./Pages/EditProfile";
+import ErrorBoundary from "./Helpers/ErrorBoundary";
 
 function App() {
   return (
@@ -29,7 +30,9 @@ function App() {
               path="/update-profile"
               component={UpdateProfilePage}
             />
+
             <Route exact path="/" component={MainFeed} />
+
             <Route exact path="/addproducts" component={AddProducts} />
             <Route exact path="/editprofile" component={EditProfile} />
             {/* <Route exact path="/" component={MainFeed} /> */}

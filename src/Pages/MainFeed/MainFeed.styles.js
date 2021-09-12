@@ -3,7 +3,8 @@ import styled, { css } from "styled-components";
 export const Wrapper = styled.div`
   max-height: 100vh;
   overflow: scroll;
-  min-width: 93%;
+  max-width: 100vw;
+  width: 100%;
   flex-wrap: wrap;
   display: flex;
   flex-direction: row;

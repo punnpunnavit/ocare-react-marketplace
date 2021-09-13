@@ -32,6 +32,7 @@ export const ProductImageLoading = styled(Skeleton)`
 
 export const Header = styled.h2`
   font-weight: 400;
+  text-decoration: none;
 `;
 
 export const HeaderLoading = styled(SkeletonLine)`
@@ -41,6 +42,7 @@ export const HeaderLoading = styled(SkeletonLine)`
 export const TextDes = styled.p`
   font-weight: 100;
   color: black;
+  text-decoration: none;
 `;
 
 export const TextDesLoading = styled(SkeletonLine)`

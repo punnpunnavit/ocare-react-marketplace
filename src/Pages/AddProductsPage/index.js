@@ -13,14 +13,14 @@ import {
 import Button from "../../Components/Button";
 import { SearchBar } from "../../Components/SearchBar/SearchBar.styles";
 import { RiFileLine } from "react-icons/ri";
-import useProductsAdd from "../../Hooks/useProductsAdd";
-import image1 from "../../Assets/Images/test1.jpg";
-import image2 from "../../Assets/Images/test2.jpg";
-import image3 from "../../Assets/Images/test3.jpg";
-import image4 from "../../Assets/Images/test4.jpg";
 
 export default function AddProducts() {
   const fileRef = useRef();
+
+  const productNameRef = useRef();
+  const categoryRef = useRef();
+  const priceRef = useRef();
+  const descriptionRef = useRef()
 
   const [file, setFile] = useState();
   const [fileUrl, setFileUrl] = useState();
@@ -44,28 +44,26 @@ export default function AddProducts() {
     );
   };
 
-  const pickImageHandler = (event) => {
-    if (event.target.files && event.target.files.length === 1) {
-      setFile(event.target.files[0]);
+  //edited
+  const [selectedFiles, setSelectedFiles] = useState([]);
+
+  const handleImageChange = (e) => {
+    // console.log(e.target.files[])
+    if (e.target.files) {
+      const filesArray = Array.from(e.target.files).map((file) =>
+        URL.createObjectURL(file)
+      );
+
+      setSelectedFiles((prevImages) => prevImages.concat(filesArray));
+      Array.from(e.target.files).map(
+        (file) => URL.revokeObjectURL(file) // avoid memory leak
+      );
     }
   };
-
   useEffect(() => {
-    setProductName("Yo");
-    setUploadImages([image1, image2, image3, image4]);
-    setDescription("testing in vscode");
-    setPrice(998);
-    setCategory("delicious");
-    if (!file) {
-      return;
-    }
-    const fileReader = new FileReader();
-    fileReader.onload = () => {
-      setFileUrl(fileReader.result);
-    };
-    fileReader.readAsDataURL(file);
-  }, [file]);
-
+    console.log(selectedFiles);
+    // console.log(productNameRef.current.value)
+  }, [selectedFiles]);
   return (
     <div
       style={{
@@ -139,20 +137,20 @@ export default function AddProducts() {
                   />
                 </div>
               </div>
-              {fileUrl && (
+              {selectedFiles && (
                 <img
                   style={{
                     width: "200px",
                     maxHeight: "200px",
                     objectFit: "cover",
                   }}
-                  src={fileUrl}
+                  src={selectedFiles[0]}
                   alt="Preview"
                 />
               )}
             </UploadImageWrapper>
             <input
-              onChange={pickImageHandler}
+              onChange={handleImageChange}
               style={{ display: "none" }}
               ref={fileRef}
               type="file"
@@ -162,12 +160,16 @@ export default function AddProducts() {
           <Horizontal>
             <div>
               <div style={{ fontWeight: "100", fontSize: "1.75rem" }}>
+
                 Product Name
                 <SearchBar height="3.5rem" width="20rem">
                   <SearchBar.Group id="email" className="text-center">
-                    <SearchBar.Control></SearchBar.Control>
+                    <SearchBar.Control ref={productName}>
+                
+                    </SearchBar.Control>
                   </SearchBar.Group>
                 </SearchBar>
+
               </div>
               <div style={{ fontWeight: "100", fontSize: "1.75rem" }}>
                 Category
@@ -221,20 +223,20 @@ export default function AddProducts() {
                       />
                     </div>
                   </div>
-                  {fileUrl && (
+                  {selectedFiles && (
                     <img
                       style={{
                         width: "200px",
                         maxHeight: "200px",
                         objectFit: "cover",
                       }}
-                      src={fileUrl}
+                      src={selectedFiles[1]}
                       alt="Preview"
                     />
                   )}
                 </UploadImageWrapper>
                 <input
-                  onChange={pickImageHandler}
+                  onChange={handleImageChange}
                   style={{ display: "none" }}
                   ref={fileRef}
                   type="file"
@@ -265,20 +267,20 @@ export default function AddProducts() {
                       />
                     </div>
                   </div>
-                  {fileUrl && (
+                  {selectedFiles && (
                     <img
                       style={{
                         width: "200px",
                         maxHeight: "200px",
                         objectFit: "cover",
                       }}
-                      src={fileUrl}
+                      src={selectedFiles[2]}
                       alt="Preview"
                     />
                   )}
                 </UploadImageWrapper>
                 <input
-                  onChange={pickImageHandler}
+                  onChange={handleImageChange}
                   style={{ display: "none" }}
                   ref={fileRef}
                   type="file"
@@ -312,20 +314,20 @@ export default function AddProducts() {
                       />
                     </div>
                   </div>
-                  {fileUrl && (
+                  {selectedFiles && (
                     <img
                       style={{
                         width: "200px",
                         maxHeight: "200px",
                         objectFit: "cover",
                       }}
-                      src={fileUrl}
+                      src={selectedFiles[3]}
                       alt="Preview"
                     />
                   )}
                 </UploadImageWrapper>
                 <input
-                  onChange={pickImageHandler}
+                  onChange={handleImageChange}
                   style={{ display: "none" }}
                   ref={fileRef}
                   type="file"
@@ -356,20 +358,20 @@ export default function AddProducts() {
                       />
                     </div>
                   </div>
-                  {fileUrl && (
+                  {selectedFiles && (
                     <img
                       style={{
                         width: "200px",
                         maxHeight: "200px",
                         objectFit: "cover",
                       }}
-                      src={fileUrl}
+                      src={selectedFiles[4]}
                       alt="Preview"
                     />
                   )}
                 </UploadImageWrapper>
                 <input
-                  onChange={pickImageHandler}
+                  onChange={handleImageChange}
                   style={{ display: "none" }}
                   ref={fileRef}
                   type="file"

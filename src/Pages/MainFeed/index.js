@@ -28,6 +28,7 @@ import {
 import { RiDivideFill } from "react-icons/ri";
 import { CircularImageLoading } from "../../Components/Profile/Profile.styles";
 import { Link } from "react-router-dom";
+import { Container, Row, Col } from "react-bootstrap";
 
 function MainFeed() {
   const [category, setCategory] = useState("");
@@ -86,21 +87,11 @@ function MainFeed() {
       );
     });
   }, [products, loading]);
-  //absolute path + error boundary + debouncing axios + backแก้ตัวสุดท้าย + fix bg height + button width + minmax???
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "row",
-        maxWidth: "100vw",
-        maxHeight: "100vh",
-        height: "100%",
-      }}
-    >
-      <InsideNavbar
-        style={{ position: "-webkit-sticky", position: "sticky", top: "0" }}
-      />
-      <Wrapper>
+    <Container style={{ margin: "0 0 0 0"}}>
+      <Row style={{ maxHeight: "100vh", height: "100%",minWidth:"100vw",width:"100%" }}>
+        <InsideNavbar />
+        <Wrapper>
         <HeaderWrapper>
           <Header>YOUR FRIENDS</Header>
 
@@ -115,8 +106,7 @@ function MainFeed() {
             </SearchBar.Group>
           </SearchBar>
         </HeaderWrapper>
-        {console.log(383)}
-        <div style={{maxWidth:"100vw",width:"100%"}}>
+        <div style={{ maxWidth: "100vw", width: "100%" }}>
           {cards}
           {loading && (
             <div style={{ display: "flex", marginBottom: "15px" }}>
@@ -127,7 +117,8 @@ function MainFeed() {
         </div>
         <div>{error && "Error"}</div>
       </Wrapper>
-    </div>
+      </Row>
+    </Container>
   );
 }
 

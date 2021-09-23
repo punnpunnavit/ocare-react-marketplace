@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import ContextProvider from "../../Context/SidebarContext";
-import NavMenu from "./Sidebar.styles";
 import {
   CircularImage,
   SidebarDes,
@@ -8,8 +7,8 @@ import {
   SidebarNumber,
   TagsContainer,
   ContentWrapper,
+  NavMenu,
 } from "./Sidebar.styles";
-// AiOutlineEye
 import { AiOutlineEye } from "react-icons/ai";
 import { HiOutlineCursorClick } from "react-icons/hi";
 import { ImQrcode } from "react-icons/im";
@@ -19,15 +18,15 @@ function OuterNavBar({ onClick }) {
   return (
     <ContextProvider.Consumer>
       {(sidebar) => (
-        <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
-          <IoSettingsSharp
+        <NavMenu active={sidebar}>
+          {/* <IoSettingsSharp
             style={{
               display: "flex",
               fontSize: "2.5rem",
               color: "var(--green)",
               marginRight: "10px",
             }}
-          />
+          /> */}
           <div>
             <CircularImage
               src="https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"
@@ -35,7 +34,7 @@ function OuterNavBar({ onClick }) {
                 display: "flex",
                 width: "300px",
                 height: "300px",
-                marginTop: "80px",
+                marginTop: "8px",
                 marginLeft: "auto",
                 marginRight: "auto",
                 width: "70%",
@@ -84,7 +83,7 @@ function OuterNavBar({ onClick }) {
             </ContentWrapper>
             <p style={{ display: "flex", justifyContent: "center" }}>Payment</p>
           </div>
-        </nav>
+        </NavMenu>
       )}
     </ContextProvider.Consumer>
   );

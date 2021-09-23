@@ -1,17 +1,10 @@
 import styled, { css } from "styled-components";
 
 export const Wrapper = styled.div`
-  max-height: 100vh;
-  overflow: scroll;
-  max-width: 100vw;
-  width: 100%;
-  flex-wrap: wrap;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin-left: 10px;
-  margin-right: 10px;
- 
+flex:1;
+max-height:100vh;
+height: 100%;
+overflow:scroll;
 `;
 
 export const HeaderWrapper = styled.div`
@@ -27,6 +20,7 @@ export const Header = styled.h1`
   font-size: 4rem;
   color: var(--purple);
 `;
+
 
 export const SearchbarWrapper = styled.div`
   display: flex;

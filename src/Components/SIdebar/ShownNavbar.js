@@ -26,8 +26,7 @@ function Navbar() {
               color: "white",
               fontSize: "2.25em",
               marginTop: "50px",
-              marginLeft: "30px",
-              marginRight: "30px",
+              justifyContent:"center"
             }}
           />
         </NavbarShown>

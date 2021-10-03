@@ -68,6 +68,7 @@ function MainFeed() {
           style={{
             display: "flex",
             marginBottom: "15px",
+            justifyContent:"space-between"
           }}
         >
           <Profile
@@ -75,6 +76,7 @@ function MainFeed() {
             username={products.username}
             loading={loading}
           />
+
           <Link to={`/blogs/${products.id}`}>
             <ProductFeed
               productPicture={products.image}
@@ -87,24 +89,29 @@ function MainFeed() {
       );
     });
   }, [products, loading]);
+
+
+  
   return (
     <Container style={{ margin: "0 0 0 0"}}>
-      <Row style={{ maxHeight: "100vh", height: "100%",minWidth:"100vw",width:"100%" }}>
-        <InsideNavbar />
+      <Row style={{ maxHeight: "100vh", height: "100%",minWidth:"100vw",width:"100%",display:"flex" }}>
+        <InsideNavbar/>
         <Wrapper>
         <HeaderWrapper>
           <Header>YOUR FRIENDS</Header>
 
-          <FaFilter style={{ color: "var(--green)", marginRight: "-670px" }} />
-          <SearchBar marginRight="0px">
-            <SearchBar.Group
-              id="email"
-              className="text-center"
-              onChange={handleSearch}
-            >
-              <SearchBar.Control placeholder="Search"></SearchBar.Control>
-            </SearchBar.Group>
-          </SearchBar>
+          <Row>
+            <FaFilter style={{ color: "var(--green)"}} />
+            <SearchBar marginRight="0px">
+              <SearchBar.Group
+                id="email"
+                className="text-center"
+                onChange={handleSearch}
+              >
+                <SearchBar.Control placeholder="Search"></SearchBar.Control>
+              </SearchBar.Group>
+            </SearchBar>
+          </Row>
         </HeaderWrapper>
         <div style={{ maxWidth: "100vw", width: "100%" }}>
           {cards}

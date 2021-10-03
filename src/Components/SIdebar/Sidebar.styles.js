@@ -1,5 +1,6 @@
 import styled, { css, keyframes } from "styled-components";
-import {Col,Row} from 'react-bootstrap'
+import { Col, Row } from "react-bootstrap";
+import breakpoint from "../../Helpers/Breakpoints";
 
 export const CircularImage = styled.img`
   justify-content: center;
@@ -56,6 +57,8 @@ export const NavbarShown = styled(Col)`
   max-width: 100px;
   min-height: 100vh;
   height: 100%;
+  display: flex;
+  justify-content: center;
   ${({ active }) =>
     active &&
     css`
@@ -67,16 +70,19 @@ export const NavbarShown = styled(Col)`
 
       animation-fill-mode: forwards;
     `}
+
+  @media  ${breakpoint.device.md} {
+    max-width: 50px;
+  }
 `;
 
 export const NavMenu = styled(Col)`
-margin: 0;
-max-width: 500px;
- display: none;
+  margin: 0;
+  max-width: 500px;
+  display: none;
   ${({ active }) =>
     active &&
     css`
-    
       display: flex;
       z-index: 10;
     `}

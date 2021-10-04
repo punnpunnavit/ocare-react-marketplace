@@ -1,10 +1,14 @@
 import styled, { css } from "styled-components";
 import { FaAngleRight } from "react-icons/fa";
 import { Skeleton, SkeletonLine } from "../../Helpers/Skeleton.styles";
+import breakpoint from "../../Helpers/Breakpoints";
 
 export const Wrapper = styled.div`
   display: flex;
   margin-left: 50px;
+  @media ${breakpoint.device.md} {
+    margin-left: 20px;
+  }
 `;
 
 export const TextWrapper = styled.div`
@@ -21,6 +25,12 @@ export const ProductImage = styled.img`
   max-width: 260px;
   min-height: 170px;
   max-height: 170px;
+  @media ${breakpoint.device.md} {
+    min-width: 140px;
+    max-width: 140px;
+    min-height: 100px;
+    max-height: 100px;
+  }
 `;
 
 export const ProductImageLoading = styled(Skeleton)`

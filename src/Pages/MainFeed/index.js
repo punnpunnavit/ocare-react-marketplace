@@ -29,10 +29,13 @@ import { RiDivideFill } from "react-icons/ri";
 import { CircularImageLoading } from "../../Components/Profile/Profile.styles";
 import { Link } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
+import breakpointRes from "../../Helpers/Breakpoints";
 
 function MainFeed() {
   const [category, setCategory] = useState("");
   const [pageNumber, setPageNumber] = useState(0);
+  const [width, setWidth] = useState(window.innerWidth);
+  const breakpoint = breakpointRes.device.md;
 
   const { products, hasMore, loading, error } = useMainFeedFetch(
     category,
@@ -68,7 +71,7 @@ function MainFeed() {
           style={{
             display: "flex",
             marginBottom: "15px",
-            justifyContent:"space-between"
+            justifyContent: "space-between",
           }}
         >
           <Profile
@@ -90,40 +93,58 @@ function MainFeed() {
     });
   }, [products, loading]);
 
-
-  
   return (
-    <Container style={{ margin: "0 0 0 0"}}>
-      <Row style={{ maxHeight: "100vh", height: "100%",minWidth:"100vw",width:"100%",display:"flex" }}>
-        <InsideNavbar/>
+    <Container style={{ margin: "0 0 0 0" }}>
+      <Row
+        style={{
+          maxHeight: "100vh",
+          height: "100%",
+          minWidth: "100vw",
+          width: "100%",
+          display: "flex",
+        }}
+      >
+        <InsideNavbar />
         <Wrapper>
-        <HeaderWrapper>
-          <Header>YOUR FRIENDS</Header>
+          <HeaderWrapper>
+            <Header>YOUR FRIENDS</Header>
+            <Row>
+              <Col>
+                {/* <FaFilter
+                  style={{
+                    color: "var(--green)",
+                    alignSelf: "center",
+                    fontSize: "1rem",
+                    height: "100px",
+                    lineHeight: "100px",
+                    textAlign: "center",
 
-          <Row>
-            <FaFilter style={{ color: "var(--green)"}} />
-            <SearchBar marginRight="0px">
-              <SearchBar.Group
-                id="email"
-                className="text-center"
-                onChange={handleSearch}
-              >
-                <SearchBar.Control placeholder="Search"></SearchBar.Control>
-              </SearchBar.Group>
-            </SearchBar>
-          </Row>
-        </HeaderWrapper>
-        <div style={{ maxWidth: "100vw", width: "100%" }}>
-          {cards}
-          {loading && (
-            <div style={{ display: "flex", marginBottom: "15px" }}>
-              <SkeletonLoadingProfile />
-              <ProductFeedLoading />
-            </div>
-          )}
-        </div>
-        <div>{error && "Error"}</div>
-      </Wrapper>
+                    right: "90px",
+                  }}
+                /> */}
+              </Col>
+              <Col >
+                <SearchBar marginRight="0px">
+                  <SearchBar.Group
+                    id="email"
+                    className="text-center"
+                    onChange={handleSearch}
+                  >
+                    <SearchBar.Control placeholder="Search"></SearchBar.Control>
+                  </SearchBar.Group>
+                </SearchBar>
+              </Col>
+            </Row>
+          </HeaderWrapper>
+            {cards}
+            {loading && (
+              <div style={{ display: "flex", marginBottom: "15px" }}>
+                <SkeletonLoadingProfile />
+                <ProductFeedLoading />
+              </div>
+            )}
+          <div>{error && "Error"}</div>
+        </Wrapper>
       </Row>
     </Container>
   );

@@ -1,4 +1,6 @@
 import React from "react";
+import breakpoint from "../../Helpers/Breakpoints";
+
 import {
   Wrapper,
   ProductImage,

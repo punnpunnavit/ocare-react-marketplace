@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Skeleton, SkeletonLine } from "../../Helpers/Skeleton.styles";
+import breakpoint from "../../Helpers/Breakpoints";
 
 export const Wrapper = styled.div`
   display: flex;
@@ -21,6 +22,11 @@ export const CircularImage = styled.img`
   border-radius: 50%;
   width: 175px;
   height: 175px;
+
+  @media  ${breakpoint.device.md} {
+    width: 90px;
+    height: 90px;
+  }
 `;
 
 export const NameTag = styled.div`

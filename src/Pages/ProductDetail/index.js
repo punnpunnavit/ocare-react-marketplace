@@ -1,4 +1,5 @@
 import React from "react";
+import {useState} from 'react'
 //components
 import InsideNavbar from "../../Components/Sidebar/ShownNavbar";
 import Button from "../../Components/Button";
@@ -34,6 +35,9 @@ export default function ProductDetail() {
     productsCategory,
   } = useProductDetailsFetch(id);
 
+const [openModal,setOpenModal] = useState(false)
+
+
   return (
     <div
       style={{
@@ -47,7 +51,7 @@ export default function ProductDetail() {
         style={{ position: "-webkit-sticky", position: "sticky", top: "0" }}
       />
       <Wrapper>
-        <Modal/>
+        {openModal && <Modal closeModal={setOpenModal} productName={productsName} productImage={productsMainImg} productDes={productsDes}/>}
         <StyledAnnulus />
         <GreyAnnulus />
         <div style={{ position: "absolute" }}>
@@ -69,7 +73,9 @@ export default function ProductDetail() {
                 justifyContent: "center",
               }}
             >
-              <Button style={{ width: "50%" }} text={productsPrice + " THB"} />
+              <Button style={{ width: "50%" }} text={productsPrice + " THB"} onClick={()=>{
+                setOpenModal(true)
+              }} />
 
               <p style={{ marginTop: "52px", justifyContent: "center" }}>
                 Add your banking information

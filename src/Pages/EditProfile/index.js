@@ -9,53 +9,64 @@ import {
 import { SearchBar } from "../../Components/SearchBar/SearchBar.styles";
 import Button from "../../Components/Button";
 import { BsFillPlusCircleFill } from "react-icons/bs";
+import { Container, Row, Col } from "react-bootstrap";
 
 export default function EditProfile() {
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "row",
-        width: "100vw",
-        height: "100vh",
-      }}
-    >
-      <InsideNavbar
-        style={{ position: "-webkit-sticky", position: "sticky", top: "0" }}
-      />
-      <Wrapper>
-        <Header>USER SETTING</Header>
-        <div style={{ marginTop: "60px" }}>
-          <Horizontal>
-            <CircularImage
-              src="https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"
-              style={{
-                display: "flex",
-                width: "300px",
-                height: "300px",
-              }}
-            />
-            <BsFillPlusCircleFill style={{fontSize:"3rem",color:"var(--green)",marginLeft:"-80px",marginTop:"240px",backgroundColor:"white",borderRadius:"50%"}}/>
-            <div style={{ marginLeft: "60px", fontSize: "2.5rem" }}>
+    <Container style={{ margin: "0 0 0 0" }}>
+      <Row
+        style={{
+          maxHeight: "100vh",
+          height: "100%",
+          minWidth: "100vw",
+          width: "100%",
+          display: "flex",
+        }}
+      >
+        <InsideNavbar />
+        <Wrapper>
+          <Header>USER SETTING</Header>
+          <Row>
+            <Col>
+              <CircularImage
+                src="https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"
+                style={{
+                  display: "flex",
+                  width: "300px",
+                  height: "300px",
+                }}
+              />
+              <BsFillPlusCircleFill
+                style={{
+                  fontSize: "3rem",
+                  color: "var(--green)",
+                  marginLeft: "-80px",
+                  marginTop: "240px",
+                  backgroundColor: "white",
+                  borderRadius: "50%",
+                }}
+              />
+            </Col>
+            <Col style={{  fontSize: "2.5rem" }}>
               Basic Information
-              <Horizontal>
-                <div style={{ fontWeight: "100", fontSize: "1.75rem" }}>
+              <Row>
+                <Col style={{ fontWeight: "100", fontSize: "1.75rem" }}>
                   Firstname
-                  <SearchBar height="2.5rem" width="20rem">
-                    <SearchBar.Group id="email" className="text-center">
+                  <SearchBar height="2.5rem">
+                    <SearchBar.Group id="email" className="text-center"  width="10rem">
                       <SearchBar.Control></SearchBar.Control>
                     </SearchBar.Group>
                   </SearchBar>
-                </div>
-                <div style={{ fontWeight: "100", fontSize: "1.75rem" }}>
+                </Col>
+                <Col style={{ fontWeight: "100", fontSize: "1.75rem" }}>
                   Lastname
-                  <SearchBar height="2.5rem" width="18rem">
+                  <SearchBar height="2.5rem" width="10rem">
                     <SearchBar.Group id="email" className="text-center">
                       <SearchBar.Control></SearchBar.Control>
                     </SearchBar.Group>
                   </SearchBar>
-                </div>
-              </Horizontal>
+                </Col>
+              </Row>
               <div style={{ fontWeight: "100", fontSize: "1.75rem" }}>
                 Display Name
                 <SearchBar height="2.5rem" width="100%">
@@ -94,10 +105,10 @@ export default function EditProfile() {
                   marginLeft="15px"
                 />
               </Horizontal>
-            </div>
-          </Horizontal>
-        </div>
-      </Wrapper>
-    </div>
+            </Col>
+          </Row>
+        </Wrapper>
+      </Row>
+    </Container>
   );
 }

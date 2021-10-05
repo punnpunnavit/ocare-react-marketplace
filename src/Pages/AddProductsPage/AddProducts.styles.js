@@ -1,13 +1,15 @@
 import styled, { css } from "styled-components";
 
 export const Wrapper = styled.div`
+  flex: 1;
   max-height: 100vh;
-  overflow: scroll;
-  min-width: 93%;
-  flex-wrap: wrap;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  height: 100%;
+  max-width: 1000px;
+  overflow-y: scroll;
+  margin: 0 auto;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 export const HeaderWrapper = styled.div`
@@ -44,7 +46,6 @@ export const UploadImageWrapper = styled.div`
 `;
 
 export const FeedWrapper = styled.div``;
-
 
 export const Horizontal = styled.div`
   width: 100%;

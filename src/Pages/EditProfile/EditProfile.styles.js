@@ -1,9 +1,16 @@
 import styled, { css } from "styled-components";
+import { Container, Row, Col } from "react-bootstrap";
 
-export const Wrapper = styled.div`
- margin-left: 150px;
- margin-top: 100px;
-  
+export const Wrapper = styled(Row)`
+  flex: 1;
+  max-height: 100vh;
+  height: 100%;
+  max-width: 100vw;
+  overflow-y: scroll;
+  margin: 0 auto;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 export const HeaderWrapper = styled.div`

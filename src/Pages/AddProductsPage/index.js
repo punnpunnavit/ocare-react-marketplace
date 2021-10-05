@@ -13,6 +13,7 @@ import {
 import Button from "../../Components/Button";
 import { SearchBar } from "../../Components/SearchBar/SearchBar.styles";
 import { RiFileLine } from "react-icons/ri";
+import {Container,Row} from 'react-bootstrap'
 
 export default function AddProducts() {
   const fileRef = useRef();
@@ -65,16 +66,17 @@ export default function AddProducts() {
     // console.log(productNameRef.current.value)
   }, [selectedFiles]);
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "row",
-        width: "100vw",
-        height: "100vh",
-      }}
-    >
+    <Container style={{ margin: "0 0 0 0" }}>
+      <Row
+        style={{
+          maxHeight: "100vh",
+          height: "100%",
+          minWidth: "100vw",
+          width: "100%",
+          display: "flex",
+        }}
+      >
       <InsideNavbar
-        style={{ position: "-webkit-sticky", position: "sticky", top: "0" }}
       />
       <Wrapper>
         <div
@@ -83,7 +85,7 @@ export default function AddProducts() {
             marginRight: "100px",
             overflowX: "hidden",
           }}
-        >
+        ></div>
           <div
             style={{
               display: "flex",
@@ -380,8 +382,9 @@ export default function AddProducts() {
               </div>
             </div>
           </Horizontal>
-        </div>
+       
       </Wrapper>
-    </div>
+   </Row>
+   </Container>
   );
 }

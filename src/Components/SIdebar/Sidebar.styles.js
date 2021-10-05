@@ -3,14 +3,11 @@ import { Col, Row } from "react-bootstrap";
 import breakpoint from "../../Helpers/Breakpoints";
 
 export const CircularImage = styled.img`
-  justify-content: center;
   border-radius: 50%;
-  width: 175px;
-  height: 175px;
 `;
 
 export const SidebarNumber = styled.div`
-  font-size: 3rem;
+  font-size: 2.2rem;
   font-weight: 700;
   color: var(--green);
   text-align: center;
@@ -29,17 +26,16 @@ export const SidebarDes = styled.div`
 `;
 
 export const TagsContainer = styled.div`
-  justify-content: center;
   width: 100px;
   margin-right: 30px;
+  background-color: black;
 `;
 
-export const ContentWrapper = styled.div`
+export const ContentWrapper = styled(Row)`
   width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin-bottom: 80px;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  padding: 0 0 0 0
 `;
 
 const displaceContent = keyframes`
@@ -67,7 +63,6 @@ export const NavbarShown = styled(Col)`
       z-index: 100;
       animation-name: ${displaceContent};
       animation-duration: 1ms;
-
       animation-fill-mode: forwards;
     `}
 
@@ -77,13 +72,18 @@ export const NavbarShown = styled(Col)`
 `;
 
 export const NavMenu = styled(Col)`
-  margin: 0;
   max-width: 500px;
   display: none;
+  justify-content: center;
   ${({ active }) =>
     active &&
     css`
+      height: 100vh;
       display: flex;
-      z-index: 10;
+      margin: 0;
+      padding: 0;
+      z-index: 10000000;
+      background-color: white;
+      position: absolute;
     `}
 `;

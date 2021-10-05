@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Navbar.css";
+
 import ContextProvider from "../../Context/SidebarContext";
 import OuterNavBar from "./HiddenNavbar";
 import { FaBars } from "react-icons/fa";

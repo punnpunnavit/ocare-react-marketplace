@@ -28,7 +28,7 @@ import {
 import { RiDivideFill } from "react-icons/ri";
 import { CircularImageLoading } from "../../Components/Profile/Profile.styles";
 import { Link } from "react-router-dom";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Card } from "react-bootstrap";
 import breakpointRes from "../../Helpers/Breakpoints";
 
 function MainFeed() {
@@ -93,6 +93,41 @@ function MainFeed() {
     });
   }, [products, loading]);
 
+  const cardsResponsive = useMemo(() => {
+    return products.map((products, index) => {
+      return (
+        <div
+          ref={lastProductElementRef}
+          key={index}
+          style={{
+            display: "flex",
+            marginBottom: "15px",
+            justifyContent: "space-between",
+          }}
+        >
+          <Profile
+            profileURL={products.userImage}
+            username={products.username}
+            loading={loading}
+          />
+          <Link to={`/blogs/${products.id}`}>
+            <Card style={{ width: "18rem" }}>
+              <Card.Img variant="top" src="holder.js/100px180" />
+              <Card.Body>
+                <Card.Title>Card Title</Card.Title>
+                <Card.Text>
+                  Some quick example text to build on the card title and make up
+                  the bulk of the card's content.
+                </Card.Text>
+                here
+              </Card.Body>
+            </Card>
+          </Link>
+        </div>
+      );
+    });
+  }, [products, loading]);
+
   return (
     <Container style={{ margin: "0 0 0 0" }}>
       <Row
@@ -123,7 +158,7 @@ function MainFeed() {
                   }}
                 /> */}
               </Col>
-              <Col >
+              <Col>
                 <SearchBar marginRight="0px">
                   <SearchBar.Group
                     id="email"
@@ -136,13 +171,13 @@ function MainFeed() {
               </Col>
             </Row>
           </HeaderWrapper>
-            {cards}
-            {loading && (
-              <div style={{ display: "flex", marginBottom: "15px" }}>
-                <SkeletonLoadingProfile />
-                <ProductFeedLoading />
-              </div>
-            )}
+          {cards}
+          {loading && (
+            <div style={{ display: "flex", marginBottom: "15px" }}>
+              <SkeletonLoadingProfile />
+              <ProductFeedLoading />
+            </div>
+          )}
           <div>{error && "Error"}</div>
         </Wrapper>
       </Row>

@@ -4,6 +4,7 @@ import InsideNavbar from "../../Components/Sidebar/ShownNavbar";
 import Button from "../../Components/Button";
 import GreyAnnulus from "../../Components/GreyAnnulus";
 import { useParams } from "react-router-dom";
+import Modal from '../../Components/Modal'
 //styles
 import useProductDetailsFetch from "../../Hooks/useProductDetailsFetch";
 import {
@@ -46,6 +47,7 @@ export default function ProductDetail() {
         style={{ position: "-webkit-sticky", position: "sticky", top: "0" }}
       />
       <Wrapper>
+        <Modal/>
         <StyledAnnulus />
         <GreyAnnulus />
         <div style={{ position: "absolute" }}>

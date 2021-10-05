@@ -1,11 +1,11 @@
 import styled, { css } from "styled-components";
-import { Col, Row } from "react-bootstrap";
+import { Col, Row,Card } from "react-bootstrap";
 
 export const Wrapper = styled(Row)`
   flex: 1;
   max-height: 100vh;
   height: 100%;
-  max-width: 1100px;
+  max-width: 1000px;
   overflow-y: scroll;
   margin: 0 auto;
   &::-webkit-scrollbar {
@@ -42,3 +42,9 @@ export const Horizontal = styled.div`
   margin-bottom: 10px;
   margin-top: 10px;
 `;
+
+export const ResponsiveCard = styled(Card)`
+
+
+
+`

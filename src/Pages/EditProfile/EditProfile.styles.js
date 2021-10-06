@@ -7,7 +7,10 @@ export const Wrapper = styled(Row)`
   height: 100%;
   max-width: 100vw;
   overflow-y: scroll;
-  margin: 0 auto;
+  margin-top: 70px;
+  margin-left: 50px;
+  overflow: visible;
+  margin-right: 50px;
   &::-webkit-scrollbar {
     display: none;
   }

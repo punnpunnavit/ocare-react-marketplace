@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import { Col, Row } from "react-bootstrap";
 
 export const GlobalStyle = createGlobalStyle`
 
@@ -23,9 +24,14 @@ export const GlobalStyle = createGlobalStyle`
      */
   }
 
+  div.row>* {
+ padding-left: 0px;
+ padding-right: 0px;
+}
   body {
     margin: 0;
     padding: 0;
+    
     
     h1 {
       font-size: 2rem;

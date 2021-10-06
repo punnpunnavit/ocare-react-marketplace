@@ -67,14 +67,17 @@ export default function AddProducts() {
     // console.log(productNameRef.current.value)
   }, [selectedFiles]);
   return (
-    <Container style={{ margin: "0 0 0 0" }}>
+    <Container
+     
+      style={{ margin: "0 0 0 0" }}
+    >
       <Row
         style={{
           maxHeight: "100vh",
           height: "100%",
           minWidth: "100vw",
           width: "100%",
-          display: "flex",
+          
         }}
       >
         <InsideNavbar />
@@ -83,34 +86,30 @@ export default function AddProducts() {
             <Col>
               <Header>ADD PRODUCT</Header>
             </Col>
-            <Col>
-              <Button
-                style={{ width: "50%" }}
-                text="Cancel"
-                width="9rem"
-                height="3.75rem"
-                fontSize="1.5rem"
-                fontColor="black"
-                bgColor="rgba(168, 168, 168, 0.25)"
-                fontWeight="100"
-                marginLeft="370px"
-              />
-            </Col>
-            <Col>
-              <Button
-                text="Confirm"
-                width="9rem"
-                height="3.75rem"
-                fontSize="1.5rem"
-                marginLeft="15px"
-                onClick={confirmAdd}
-              />
-            </Col>
+            <Button
+              marginRight="0"
+              text="Cancel"
+              width="8rem"
+              height="3rem"
+              fontSize="1.25rem"
+              fontColor="black"
+              bgColor="rgba(168, 168, 168, 0.25)"
+              fontWeight="100"
+            />
+            <Button
+              marginRight="0"
+              text="Confirm"
+              width="8rem"
+              height="3rem"
+              fontSize="1.25rem"
+              onClick={confirmAdd}
+            />
           </Row>
           <Row>
             <UploadImageWrapper
               style={{
                 width: "100%",
+                height: "250px",
               }}
               onClick={() => {
                 fileRef.current.click();
@@ -139,7 +138,6 @@ export default function AddProducts() {
                     objectFit: "cover",
                   }}
                   src={selectedFiles[0]}
-                  alt="Preview"
                 />
               )}
             </UploadImageWrapper>
@@ -153,25 +151,25 @@ export default function AddProducts() {
           </Row>
           <Row>
             <Col>
-              <div style={{ fontWeight: "100", fontSize: "1.75rem" }}>
+              <div style={{ fontWeight: "100", fontSize: "1.5rem" }}>
                 Product Name
-                <SearchBar height="3.5rem" width="20rem">
+                <SearchBar height="2.5rem" width="18rem">
                   <SearchBar.Group id="email" className="text-center">
                     <SearchBar.Control ref={productName}></SearchBar.Control>
                   </SearchBar.Group>
                 </SearchBar>
               </div>
-              <div style={{ fontWeight: "100", fontSize: "1.75rem" }}>
+              <div style={{ fontWeight: "100", fontSize: "1.5rem" }}>
                 Category
-                <SearchBar height="3.5rem" width="20rem">
+                <SearchBar height="2.5rem" width="18rem">
                   <SearchBar.Group id="email" className="text-center">
                     <SearchBar.Control></SearchBar.Control>
                   </SearchBar.Group>
                 </SearchBar>
               </div>
-              <div style={{ fontWeight: "100", fontSize: "1.75rem" }}>
+              <div style={{ fontWeight: "100", fontSize: "1.5rem" }}>
                 Price
-                <SearchBar height="3.5rem" width="20rem">
+                <SearchBar height="2.5rem" width="18rem">
                   <SearchBar.Group id="email" className="text-center">
                     <SearchBar.Control></SearchBar.Control>
                   </SearchBar.Group>
@@ -179,15 +177,15 @@ export default function AddProducts() {
               </div>
             </Col>
             <Col>
-              <div style={{ fontWeight: "100", fontSize: "1.75rem" }}>
+              <div style={{ fontWeight: "100", fontSize: "1.5rem" }}>
                 Product Description
                 <StyledTextArea controlId="floatingTextarea2">
                   <Form.Control as="textarea" style={{ height: "100%" }} />
                 </StyledTextArea>
               </div>
             </Col>
-            <Col>
-              <div style={{ marginBottom: "10px" }}>
+            <Col style={{marginRight:"0",paddingRight:"0"}}>
+              <div style={{ marginTop: "10px" }}>
                 <UploadImageWrapper
                   onClick={() => {
                     fileRef.current.click();
@@ -219,7 +217,6 @@ export default function AddProducts() {
                         objectFit: "cover",
                       }}
                       src={selectedFiles[1]}
-                      alt="Preview"
                     />
                   )}
                 </UploadImageWrapper>
@@ -231,7 +228,7 @@ export default function AddProducts() {
                   accept=".jpg,.jpeg,.png"
                 />
               </div>{" "}
-              <div>
+              <div style={{ marginTop: "10px"}}>
                 <UploadImageWrapper
                   onClick={() => {
                     fileRef.current.click();
@@ -263,7 +260,6 @@ export default function AddProducts() {
                         objectFit: "cover",
                       }}
                       src={selectedFiles[2]}
-                      alt="Preview"
                     />
                   )}
                 </UploadImageWrapper>
@@ -278,7 +274,7 @@ export default function AddProducts() {
             </Col>
 
             <Col>
-              <div style={{ marginBottom: "10px" }}>
+              <div style={{ marginTop: "10px" }}>
                 <UploadImageWrapper
                   onClick={() => {
                     fileRef.current.click();
@@ -310,7 +306,6 @@ export default function AddProducts() {
                         objectFit: "cover",
                       }}
                       src={selectedFiles[3]}
-                      alt="Preview"
                     />
                   )}
                 </UploadImageWrapper>
@@ -322,7 +317,7 @@ export default function AddProducts() {
                   accept=".jpg,.jpeg,.png"
                 />
               </div>{" "}
-              <div>
+              <div style={{ marginTop: "10px" }}>
                 <UploadImageWrapper
                   onClick={() => {
                     fileRef.current.click();
@@ -354,7 +349,6 @@ export default function AddProducts() {
                         objectFit: "cover",
                       }}
                       src={selectedFiles[4]}
-                      alt="Preview"
                     />
                   )}
                 </UploadImageWrapper>

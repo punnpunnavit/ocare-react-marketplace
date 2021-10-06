@@ -36,31 +36,40 @@ export default function EditProfile() {
                   height: "300px",
                 }}
               />
+            </Col>
+            <Col>
               <BsFillPlusCircleFill
                 style={{
                   fontSize: "3rem",
                   color: "var(--green)",
                   marginLeft: "-80px",
-                  marginTop: "240px",
+                  marginTop: "250px",
                   backgroundColor: "white",
                   borderRadius: "50%",
+                  position: "absolute",
                 }}
               />
             </Col>
-            <Col style={{  fontSize: "2.5rem" }}>
+            <Col style={{ fontSize: "2.5rem" }}>
               Basic Information
-              <Row>
-                <Col style={{ fontWeight: "100", fontSize: "1.75rem" }}>
+              <Row
+                style={{
+                  margin: "0 0 0 0",
+                  fontWeight: "100",
+                  fontSize: "1.75rem",
+                }}
+              >
+                <Col>
                   Firstname
-                  <SearchBar height="2.5rem">
-                    <SearchBar.Group id="email" className="text-center"  width="10rem">
+                  <SearchBar height="2.5rem" width="300px">
+                    <SearchBar.Group id="email" className="text-center">
                       <SearchBar.Control></SearchBar.Control>
                     </SearchBar.Group>
                   </SearchBar>
                 </Col>
-                <Col style={{ fontWeight: "100", fontSize: "1.75rem" }}>
+                <Col>
                   Lastname
-                  <SearchBar height="2.5rem" width="10rem">
+                  <SearchBar height="2.5rem" width="100%">
                     <SearchBar.Group id="email" className="text-center">
                       <SearchBar.Control></SearchBar.Control>
                     </SearchBar.Group>

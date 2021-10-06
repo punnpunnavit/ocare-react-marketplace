@@ -8,10 +8,10 @@ export const SearchBar = styled(Form)`
     border: none;
     width: ${(props) => props.width || "13rem"};
     height: ${(props) => props.height || "2rem"};
-    margin-left: ${(props) => props.marginLeft || "2rem"};
-    margin-right: ${(props) => props.marginRight || "2rem"};
-    margin-top: ${(props) => props.marginTop || "2rem"};
-    margin-bottom: ${(props) => props.marginBottom || "2rem"};
+    margin-left: ${(props) => props.marginLeft || "0rem"};
+    margin-right: ${(props) => props.marginRight || "0rem"};
+    margin-top: ${(props) => props.marginTop || "0rem"};
+    margin-bottom: ${(props) => props.marginBottom || "0rem"};
 
     @media ${breakpoint.device.md} {
       display: block;

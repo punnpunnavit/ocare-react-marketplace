@@ -13,7 +13,8 @@ import {
 import Button from "../../Components/Button";
 import { SearchBar } from "../../Components/SearchBar/SearchBar.styles";
 import { RiFileLine } from "react-icons/ri";
-import {Container,Row} from 'react-bootstrap'
+import { StyledTextArea } from "../../Components/TextArea/TextArea.styles";
+import { Form, FloatingLabel, Col, Row, Container } from "react-bootstrap";
 
 export default function AddProducts() {
   const fileRef = useRef();
@@ -21,7 +22,7 @@ export default function AddProducts() {
   const productNameRef = useRef();
   const categoryRef = useRef();
   const priceRef = useRef();
-  const descriptionRef = useRef()
+  const descriptionRef = useRef();
 
   const [file, setFile] = useState();
   const [fileUrl, setFileUrl] = useState();
@@ -76,46 +77,37 @@ export default function AddProducts() {
           display: "flex",
         }}
       >
-      <InsideNavbar
-      />
-      <Wrapper>
-        <div
-          style={{
-            marginLeft: "100px",
-            marginRight: "100px",
-            overflowX: "hidden",
-          }}
-        ></div>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              paddingTop: "50px",
-            }}
-          >
-            <Header>ADD PRODUCT</Header>
-            <Button
-              style={{ width: "50%" }}
-              text="Cancel"
-              width="9rem"
-              height="3.75rem"
-              fontSize="1.5rem"
-              fontColor="black"
-              bgColor="rgba(168, 168, 168, 0.25)"
-              fontWeight="100"
-              marginLeft="370px"
-            />
-            <Button
-              text="Confirm"
-              width="9rem"
-              height="3.75rem"
-              fontSize="1.5rem"
-              marginLeft="15px"
-              onClick={confirmAdd}
-            />
-          </div>
-          <div>
+        <InsideNavbar />
+        <Wrapper>
+          <Row>
+            <Col>
+              <Header>ADD PRODUCT</Header>
+            </Col>
+            <Col>
+              <Button
+                style={{ width: "50%" }}
+                text="Cancel"
+                width="9rem"
+                height="3.75rem"
+                fontSize="1.5rem"
+                fontColor="black"
+                bgColor="rgba(168, 168, 168, 0.25)"
+                fontWeight="100"
+                marginLeft="370px"
+              />
+            </Col>
+            <Col>
+              <Button
+                text="Confirm"
+                width="9rem"
+                height="3.75rem"
+                fontSize="1.5rem"
+                marginLeft="15px"
+                onClick={confirmAdd}
+              />
+            </Col>
+          </Row>
+          <Row>
             <UploadImageWrapper
               style={{
                 width: "100%",
@@ -158,20 +150,16 @@ export default function AddProducts() {
               type="file"
               accept=".jpg,.jpeg,.png"
             />
-          </div>
-          <Horizontal>
-            <div>
+          </Row>
+          <Row>
+            <Col>
               <div style={{ fontWeight: "100", fontSize: "1.75rem" }}>
-
                 Product Name
                 <SearchBar height="3.5rem" width="20rem">
                   <SearchBar.Group id="email" className="text-center">
-                    <SearchBar.Control ref={productName}>
-                
-                    </SearchBar.Control>
+                    <SearchBar.Control ref={productName}></SearchBar.Control>
                   </SearchBar.Group>
                 </SearchBar>
-
               </div>
               <div style={{ fontWeight: "100", fontSize: "1.75rem" }}>
                 Category
@@ -189,18 +177,16 @@ export default function AddProducts() {
                   </SearchBar.Group>
                 </SearchBar>
               </div>
-            </div>
-            <div>
+            </Col>
+            <Col>
               <div style={{ fontWeight: "100", fontSize: "1.75rem" }}>
                 Product Description
-                <SearchBar height="15.8rem" width="22rem">
-                  <SearchBar.Group id="email" className="text-center">
-                    <SearchBar.Control></SearchBar.Control>
-                  </SearchBar.Group>
-                </SearchBar>
+                <StyledTextArea controlId="floatingTextarea2">
+                  <Form.Control as="textarea" style={{ height: "100%" }} />
+                </StyledTextArea>
               </div>
-            </div>
-            <div>
+            </Col>
+            <Col>
               <div style={{ marginBottom: "10px" }}>
                 <UploadImageWrapper
                   onClick={() => {
@@ -289,9 +275,9 @@ export default function AddProducts() {
                   accept=".jpg,.jpeg,.png"
                 />
               </div>{" "}
-            </div>
+            </Col>
 
-            <div>
+            <Col>
               <div style={{ marginBottom: "10px" }}>
                 <UploadImageWrapper
                   onClick={() => {
@@ -380,11 +366,10 @@ export default function AddProducts() {
                   accept=".jpg,.jpeg,.png"
                 />
               </div>
-            </div>
-          </Horizontal>
-       
-      </Wrapper>
-   </Row>
-   </Container>
+            </Col>
+          </Row>
+        </Wrapper>
+      </Row>
+    </Container>
   );
 }

@@ -7,7 +7,6 @@ import React, {
   useMemo,
 } from "react";
 import InsideNavbar from "../../Components/Sidebar/ShownNavbar";
-import useBookSearch from "../../Hooks/useBookSearch";
 import useMainFeedFetch from "../../Hooks/useMainFeedFetch";
 //Components
 import { Profile, SkeletonLoadingProfile } from "../../Components/Profile";
@@ -23,7 +22,6 @@ import {
   FeedWrapper,
   HeaderWrapper,
   SearchbarWrapper,
-  Horizontal,
 } from "./MainFeed.styles";
 import { RiDivideFill } from "react-icons/ri";
 import { CircularImageLoading } from "../../Components/Profile/Profile.styles";
@@ -34,8 +32,6 @@ import breakpointRes from "../../Helpers/Breakpoints";
 function MainFeed() {
   const [category, setCategory] = useState("");
   const [pageNumber, setPageNumber] = useState(0);
-  const [width, setWidth] = useState(window.innerWidth);
-  const breakpoint = breakpointRes.device.md;
 
   const { products, hasMore, loading, error } = useMainFeedFetch(
     category,

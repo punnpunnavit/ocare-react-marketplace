@@ -20,7 +20,7 @@ const requestHandler = (request) => {
 const responseHandler = (response) => {
   if (response.status === 401) {
   }
-
+  console.log(response);
   return response;
 };
 

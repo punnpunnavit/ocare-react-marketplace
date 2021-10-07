@@ -39,6 +39,7 @@ export function AuthProvider({ children }) {
   function getAccessToken() {
     currentUser.getIdToken().then(function (data) {
       window.localStorage.setItem("accessToken", data);
+      console.log(data)
       return data;
     });
   }

@@ -4,6 +4,23 @@ import breakpoint from "../../Helpers/Breakpoints";
 
 export const CircularImage = styled.img`
   border-radius: 50%;
+  display: flex;
+  width: 300px;
+  height: 300px;
+  margin-top: 40px;
+  @media ${breakpoint.device.md} {
+    width: 250px;
+    height: 250px;
+  }
+`;
+
+export const Header = styled(Row)`
+  display: "flex";
+  font-size: 2.5rem;
+  justify-content: center;
+  @media ${breakpoint.device.md} {
+    font-size: 2rem;
+  }
 `;
 
 export const SidebarNumber = styled.div`
@@ -11,6 +28,11 @@ export const SidebarNumber = styled.div`
   font-weight: 700;
   color: var(--green);
   text-align: center;
+  order: 0;
+  @media ${breakpoint.device.md} {
+    flex-direction: row;
+    order: 1;
+  }
 `;
 
 export const SidebarIcon = styled.div`
@@ -23,6 +45,9 @@ export const SidebarDes = styled.div`
   font-weight: 100;
   font-size: 1.5rem;
   text-align: center;
+  @media ${breakpoint.device.md} {
+    font-size: 1.25rem;
+  }
 `;
 
 export const TagsContainer = styled.div`
@@ -31,19 +56,46 @@ export const TagsContainer = styled.div`
   background-color: black;
 `;
 
-export const ContentWrapper = styled(Row)`
+export const ContentWrapper = styled.div`
   width: 100%;
-  justify-content: space-between;
+  justify-content: center;
+  display: flex;
   margin-bottom: 30px;
-  padding: 0 0 0 0
+  padding: 0 0 0 0;
+  flex-direction: row;
+  white-space: nowrap;
+
+  @media ${breakpoint.device.md} {
+    flex-direction: column;
+    margin-bottom: 5px;
+  }
 `;
 
-const displaceContent = keyframes`
+export const NumericWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  @media ${breakpoint.device.md} {
+    flex-direction: row;
+  }
+`;
+
+export const VisualWrapper = styled.div`
+  flex-direction: row;
+  display: flex;
+  align-items: flex-start;
+  @media ${breakpoint.device.md} {
+    flex-direction: column;
+    align-items: center;
+  }
+`;
+
+const displaceContent = (start, end) => keyframes`
   0%{
-    transform: translateX(0px);
+    transform: translateX(${start});
   }
   100%{
-    transform: translateX(500px);
+    transform: translateX(${end});
   }
 `;
 
@@ -61,9 +113,15 @@ export const NavbarShown = styled(Col)`
       width: 100px;
       height: 100vh;
       z-index: 100;
-      animation-name: ${displaceContent};
+      animation-name: ${displaceContent("0px", "500px")};
       animation-duration: 1ms;
       animation-fill-mode: forwards;
+      @media ${breakpoint.device.md} {
+        max-width: 50px;
+        animation-name: ${displaceContent("0px", "300px")};
+        animation-duration: 1ms;
+        animation-fill-mode: forwards;
+      }
     `}
 
   @media  ${breakpoint.device.md} {
@@ -82,8 +140,11 @@ export const NavMenu = styled(Col)`
       display: flex;
       margin: 0;
       padding: 0;
-      z-index: 10000000;
+      z-index: 100;
       background-color: white;
       position: absolute;
+      @media ${breakpoint.device.md} {
+        max-width: 300px;
+      }
     `}
 `;

@@ -7,7 +7,6 @@ import { GlobalStyle } from "./Helpers/Globalstyles";
 
 import SignUpPage from "./Pages/SignUpPage";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import HomePage from "./Pages/HomePage";
 import LoginPage from "./Pages/LoginPage";
 import PrivateRoute from "./Helpers/PrivateRoute";
 import ForgotPasswordPage from "./Pages/ForgotPasswordPage";

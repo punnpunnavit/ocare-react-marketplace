@@ -15,8 +15,6 @@ export const SearchBar = styled(Form)`
 
     @media ${breakpoint.device.md} {
       display: block;
-     
-      background-color: red;
     }
 
     box-shadow: none;

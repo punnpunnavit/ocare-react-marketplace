@@ -1,5 +1,31 @@
 import styled, { css } from "styled-components";
-import { Col, Row,Card } from "react-bootstrap";
+import { Col, Row, Card, Form } from "react-bootstrap";
+import breakpoint from "../../Helpers/Breakpoints";
+
+export const StyledSearchBar = styled(Form)`
+  .form-control {
+    background-color: rgba(168, 168, 168, 0.25);
+    border: none;
+    width: ${(props) => props.width || "13rem"};
+    height: ${(props) => props.height || "2rem"};
+    margin-left: ${(props) => props.marginLeft || "0rem"};
+    margin-right: ${(props) => props.marginRight || "0rem"};
+    margin-top: ${(props) => props.marginTop || "0rem"};
+    margin-bottom: ${(props) => props.marginBottom || "0rem"};
+
+    @media ${breakpoint.device.md} {
+      display: block;
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    box-shadow: none;
+    &::placeholder {
+      color: rgba(168, 168, 168, 0.8);
+      font-weight: 100;
+    }
+  }
+`;
 
 export const Wrapper = styled(Row)`
   flex: 1;
@@ -20,6 +46,10 @@ export const HeaderWrapper = styled.div`
   width: 100%;
   margin-top: 100px;
   margin-bottom: 50px;
+
+  @media ${breakpoint.device.md} {
+    flex-direction: column;
+  }
 `;
 
 export const Header = styled.h1`
@@ -43,8 +73,4 @@ export const Horizontal = styled.div`
   margin-top: 10px;
 `;
 
-export const ResponsiveCard = styled(Card)`
-
-
-
-`
+export const ResponsiveCard = styled(Card)``;

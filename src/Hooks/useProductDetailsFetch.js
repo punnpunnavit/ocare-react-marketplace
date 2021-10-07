@@ -6,34 +6,35 @@ export default function useProductDetailsFetch(id) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [products, setProducts] = useState([]);
-  const [productsName, setProductsName] = useState([]);
-  const [productsMainImg, setProductsMainImg] = useState([]);
-  const [productsImg, setProductsImg] = useState([]);
-  const [productsDes, setProductsDes] = useState([]);
-  const [productsPrice, setProductsPrice] = useState([]);
-  const [productsCategory, setProductsCategory] = useState([]);
-  FetchProductDetails.fetchDetails(id)
-    .then((res) => {
-        setProductsName(res.data.productName);
-        setProductsMainImg(res.data.mainImage);
-        setProductsImg(res.data.images)
-        setProductsDes(res.data.description)
-        setProductsPrice(res.data.price)
-        setProductsCategory(res.data.category)
-      }  )
-    .catch((e) => {
-      console.log(e);
-      setError(true);
-    });
+
+  useEffect(() => {
+    FetchProductDetails.fetchDetails(id)
+      .then((res) => {
+       
+        setLoading(true);
+        setError(false);
+        setProducts(() => {
+          return {
+            productName: res.data.productName,
+            productDes: res.data.description,
+            productMainImage: res.data.mainImage,
+            productImg: res.data.images,
+            productPrice: res.data.price,
+            productCategory: res.data.category,
+          };
+        });
+        console.log(products.productImg[0])
+        setLoading(false);
+      })
+      .catch((e) => {
+        console.log(e);
+        setError(true);
+      });
+  },[id]);
 
   return {
     loading,
     error,
-    productsName,
-    productsMainImg,
-    productsImg,
-    productsDes,
-    productsPrice,
-    productsCategory,
+    products,
   };
 }

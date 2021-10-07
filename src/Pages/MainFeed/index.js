@@ -11,9 +11,7 @@ import useMainFeedFetch from "../../Hooks/useMainFeedFetch";
 //Components
 import { Profile, SkeletonLoadingProfile } from "../../Components/Profile";
 import { ProductFeed, ProductFeedLoading } from "../../Components/ProductFeed";
-import { SearchBar } from "../../Components/SearchBar/SearchBar.styles";
-//APIs
-import { useMainInfoFetch } from "../../Hooks/useMainInfoFetch";
+import { StyledSearchBar } from "./MainFeed.styles";
 //Styles
 import { FaFilter } from "react-icons/fa";
 import {
@@ -38,6 +36,17 @@ function MainFeed() {
     pageNumber
   );
 
+  const [isDesktop, setDesktop] = useState(window.innerWidth > 1450);
+
+  const updateMedia = () => {
+    setDesktop(window.innerWidth > 768);
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", updateMedia);
+    return () => window.removeEventListener("resize", updateMedia);
+  });
+
   const observer = useRef();
   const lastProductElementRef = useCallback(
     (node) => {
@@ -61,68 +70,105 @@ function MainFeed() {
   const cards = useMemo(() => {
     return products.map((products, index) => {
       return (
-        <div
-          ref={lastProductElementRef}
-          key={index}
-          style={{
-            display: "flex",
-            marginBottom: "15px",
-            justifyContent: "space-between",
-          }}
-        >
-          <Profile
-            profileURL={products.userImage}
-            username={products.username}
-            loading={loading}
-          />
+        <div>
+          {isDesktop ? (
+            <div
+              ref={lastProductElementRef}
+              key={index}
+              style={{
+                display: "flex",
+                marginBottom: "15px",
+                justifyContent: "space-between",
+              }}
+            >
+              <Profile
+                profileURL={products.userImage}
+                username={products.username}
+                loading={loading}
+              />
 
-          <Link to={`/blogs/${products.id}`}>
-            <ProductFeed
-              productPicture={products.image}
-              Header={products.name}
-              Description={products.description}
-              loading={loading}
-            />
-          </Link>
+              <Link to={`/blogs/${products.id}`}>
+                <ProductFeed
+                  productPicture={products.image}
+                  Header={products.name}
+                  Description={products.description}
+                  loading={loading}
+                />
+              </Link>
+            </div>
+          ) : (
+            <div
+              ref={lastProductElementRef}
+              key={index}
+              style={{
+                display: "flex",
+                marginBottom: "15px",
+                justifyContent: "center",
+                alignItems:"flex-start"
+              }}
+            >
+              <Profile
+                profileURL={products.userImage}
+                username={products.username}
+                loading={loading}
+              />
+
+              <Link to={`/blogs/${products.id}`}>
+                <Card style={{ width: "12rem" }}>
+                  <Card.Img variant="top" src={products.image} style={{ maxWidth: "12rem"}} />
+                  <Card.Body>
+                    <Card.Title>{products.name}</Card.Title>
+                    <Card.Text>{products.description}</Card.Text>
+                  </Card.Body>
+                </Card>
+                {/* <ProductFeed
+                  productPicture={products.image}
+                  Header={products.name}
+                  Description={products.description}
+                  loading={loading}
+                /> */}
+              </Link>
+            </div>
+          )}
         </div>
       );
     });
   }, [products, loading]);
 
-  const cardsResponsive = useMemo(() => {
-    return products.map((products, index) => {
-      return (
-        <div
-          ref={lastProductElementRef}
-          key={index}
-          style={{
-            display: "flex",
-            marginBottom: "15px",
-            justifyContent: "space-between",
-          }}
-        >
-          <Profile
-            profileURL={products.userImage}
-            username={products.username}
-            loading={loading}
-          />
-          <Link to={`/blogs/${products.id}`}>
-            <Card style={{ width: "18rem" }}>
-              <Card.Img variant="top" src="holder.js/100px180" />
-              <Card.Body>
-                <Card.Title>Card Title</Card.Title>
-                <Card.Text>
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
-                </Card.Text>
-                here
-              </Card.Body>
-            </Card>
-          </Link>
-        </div>
-      );
-    });
-  }, [products, loading]);
+  // const cardsResponsive = useMemo(() => {
+  //   return products.map((products, index) => {
+  //     return (
+  //       <div
+  //         ref={lastProductElementRef}
+  //         key={index}
+  //         style={{
+  //           display: "flex",
+  //           marginBottom: "15px",
+  //           justifyContent: "space-between",
+  //         }}
+  //       >
+  //         <Profile
+  //           profileURL={products.userImage}
+  //           username={products.username}
+  //           loading={loading}
+  //         />
+  //         <Link to={`/blogs/${products.id}`}>
+  //           <Card style={{ width: "18rem" }}>
+  //             <Card.Img variant="top" src="holder.js/100px180" />
+  //             <Card.Body>
+  //               <Card.Title>Card Title</Card.Title>
+  //               <Card.Text>
+  //                 Some quick example text to build on the card title and make up
+  //                 the bulk of the card's content.
+  //               </Card.Text>
+  //               here
+  //             </Card.Body>
+  //           </Card>
+  //         </Link>
+  //       </div>
+  //     );
+  //   });
+  // }, [products, loading]);
 
   return (
     <Container style={{ margin: "0 0 0 0" }}>
@@ -155,18 +201,19 @@ function MainFeed() {
                 /> */}
               </Col>
               <Col>
-                <SearchBar marginRight="0px">
-                  <SearchBar.Group
+                <StyledSearchBar marginRight="0px">
+                  <StyledSearchBar.Group
                     id="email"
                     className="text-center"
                     onChange={handleSearch}
                   >
-                    <SearchBar.Control placeholder="Search"></SearchBar.Control>
-                  </SearchBar.Group>
-                </SearchBar>
+                    <StyledSearchBar.Control placeholder="Search"></StyledSearchBar.Control>
+                  </StyledSearchBar.Group>
+                </StyledSearchBar>
               </Col>
             </Row>
           </HeaderWrapper>
+
           {cards}
           {loading && (
             <div style={{ display: "flex", marginBottom: "15px" }}>

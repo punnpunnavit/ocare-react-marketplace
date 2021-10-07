@@ -22,10 +22,3 @@ const ProductDetailAPI = {
 };
 
 export default ProductDetailAPI;
-
-// axios({
-//     method: 'GET',
-//     url: 'http://openlibrary.org/search.json',
-//     params: { q: query, page: pageNumber },
-//     cancelToken: new axios.CancelToken(c => cancel = c)
-//   })

@@ -30,7 +30,7 @@ function App() {
               component={UpdateProfilePage}
             />
 
-            <Route exact path="/" component={MainFeed} />
+            <Route exact path="/home" component={MainFeed} />
 
             <Route exact path="/addproducts" component={AddProducts} />
             {/* finish add product api */}
@@ -41,7 +41,7 @@ function App() {
             {/* <Route exact path="/" component={MainFeed} /> */}
             <Route path="/blogs/:id" component={ProductDetail} />
             <Route path="/signup" component={SignUpPage} />
-            <Route path="/login" component={LoginPage} />
+            <Route path="/" component={LoginPage} />
             <Route path="/forgot-password" component={ForgotPasswordPage} />
                {/* finish forget password api */}
           </Switch>

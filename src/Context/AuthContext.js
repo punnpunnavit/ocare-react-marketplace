@@ -1,5 +1,4 @@
 import React, { useState, useContext, useEffect } from "react";
-import { auth } from "../Services/Auth/Firebase";
 import AuthAPI from "../Services/Auth/AuthAPI";
 
 const AuthContext = React.createContext();
@@ -21,7 +20,7 @@ export function AuthProvider({ children }) {
   }
 
   function logout() {
-    return auth.signOut();
+    // return auth.signOut();
   }
 
   function resetPassword(email) {
@@ -39,18 +38,20 @@ export function AuthProvider({ children }) {
   function getAccessToken() {
     currentUser.getIdToken().then(function (data) {
       window.localStorage.setItem("accessToken", data);
-      console.log(data)
+      console.log(data);
       return data;
     });
   }
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      setCurrentUser(user);
+     setCurrentUser("wd");
       setLoading(false);
-    });
 
-    return unsubscribe;
+    // const unsubscribe = auth.onAuthStateChanged((user) => {
+    //   setCurrentUser(user);
+    //   setLoading(false);
+    // });
+    // return unsubscribe;
   }, []);
 
   const value = {

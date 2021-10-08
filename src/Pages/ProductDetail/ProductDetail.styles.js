@@ -1,15 +1,20 @@
 import styled, { css } from "styled-components";
 import Annulus from "../../Components/Annulus";
+import { Col, Row, Card, Form } from "react-bootstrap";
 
-export const Wrapper = styled.div`
+export const Wrapper = styled(Row)`
+  flex: 1;
   max-height: 100vh;
-  overflow: scroll;
-  min-width: 93%;
-  flex-wrap: wrap;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  z-index: 10;
+  height: 100%;
+  max-width: 90vw;
+  width: 100%;
+  
+  position: relative;
+
+  margin: 0 auto;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 export const TextWrapper = styled.div``;
@@ -42,7 +47,7 @@ export const Description = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  
+ 
 `;
 
 export const SubImg = styled.img`
@@ -53,6 +58,7 @@ export const SubImg = styled.img`
   justify-content: center;
   align-items: center;
   margin-left: 10px;
+  margin-bottom: 10px;
 `;
 
 export const Horizontal = styled.div`
@@ -60,9 +66,8 @@ export const Horizontal = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin-bottom: 10px;
   margin-top: 10px;
-  
+  position: relative;
 `;
 
 export const LeftContentWrapper = styled.div`
@@ -70,9 +75,6 @@ export const LeftContentWrapper = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
- 
-  
-
-`
+`;
 
 export const StyledAnnulus = styled(Annulus)``;

@@ -5,6 +5,7 @@ export default function Button(props) {
   return (
     <StyledButton
       width={props.width}
+      maxWidth={props.maxWidth}
       height={props.height}
       fontColor={props.fontColor}
       bgColor={props.bgColor}

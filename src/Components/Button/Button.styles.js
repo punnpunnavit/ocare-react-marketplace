@@ -5,6 +5,7 @@ export const StyledButton = styled.button`
   align-items: center;
   justify-content: center;
   width: ${(props) => props.width || "15rem"};
+  max-width: ${(props) => props.maxWidth || "15rem"};
   height: ${(props) => props.height || "5rem"};
   color: ${(props) => props.fontColor || "#fff"};
   background-color: ${(props) => props.bgColor || "var(--green)"};
@@ -15,7 +16,7 @@ export const StyledButton = styled.button`
   border-style: none;
   border-color: var(--green);
   margin-left: ${(props) => props.marginLeft};
-  margin-right: ${(props) => props.marginRight};
+  margin-right: ${(props) => props.marginRight || "0"};
   margin-top: ${(props) => props.marginTop};
   margin-bottom: ${(props) => props.marginBottom};
 

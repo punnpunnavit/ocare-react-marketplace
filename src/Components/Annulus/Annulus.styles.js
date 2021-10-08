@@ -42,8 +42,8 @@ export const InnerCircle = styled.div`
 `;
 
 export const Wrapper = styled.div`
-position: fixed;
-right: -220px;
- top: -250px;
+  position: absolute;
+  right: -220px;
+  top: -250px;
   overflow: hidden;
 `;

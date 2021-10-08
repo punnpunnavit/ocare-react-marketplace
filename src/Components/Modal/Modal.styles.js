@@ -9,7 +9,7 @@ export const ModalBackground = styled(Col)`
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 10;
+  z-index: 15;
 `;
 
 export const ModalButton = styled.button`

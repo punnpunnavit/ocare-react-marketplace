@@ -37,7 +37,7 @@ function MainFeed() {
     pageNumber
   );
 
-  const [isDesktop, setDesktop] = useState(window.innerWidth > 1450);
+  const [isDesktop, setDesktop] = useState(window.innerWidth > 1250);
 
   const updateMedia = () => {
     setDesktop(window.innerWidth > 768);
@@ -179,7 +179,7 @@ function MainFeed() {
   // }, [products, loading]);
 
   return (
-    <Container style={{ margin: "0 0 0 0", overflow: "hidden" }}>
+    <Container style={{ margin: "0 0 0 0" }}>
       <Row
         style={{
           maxHeight: "100vh",

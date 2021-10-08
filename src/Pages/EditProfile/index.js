@@ -5,15 +5,16 @@ import {
   Horizontal,
   CircularImage,
   Wrapper,
+  InstructionWrapper,
+  SearchBar
 } from "./EditProfile.styles";
-import { SearchBar } from "../../Components/SearchBar/SearchBar.styles";
 import Button from "../../Components/Button";
 import { BsFillPlusCircleFill } from "react-icons/bs";
 import { Container, Row, Col } from "react-bootstrap";
 
 export default function EditProfile() {
   return (
-    <Container style={{ margin: "0 0 0 0" }}>
+    <Container style={{ margin: "0 0 0 0", maxWidth: "100vw"}}>
       <Row
         style={{
           maxHeight: "100vh",
@@ -50,7 +51,7 @@ export default function EditProfile() {
                 }}
               />
             </Col>
-            <Col style={{ fontSize: "2.5rem" }}>
+            <InstructionWrapper>
               Basic Information
               <Row
                 style={{
@@ -86,7 +87,7 @@ export default function EditProfile() {
               </div>
               <div style={{ fontWeight: "100", fontSize: "1.75rem" }}>
                 Telephone Number
-                <SearchBar height="2.5rem" width="100%">
+                <SearchBar >
                   <SearchBar.Group id="email" className="text-center">
                     <SearchBar.Control></SearchBar.Control>
                   </SearchBar.Group>
@@ -114,7 +115,7 @@ export default function EditProfile() {
                   marginLeft="15px"
                 />
               </Horizontal>
-            </Col>
+            </InstructionWrapper>
           </Row>
         </Wrapper>
       </Row>

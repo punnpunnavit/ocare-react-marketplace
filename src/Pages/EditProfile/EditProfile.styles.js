@@ -1,16 +1,19 @@
 import styled, { css } from "styled-components";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Form } from "react-bootstrap";
+import breakpoint from "../../Helpers/Breakpoints";
 
 export const Wrapper = styled(Row)`
   flex: 1;
   max-height: 100vh;
   height: 100%;
-  max-width: 100vw;
+  max-width: 90vw;
+  width: 100%;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  margin: 0 auto;
   overflow-y: scroll;
-  margin-top: 70px;
-  margin-left: 50px;
-  overflow: visible;
-  margin-right: 50px;
+  overflow-x: hidden;
   &::-webkit-scrollbar {
     display: none;
   }
@@ -50,4 +53,33 @@ export const CircularImage = styled.img`
   border-radius: 90%;
   width: 175px;
   height: 175px;
+  @media ${breakpoint.device.md} {
+    width: 100px;
+    height: 100px;
+  }
+`;
+
+export const InstructionWrapper = styled(Col)`
+  font-size: 2.5rem;
+  @media ${breakpoint.device.md} {
+    font-size: 2rem;
+  }
+`;
+
+export const SearchBar = styled(Form)`
+  .form-control {
+    background-color: rgba(168, 168, 168, 0.25);
+    border: none;
+    box-shadow: none;
+    height: 2.5rem;
+    max-width: 300px;
+    width: 100%;
+    @media ${breakpoint.device.md} {
+      display: block;
+    }
+    &::placeholder {
+      color: rgba(168, 168, 168, 0.8);
+      font-weight: 100;
+    }
+  }
 `;

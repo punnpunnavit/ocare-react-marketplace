@@ -55,11 +55,12 @@ export const HeaderWrapper = styled.div`
   align-items: center;
   justify-content: flex-end;
   width: 100%;
-  margin-top: 100px;
+  margin-top: 70px;
   margin-bottom: 50px;
 
   @media ${breakpoint.device.md} {
     flex-direction: column;
+    margin-top: 50px;
   }
 `;
 

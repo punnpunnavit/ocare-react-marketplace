@@ -68,20 +68,19 @@ export default function AddProducts() {
   }, [selectedFiles]);
   return (
     <Container
-     
-      style={{ margin: "0 0 0 0" }}
+    style={{ margin: "0 0 0 0", maxWidth: "100vw", overflow: "hidden" }}
+  >
+    <Row
+      style={{
+        maxHeight: "100vh",
+        height: "100%",
+        minWidth: "100vw",
+        width: "100%",
+        display: "flex",
+      }}
     >
-      <Row
-        style={{
-          maxHeight: "100vh",
-          height: "100%",
-          minWidth: "100vw",
-          width: "100%",
-          
-        }}
-      >
-        <InsideNavbar />
-        <Wrapper>
+      <InsideNavbar />
+      <Wrapper>
           <Row>
             <Col>
               <Header>ADD PRODUCT</Header>

@@ -28,6 +28,10 @@ export const GlobalStyle = createGlobalStyle`
  padding-left: 0px;
  padding-right: 0px;
 }
+
+.boxhead a {
+    text-decoration: none;
+}
   body {
     margin: 0;
     padding: 0;

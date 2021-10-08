@@ -26,6 +26,7 @@ import { CircularImageLoading } from "../../Components/Profile/Profile.styles";
 import { Link } from "react-router-dom";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import breakpointRes from "../../Helpers/Breakpoints";
+import StyledLink from '../../Components/Link/Link.styles'
 
 function MainFeed() {
   const [category, setCategory] = useState("");
@@ -87,14 +88,17 @@ function MainFeed() {
                 loading={loading}
               />
 
-              <Link to={`/blogs/${products.id}`}>
+              <StyledLink
+                to={`/blogs/${products.id}`}
+                style={{ textDecoration: "none" }}
+              >
                 <ProductFeed
                   productPicture={products.image}
                   Header={products.name}
                   Description={products.description}
                   loading={loading}
                 />
-              </Link>
+              </StyledLink>
             </div>
           ) : (
             <div
@@ -104,7 +108,7 @@ function MainFeed() {
                 display: "flex",
                 marginBottom: "15px",
                 justifyContent: "center",
-                alignItems:"flex-start"
+                alignItems: "flex-start",
               }}
             >
               <Profile
@@ -115,7 +119,11 @@ function MainFeed() {
 
               <Link to={`/blogs/${products.id}`}>
                 <Card style={{ width: "12rem" }}>
-                  <Card.Img variant="top" src={products.image} style={{ maxWidth: "12rem"}} />
+                  <Card.Img
+                    variant="top"
+                    src={products.image}
+                    style={{ maxWidth: "12rem" }}
+                  />
                   <Card.Body>
                     <Card.Title>{products.name}</Card.Title>
                     <Card.Text>{products.description}</Card.Text>
@@ -171,7 +179,7 @@ function MainFeed() {
   // }, [products, loading]);
 
   return (
-    <Container style={{ margin: "0 0 0 0" }}>
+    <Container style={{ margin: "0 0 0 0", overflow: "hidden" }}>
       <Row
         style={{
           maxHeight: "100vh",
@@ -215,12 +223,12 @@ function MainFeed() {
           </HeaderWrapper>
 
           {cards}
-          {loading && (
+          {/* {loading && (
             <div style={{ display: "flex", marginBottom: "15px" }}>
               <SkeletonLoadingProfile />
               <ProductFeedLoading />
             </div>
-          )}
+          )} */}
           <div>{error && "Error"}</div>
         </Wrapper>
       </Row>

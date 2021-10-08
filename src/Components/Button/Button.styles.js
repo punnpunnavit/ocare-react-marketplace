@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import{Button} from 'react-bootstrap'
 
-export const StyledButton = styled.button`
+export const StyledButton = styled(Button)`
   display: flex;
   align-items: center;
   justify-content: center;

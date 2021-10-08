@@ -18,6 +18,7 @@ import {
   SubMainHeader,
   StyledAnnulus,
   SubImg,
+  DesWrapper,
   Horizontal,
   LeftContentWrapper,
 } from "./ProductDetail.styles";
@@ -59,7 +60,13 @@ export default function ProductDetail() {
             />
           )}
           <StyledAnnulus />
-          <Row style={{ display: "flex" }}>
+          <Row
+            style={{
+              display: "flex",
+              maxWidth: "90%",
+              justifyContent: "center",
+            }}
+          >
             <MainHeader>{products.productName}</MainHeader>
             <SubMainHeader>{products.productCategory}</SubMainHeader>
 
@@ -81,25 +88,23 @@ export default function ProductDetail() {
                 alignSelf: "center",
                 display: "flex",
                 flexDirection: "column",
-                height: "100%",
               }}
             >
-              <Row>
+              <Row style={{ marginLeft: "0" }}>
                 <Button
-                  style={{ width: "5rem" }}
+                  style={{ maxWidth: "5rem", marginLeft: "0" }}
                   text={products.productPrice + " THB"}
                   onClick={() => {
                     setOpenModal(true);
                   }}
                 />
+                <p>Add your banking information</p>
               </Row>
-              <Row>
-                <p style={{}}>Add your banking information</p>
-              </Row>
+              <Row></Row>
             </Col>
-            <Col style={{ marginTop: "10px" }}>
+            <Col style={{ marginTop: "10px", justifyContent: "center" }}>
               <Row>
-                <Col>
+                <DesWrapper>
                   <Description>
                     <TextWrapper>
                       <div>
@@ -108,9 +113,9 @@ export default function ProductDetail() {
                       </div>
                     </TextWrapper>
                   </Description>
-                </Col>
+                </DesWrapper>
                 <Col>
-                  <Row>
+                  <Row style={{ justifyContent: "center" }}>
                     <SubImg
                       src={products.productImg && products.productImg[0]}
                       alt=""
@@ -120,7 +125,7 @@ export default function ProductDetail() {
                       alt=""
                     />
                   </Row>
-                  <Row>
+                  <Row style={{ justifyContent: "center" }}>
                     <SubImg
                       src={products.productImg && products.productImg[2]}
                       alt=""

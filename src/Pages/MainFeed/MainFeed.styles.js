@@ -2,6 +2,17 @@ import styled, { css } from "styled-components";
 import { Col, Row, Card, Form } from "react-bootstrap";
 import breakpoint from "../../Helpers/Breakpoints";
 
+import { Link } from 'react-router-dom';
+
+
+export const StyledLink = styled(Link)`
+    text-decoration: none;
+
+    &:focus, &:hover, &:visited, &:link, &:active {
+        text-decoration: none;
+    }
+`;
+
 export const StyledSearchBar = styled(Form)`
   .form-control {
     background-color: rgba(168, 168, 168, 0.25);
@@ -56,6 +67,7 @@ export const Header = styled.h1`
   font-size: 4rem;
   color: var(--purple);
   margin-right: auto;
+  text-decoration: none;
 `;
 
 export const SearchbarWrapper = styled.div`

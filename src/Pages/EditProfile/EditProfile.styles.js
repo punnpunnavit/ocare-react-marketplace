@@ -53,6 +53,7 @@ export const CircularImage = styled.img`
   border-radius: 90%;
   width: 175px;
   height: 175px;
+  background-color: gray;
   @media ${breakpoint.device.md} {
     width: 100px;
     height: 100px;

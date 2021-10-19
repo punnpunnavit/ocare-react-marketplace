@@ -6,15 +6,45 @@ import {
   CircularImage,
   Wrapper,
   InstructionWrapper,
-  SearchBar
+  SearchBar,
 } from "./EditProfile.styles";
 import Button from "../../Components/Button";
 import { BsFillPlusCircleFill } from "react-icons/bs";
 import { Container, Row, Col } from "react-bootstrap";
+import { useState, useEffect, useRef } from "react";
+import EditProfileAPI from "../../Services/APIs/UpdateProfile";
 
 export default function EditProfile() {
+  const [userData, setUserData] = useState([]);
+  const [file, setFile] = useState()
+  const firstName = useRef();
+  const lastName = useRef();
+  const displayName = useRef();
+  const tel = useRef();
+
+  const fileHandler = (e) => {
+    console.log(file)
+    setFile(e.target.files[0])
+}
+
+  useEffect(() => {
+    loadData();
+  }, []);
+
+  const loadData = async () => {
+    const currentProfile = await EditProfileAPI.getCurrentProfile();
+    setUserData(currentProfile);
+    setFile(currentProfile.lastName)
+    console.log(file)
+  };
+
+  const submit = async () => {
+    console.log("hi");
+    const res = await EditProfileAPI.updateProfile(displayName,firstName,lastName,tel,file);
+  };
+
   return (
-    <Container style={{ margin: "0 0 0 0", maxWidth: "100vw"}}>
+    <Container style={{ margin: "0 0 0 0", maxWidth: "100vw" }}>
       <Row
         style={{
           maxHeight: "100vh",
@@ -30,13 +60,14 @@ export default function EditProfile() {
           <Row>
             <Col>
               <CircularImage
-                src="https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"
+                src={file}
                 style={{
                   display: "flex",
                   width: "300px",
                   height: "300px",
                 }}
               />
+               <input type="file" onChange={fileHandler} style={{visibility:'hidden'}}/>
             </Col>
             <Col>
               <BsFillPlusCircleFill
@@ -64,7 +95,10 @@ export default function EditProfile() {
                   Firstname
                   <SearchBar height="2.5rem" width="300px">
                     <SearchBar.Group id="email" className="text-center">
-                      <SearchBar.Control></SearchBar.Control>
+                      <SearchBar.Control
+                        placeholder={userData.userUid}
+                        ref={firstName}
+                      ></SearchBar.Control>
                     </SearchBar.Group>
                   </SearchBar>
                 </Col>
@@ -72,7 +106,10 @@ export default function EditProfile() {
                   Lastname
                   <SearchBar height="2.5rem" width="100%">
                     <SearchBar.Group id="email" className="text-center">
-                      <SearchBar.Control></SearchBar.Control>
+                      <SearchBar.Control
+                        placeholder={userData.userUid}
+                        ref={lastName}
+                      ></SearchBar.Control>
                     </SearchBar.Group>
                   </SearchBar>
                 </Col>
@@ -81,15 +118,21 @@ export default function EditProfile() {
                 Display Name
                 <SearchBar height="2.5rem" width="100%">
                   <SearchBar.Group id="email" className="text-center">
-                    <SearchBar.Control></SearchBar.Control>
+                    <SearchBar.Control
+                      placeholder={userData.displayName}
+                      ref={displayName}
+                    ></SearchBar.Control>
                   </SearchBar.Group>
                 </SearchBar>
               </div>
               <div style={{ fontWeight: "100", fontSize: "1.75rem" }}>
                 Telephone Number
-                <SearchBar >
+                <SearchBar>
                   <SearchBar.Group id="email" className="text-center">
-                    <SearchBar.Control></SearchBar.Control>
+                    <SearchBar.Control
+                      placeholder={userData.userId}
+                      ref={tel}
+                    ></SearchBar.Control>
                   </SearchBar.Group>
                 </SearchBar>
               </div>
@@ -113,6 +156,7 @@ export default function EditProfile() {
                   height="3.75rem"
                   fontSize="1.5rem"
                   marginLeft="15px"
+                  onClick={submit}
                 />
               </Horizontal>
             </InstructionWrapper>

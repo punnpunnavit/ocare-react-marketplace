@@ -26,31 +26,29 @@ export default function AddProducts() {
 
   const [file, setFile] = useState();
   const [fileUrl, setFileUrl] = useState();
-  const [productName, setProductName] = useState([]);
-  const [uploadImages, setUploadImages] = useState([]);
-  const [description, setDescription] = useState([]);
-  const [price, setPrice] = useState([]);
-  const [category, setCategory] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  const [firstAdded, setFirstAdded] = useState(false);
+  const [secondAdded, setSecondAdded] = useState(false);
+  const [thirdAdded, setThirdAdded] = useState(false);
+  const [forthAdded, setForthAdded] = useState(false);
+  const [fifthAdded, setFifthAdded] = useState(false);
+  const [selectedFiles, setSelectedFiles] = useState([]);
 
   const confirmAdd = async () => {
-    console.log("hi");
-
     const res = await AddProductsAPI.addProduct(
-      productName,
-      file,
-      description,
-      price,
-      category
+      productNameRef.current.value,
+      selectedFiles,
+      descriptionRef.current.value,
+      priceRef.current.value,
+      categoryRef.current.value
     );
   };
 
   //edited
-  const [selectedFiles, setSelectedFiles] = useState([]);
 
   const handleImageChange = (e) => {
-    // console.log(e.target.files[])
+    console.log(e.target.files);
     if (e.target.files) {
       const filesArray = Array.from(e.target.files).map((file) =>
         URL.createObjectURL(file)
@@ -62,25 +60,26 @@ export default function AddProducts() {
       );
     }
   };
+
   useEffect(() => {
     console.log(selectedFiles);
     // console.log(productNameRef.current.value)
   }, [selectedFiles]);
   return (
     <Container
-    style={{ margin: "0 0 0 0", maxWidth: "100vw", overflow: "hidden" }}
-  >
-    <Row
-      style={{
-        maxHeight: "100vh",
-        height: "100%",
-        minWidth: "100vw",
-        width: "100%",
-        display: "flex",
-      }}
+      style={{ margin: "0 0 0 0", maxWidth: "100vw", overflow: "hidden" }}
     >
-      <InsideNavbar />
-      <Wrapper>
+      <Row
+        style={{
+          maxHeight: "100vh",
+          height: "100%",
+          minWidth: "100vw",
+          width: "100%",
+          display: "flex",
+        }}
+      >
+        <InsideNavbar />
+        <Wrapper>
           <Row>
             <Col>
               <Header>ADD PRODUCT</Header>
@@ -112,28 +111,35 @@ export default function AddProducts() {
               }}
               onClick={() => {
                 fileRef.current.click();
+                setFirstAdded(true);
               }}
+              active={firstAdded}
             >
-              <div style={{ width: "100px" }}>
-                <div
-                  style={{ fontSize: "15px", color: "rgba(168, 168, 168, 1)" }}
-                >
-                  Upload your image here
-                </div>
-                <div>
-                  <RiFileLine
+              {!firstAdded && (
+                <div style={{ width: "100px" }}>
+                  <div
                     style={{
-                      fontSize: "25px",
+                      fontSize: "15px",
                       color: "rgba(168, 168, 168, 1)",
                     }}
-                  />
+                  >
+                    Upload your image here
+                  </div>
+                  <div>
+                    <RiFileLine
+                      style={{
+                        fontSize: "25px",
+                        color: "rgba(168, 168, 168, 1)",
+                      }}
+                    />
+                  </div>
                 </div>
-              </div>
-              {selectedFiles && (
+              )}
+              {firstAdded && (
                 <img
                   style={{
-                    width: "200px",
-                    maxHeight: "200px",
+                    minWidth: "100%",
+                    minHeight: "100%",
                     objectFit: "cover",
                   }}
                   src={selectedFiles[0]}
@@ -148,13 +154,13 @@ export default function AddProducts() {
               accept=".jpg,.jpeg,.png"
             />
           </Row>
-          <Row>
+          <Row style={{ display: "flex", justifyContent: "space-between" }}>
             <Col>
               <div style={{ fontWeight: "100", fontSize: "1.5rem" }}>
                 Product Name
                 <SearchBar height="2.5rem" width="18rem">
                   <SearchBar.Group id="email" className="text-center">
-                    <SearchBar.Control ref={productName}></SearchBar.Control>
+                    <SearchBar.Control ref={productNameRef}></SearchBar.Control>
                   </SearchBar.Group>
                 </SearchBar>
               </div>
@@ -162,7 +168,7 @@ export default function AddProducts() {
                 Category
                 <SearchBar height="2.5rem" width="18rem">
                   <SearchBar.Group id="email" className="text-center">
-                    <SearchBar.Control></SearchBar.Control>
+                    <SearchBar.Control ref={categoryRef}></SearchBar.Control>
                   </SearchBar.Group>
                 </SearchBar>
               </div>
@@ -170,49 +176,73 @@ export default function AddProducts() {
                 Price
                 <SearchBar height="2.5rem" width="18rem">
                   <SearchBar.Group id="email" className="text-center">
-                    <SearchBar.Control></SearchBar.Control>
+                    <SearchBar.Control ref={priceRef}></SearchBar.Control>
                   </SearchBar.Group>
                 </SearchBar>
               </div>
             </Col>
             <Col>
-              <div style={{ fontWeight: "100", fontSize: "1.5rem" }}>
+              <div
+                style={{
+                  fontWeight: "100",
+                  fontSize: "1.5rem",
+                  height: "100%",
+                  overflow: "hidden",
+                }}
+              >
                 Product Description
-                <StyledTextArea controlId="floatingTextarea2">
-                  <Form.Control as="textarea" style={{ height: "100%" }} />
+                <StyledTextArea
+                  controlId="floatingTextarea2"
+                  style={{ height: "100%" }}
+                >
+                  <Form.Control
+                    as="textarea"
+                    style={{ height: "100%" }}
+                    ref={descriptionRef}
+                  />
                 </StyledTextArea>
               </div>
             </Col>
-            <Col style={{marginRight:"0",paddingRight:"0"}}>
+            <Col
+              style={{
+                marginRight: "0",
+                paddingRight: "10px",
+                marginLeft: "10px",
+              }}
+            >
               <div style={{ marginTop: "10px" }}>
                 <UploadImageWrapper
                   onClick={() => {
                     fileRef.current.click();
+                    setSecondAdded(true);
                   }}
+                  active={secondAdded}
                 >
-                  <div style={{ width: "100px" }}>
-                    <div
-                      style={{
-                        fontSize: "15px",
-                        color: "rgba(168, 168, 168, 1)",
-                      }}
-                    >
-                      Upload your image here
-                    </div>
-                    <div>
-                      <RiFileLine
+                  {!firstAdded && (
+                    <div style={{ width: "100px" }}>
+                      <div
                         style={{
-                          fontSize: "25px",
+                          fontSize: "15px",
                           color: "rgba(168, 168, 168, 1)",
                         }}
-                      />
+                      >
+                        Upload your image here
+                      </div>
+                      <div>
+                        <RiFileLine
+                          style={{
+                            fontSize: "25px",
+                            color: "rgba(168, 168, 168, 1)",
+                          }}
+                        />
+                      </div>
                     </div>
-                  </div>
+                  )}
                   {selectedFiles && (
                     <img
                       style={{
-                        width: "200px",
-                        maxHeight: "200px",
+                        maxWidth: "100%",
+                        minHeight: "100%",
                         objectFit: "cover",
                       }}
                       src={selectedFiles[1]}
@@ -227,35 +257,40 @@ export default function AddProducts() {
                   accept=".jpg,.jpeg,.png"
                 />
               </div>{" "}
-              <div style={{ marginTop: "10px"}}>
+              <div style={{ marginTop: "10px" }}>
                 <UploadImageWrapper
                   onClick={() => {
                     fileRef.current.click();
+                    setThirdAdded(true);
                   }}
+                  active={thirdAdded}
                 >
-                  <div style={{ width: "100px" }}>
-                    <div
-                      style={{
-                        fontSize: "15px",
-                        color: "rgba(168, 168, 168, 1)",
-                      }}
-                    >
-                      Upload your image here
-                    </div>
-                    <div>
-                      <RiFileLine
+                  {thirdAdded}
+                  {!firstAdded && (
+                    <div style={{ width: "100px" }}>
+                      <div
                         style={{
-                          fontSize: "25px",
+                          fontSize: "15px",
                           color: "rgba(168, 168, 168, 1)",
                         }}
-                      />
+                      >
+                        Upload your image heref
+                      </div>
+                      <div>
+                        <RiFileLine
+                          style={{
+                            fontSize: "25px",
+                            color: "rgba(168, 168, 168, 1)",
+                          }}
+                        />
+                      </div>
                     </div>
-                  </div>
+                  )}
                   {selectedFiles && (
                     <img
                       style={{
-                        width: "200px",
-                        maxHeight: "200px",
+                        maxWidth: "100%",
+                        minHeight: "100%",
                         objectFit: "cover",
                       }}
                       src={selectedFiles[2]}
@@ -277,31 +312,35 @@ export default function AddProducts() {
                 <UploadImageWrapper
                   onClick={() => {
                     fileRef.current.click();
+                    setForthAdded(true);
                   }}
+                  active={forthAdded}
                 >
-                  <div style={{ width: "100px" }}>
-                    <div
-                      style={{
-                        fontSize: "15px",
-                        color: "rgba(168, 168, 168, 1)",
-                      }}
-                    >
-                      Upload your image here
-                    </div>
-                    <div>
-                      <RiFileLine
+                  {!firstAdded && (
+                    <div style={{ width: "100px" }}>
+                      <div
                         style={{
-                          fontSize: "25px",
+                          fontSize: "15px",
                           color: "rgba(168, 168, 168, 1)",
                         }}
-                      />
+                      >
+                        Upload your image here
+                      </div>
+                      <div>
+                        <RiFileLine
+                          style={{
+                            fontSize: "25px",
+                            color: "rgba(168, 168, 168, 1)",
+                          }}
+                        />
+                      </div>
                     </div>
-                  </div>
+                  )}
                   {selectedFiles && (
                     <img
                       style={{
-                        width: "200px",
-                        maxHeight: "200px",
+                        maxWidth: "100%",
+                        minHeight: "100%",
                         objectFit: "cover",
                       }}
                       src={selectedFiles[3]}
@@ -320,31 +359,35 @@ export default function AddProducts() {
                 <UploadImageWrapper
                   onClick={() => {
                     fileRef.current.click();
+                    setFifthAdded(true);
                   }}
+                  active={fifthAdded}
                 >
-                  <div style={{ width: "100px" }}>
-                    <div
-                      style={{
-                        fontSize: "15px",
-                        color: "rgba(168, 168, 168, 1)",
-                      }}
-                    >
-                      Upload your image here
-                    </div>
-                    <div>
-                      <RiFileLine
+                  {!firstAdded && (
+                    <div style={{ width: "100px" }}>
+                      <div
                         style={{
-                          fontSize: "25px",
+                          fontSize: "15px",
                           color: "rgba(168, 168, 168, 1)",
                         }}
-                      />
+                      >
+                        Upload your image here
+                      </div>
+                      <div>
+                        <RiFileLine
+                          style={{
+                            fontSize: "25px",
+                            color: "rgba(168, 168, 168, 1)",
+                          }}
+                        />
+                      </div>
                     </div>
-                  </div>
+                  )}
                   {selectedFiles && (
                     <img
                       style={{
-                        width: "200px",
-                        maxHeight: "200px",
+                        maxWidth: "100%",
+                        minHeight: "100%",
                         objectFit: "cover",
                       }}
                       src={selectedFiles[4]}

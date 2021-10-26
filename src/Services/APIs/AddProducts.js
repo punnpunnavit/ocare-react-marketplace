@@ -12,12 +12,9 @@ const AddProductsAPI = {
     var data = new FormData();
     data.append("productName", productName);
     data.append("uploadImages", uploadImages);
-    console.log("ndjd")
-    console.log(uploadImages)
-    console.log("skncs")
     data.append("description",  description);
     data.append("price", price);
-    data.append("category",   category);
+    data.append("category",category);
     return axiosInstance
       .post("/product/add", data, {
         headers: {

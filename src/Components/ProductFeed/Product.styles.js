@@ -65,7 +65,6 @@ export const Description = styled.div`
   width: 400px;
   height: 170px;
   display: flex;
-  justify-content: center;
   padding-top: 15px;
 `;
 

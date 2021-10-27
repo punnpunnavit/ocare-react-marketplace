@@ -16,16 +16,23 @@ import EditProfileAPI from "../../Services/APIs/UpdateProfile";
 
 export default function EditProfile() {
   const [userData, setUserData] = useState([]);
-  const [file, setFile] = useState()
+  const [file, setFile] = useState();
   const firstName = useRef();
   const lastName = useRef();
   const displayName = useRef();
   const tel = useRef();
+  const fileRef = useRef();
+
+  //edited
+
+  const handleImageChange = (e) => {
+    setFile(e.target.files);
+  };
 
   const fileHandler = (e) => {
-    console.log(file)
-    setFile(e.target.files[0])
-}
+    console.log(file);
+    setFile(e.target.files[0]);
+  };
 
   useEffect(() => {
     loadData();
@@ -33,14 +40,21 @@ export default function EditProfile() {
 
   const loadData = async () => {
     const currentProfile = await EditProfileAPI.getCurrentProfile();
+
     setUserData(currentProfile);
-    setFile(currentProfile.lastName)
-    console.log(file)
+    setFile(currentProfile.imageUser);
+    console.log(file);
   };
 
   const submit = async () => {
     console.log("hi");
-    const res = await EditProfileAPI.updateProfile(displayName,firstName,lastName,tel,file);
+    const res = await EditProfileAPI.updateProfile(
+      displayName.current.value,
+      firstName.current.value,
+      lastName.current.value,
+      tel.current.value,
+      file
+    );
   };
 
   return (
@@ -54,20 +68,53 @@ export default function EditProfile() {
           display: "flex",
         }}
       >
+        {/* {firstAdded && (
+                <img
+                  style={{
+                    minWidth: "100%",
+                    minHeight: "100%",
+                    objectFit: "cover",
+                  }}
+                  src={selectedFiles[0]}
+                />
+              )}
+            </UploadImageWrapper>
+            <input
+              onChange={handleImageChange}
+              style={{ display: "none" }}
+              ref={fileRef}
+              type="file"
+              accept=".jpg,.jpeg,.png"
+            /> */}
         <InsideNavbar />
         <Wrapper>
           <Header>USER SETTING</Header>
           <Row>
             <Col>
-              <CircularImage
+              {/* <CircularImage
                 src={file}
                 style={{
                   display: "flex",
                   width: "300px",
                   height: "300px",
                 }}
+                onClick={() => {
+                  fileRef.current.click();
+                }}
               />
-               <input type="file" onChange={fileHandler} style={{visibility:'hidden'}}/>
+               <input type="file" onChange={fileHandler} style={{visibility:'hidden'}}  ref={fileRef}/> */}
+              <CircularImage
+                onClick={() => {
+                  fileRef.current.click();
+                }}
+                src={file}
+              ></CircularImage>
+              <input
+                type="file"
+                onChange={fileHandler}
+                style={{ visibility: "hidden" }}
+                ref={fileRef}
+              />
             </Col>
             <Col>
               <BsFillPlusCircleFill
@@ -96,7 +143,7 @@ export default function EditProfile() {
                   <SearchBar height="2.5rem" width="300px">
                     <SearchBar.Group id="email" className="text-center">
                       <SearchBar.Control
-                        placeholder={userData.userUid}
+                        placeholder={userData.firstName}
                         ref={firstName}
                       ></SearchBar.Control>
                     </SearchBar.Group>
@@ -107,7 +154,7 @@ export default function EditProfile() {
                   <SearchBar height="2.5rem" width="100%">
                     <SearchBar.Group id="email" className="text-center">
                       <SearchBar.Control
-                        placeholder={userData.userUid}
+                        placeholder={userData.lastName}
                         ref={lastName}
                       ></SearchBar.Control>
                     </SearchBar.Group>
@@ -130,7 +177,7 @@ export default function EditProfile() {
                 <SearchBar>
                   <SearchBar.Group id="email" className="text-center">
                     <SearchBar.Control
-                      placeholder={userData.userId}
+                      placeholder={userData.tel}
                       ref={tel}
                     ></SearchBar.Control>
                   </SearchBar.Group>

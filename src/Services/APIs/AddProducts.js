@@ -15,6 +15,7 @@ const AddProductsAPI = {
     data.append("description",  description);
     data.append("price", price);
     data.append("category",category);
+    console.log("FORM_DATA", data)
     return axiosInstance
       .post("/product/add", data, {
         headers: {

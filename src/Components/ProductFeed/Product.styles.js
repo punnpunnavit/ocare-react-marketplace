@@ -13,7 +13,7 @@ export const Wrapper = styled.div`
 
 export const TextWrapper = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: column; 
   justify-content: flex-start;
   margin-left: 50px;
   margin-right: 50px;
@@ -21,6 +21,9 @@ export const TextWrapper = styled.div`
 `;
 
 export const ProductImage = styled.img`
+
+
+
   min-width: 260px;
   max-width: 260px;
   min-height: 170px;

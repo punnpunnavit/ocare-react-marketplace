@@ -8,16 +8,22 @@ const AddProductsAPI = {
     price,
     category
   ) => {
-    var FormData = require("form-data");
-    var data = new FormData();
-    data.append("productName", productName);
-    data.append("uploadImages", uploadImages);
-    data.append("description",  description);
-    data.append("price", price);
-    data.append("category",category);
-    console.log("FORM_DATA", data)
+    var data2 = new FormData();
+    console.log(productName + "product name");
+    console.log(uploadImages + "uploadImages");
+    console.log(description + "description");
+    console.log(price + "price");
+    console.log(category + "category");
+    data2.append("productName", productName);
+    // data2.append("uploadImages", uploadImages);
+    for (let i = 0 ; i < uploadImages.length ; i++) {
+      data2.append("uploadImages", uploadImages[i]);
+  }
+    data2.append("description", description);
+    data2.append("price", price);
+    data2.append("category", category);
     return axiosInstance
-      .post("/product/add", data, {
+      .post("/product/add", data2, {
         headers: {
           "Content-Type": "multipart/form-data",
           Authorization:

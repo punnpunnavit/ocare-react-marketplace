@@ -34,11 +34,12 @@ export default function AddProducts() {
   const [forthAdded, setForthAdded] = useState(false);
   const [fifthAdded, setFifthAdded] = useState(false);
   const [selectedFiles, setSelectedFiles] = useState([]);
+  const [uploadFiles, setUploadFiles] = useState([]);
 
   const confirmAdd = async () => {
     const res = await AddProductsAPI.addProduct(
       productNameRef.current.value,
-      selectedFiles,
+      uploadFiles,
       descriptionRef.current.value,
       priceRef.current.value,
       categoryRef.current.value
@@ -53,8 +54,8 @@ export default function AddProducts() {
       const filesArray = Array.from(e.target.files).map((file) =>
         URL.createObjectURL(file)
       );
-
       setSelectedFiles((prevImages) => prevImages.concat(filesArray));
+      setUploadFiles((prevImages) => prevImages.concat(e.target.files[0]));
       Array.from(e.target.files).map(
         (file) => URL.revokeObjectURL(file) // avoid memory leak
       );
@@ -218,7 +219,7 @@ export default function AddProducts() {
                   }}
                   active={secondAdded}
                 >
-                  {!firstAdded && (
+                  {!secondAdded && (
                     <div style={{ width: "100px" }}>
                       <div
                         style={{
@@ -238,7 +239,7 @@ export default function AddProducts() {
                       </div>
                     </div>
                   )}
-                  {selectedFiles && (
+                  {secondAdded && (
                     <img
                       style={{
                         maxWidth: "100%",
@@ -266,7 +267,7 @@ export default function AddProducts() {
                   active={thirdAdded}
                 >
                   {thirdAdded}
-                  {!firstAdded && (
+                  {!thirdAdded && (
                     <div style={{ width: "100px" }}>
                       <div
                         style={{
@@ -286,7 +287,7 @@ export default function AddProducts() {
                       </div>
                     </div>
                   )}
-                  {selectedFiles && (
+                  {thirdAdded && (
                     <img
                       style={{
                         maxWidth: "100%",
@@ -316,7 +317,7 @@ export default function AddProducts() {
                   }}
                   active={forthAdded}
                 >
-                  {!firstAdded && (
+                  {!forthAdded && (
                     <div style={{ width: "100px" }}>
                       <div
                         style={{
@@ -336,7 +337,7 @@ export default function AddProducts() {
                       </div>
                     </div>
                   )}
-                  {selectedFiles && (
+                  {forthAdded && (
                     <img
                       style={{
                         maxWidth: "100%",
@@ -363,7 +364,7 @@ export default function AddProducts() {
                   }}
                   active={fifthAdded}
                 >
-                  {!firstAdded && (
+                  {!fifthAdded && (
                     <div style={{ width: "100px" }}>
                       <div
                         style={{
@@ -383,7 +384,7 @@ export default function AddProducts() {
                       </div>
                     </div>
                   )}
-                  {selectedFiles && (
+                  {fifthAdded && (
                     <img
                       style={{
                         maxWidth: "100%",

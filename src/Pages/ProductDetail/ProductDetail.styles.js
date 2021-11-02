@@ -7,14 +7,15 @@ export const Wrapper = styled(Row)`
   flex: 1;
   max-height: 100vh;
   height: 100%;
-  max-width: 90vw;
+  max-width: 100vw;
   width: 100%;
   display: flex;
   position: relative;
   justify-content: center;
-  margin: 0 auto;
+  margin: 0 0 0 0;
   overflow-y: scroll;
   overflow-x: hidden;
+
   &::-webkit-scrollbar {
     display: none;
   }
@@ -43,22 +44,21 @@ export const TextDes = styled.p`
   color: black;
 `;
 
-export const Description = styled.div`
+export const Description = styled(Col)`
   background-color: rgba(168, 168, 168, 0.25);
-  width: 300px;
+  max-width: 370px;
+  min-width: 200px;
+  width: 100%;
   height: 250px;
-  margin-left: 20px;
   padding-left: 20px;
   padding-right: 20px;
   padding-top: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  order:"2";
+  
   @media ${breakpoint.device.md} {
     
     justify-content: center;
-  margin-left: 10px;
+    width: 100%;
+    margin-bottom: 10px;
   }
 `;
 
@@ -68,6 +68,20 @@ export const DesWrapper = styled(Col)`
     
   order: 2
   }
+`
+
+
+export const ImageWrapper = styled(Col)`
+
+display: flex;
+justify-content: center;
+
+@media ${breakpoint.device.md} {
+    
+   margin-left: 10px;
+    }
+
+
 `
 
 export const SubImg = styled.img`
@@ -80,7 +94,6 @@ export const SubImg = styled.img`
   margin-left: 10px;
   margin-bottom: 10px;
   @media ${breakpoint.device.md} {
-    justify-content: center;
     width: 130px;
     height: 130px;
   }

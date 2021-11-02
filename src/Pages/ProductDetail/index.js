@@ -21,6 +21,7 @@ import {
   DesWrapper,
   Horizontal,
   LeftContentWrapper,
+  ImageWrapper
 } from "./ProductDetail.styles";
 import fallBackImg from "../../Assets/Images/test1.jpg";
 import { Container, Row, Col } from "react-bootstrap";
@@ -80,97 +81,43 @@ export default function ProductDetail() {
                 zIndex: "10",
               }}
             />
-
-            <Col
-              lg={3}
-              style={{
-                marginTop: "10px",
-                alignSelf: "center",
-                display: "flex",
-                flexDirection: "column",
-              }}
-            >
-              <Row style={{ marginLeft: "0" }}>
-                <Button
-                  style={{ maxWidth: "5rem", marginLeft: "0" }}
-                  text={products.productPrice + " THB"}
-                  onClick={() => {
-                    setOpenModal(true);
-                  }}
-                />
-                <p>Add your banking information</p>
-              </Row>
-              <Row></Row>
-            </Col>
-            <Col style={{ marginTop: "10px", justifyContent: "center" }}>
-              <Row>
-                <DesWrapper>
-                  <Description>
-                    <TextWrapper>
-                      <div>
-                        <Header>{products.productName}</Header>
-                        <TextDes>{products.productDes}</TextDes>
-                      </div>
-                    </TextWrapper>
-                  </Description>
-                </DesWrapper>
-                <Col>
-                  <Row style={{ justifyContent: "center" }}>
-                    <SubImg
-                      src={products.productImg && products.productImg[0]}
-                      alt=""
-                    />
-                    <SubImg
-                      src={products.productImg && products.productImg[1]}
-                      alt=""
-                    />
-                  </Row>
-                  <Row style={{ justifyContent: "center" }}>
-                    <SubImg
-                      src={products.productImg && products.productImg[2]}
-                      alt=""
-                    />
-                    <SubImg
-                      src={products.productImg && products.productImg[3]}
-                      alt=""
-                    />
-                  </Row>
-                </Col>
-              </Row>
-            </Col>
-          </Row>
-
-          {/* <Row>
-            <Col
-            >
-              <Button
-                style={{ width: "5rem" }}
-                text={products.productPrice + " THB"}
-                onClick={() => {
-                  setOpenModal(true);
+{/* dw */}
+            <Row>
+              <Col
+                lg={3}
+                style={{
+                  marginTop: "10px",
+                  alignSelf: "center",
+                  display: "flex",
+                  flexDirection: "column",
+              
                 }}
-              />
-
-              <p style={{ marginTop: "10px", justifyContent: "center" }}>
-                Add your banking information
-              </p>
-            </Col>
-
-            <Row
-              style={{ justifyContent: "flex-end", alignItems: "center" }}
-            >
-              <Col style={{marginRight:"0",paddingRight:"0"}}>
-                <Description>
-                  <TextWrapper>
-                    <div>
-                      <Header>{products.productName}</Header>
-                      <TextDes>{products.productDes}</TextDes>
-                    </div>
-                  </TextWrapper>
-                </Description>
+              >
+                <Row style={{ marginLeft: "0" }}>
+                  <Button
+                    style={{ maxWidth: "5rem", marginLeft: "0" }}
+                    text={products.productPrice + " THB"}
+                    onClick={() => {
+                      setOpenModal(true);
+                    }}
+                  />
+                  <p>Add your banking information</p>
+                </Row>
               </Col>
-                  <Col>
-                    <Row>
+              <Col style={{ marginTop: "10px"}}>
+                <Row >
+                  <DesWrapper>
+                    <Description>
+                      <TextWrapper>
+                        <div>
+                          <Header>{products.productName}</Header>
+                          <TextDes>{products.productDes}</TextDes>
+                        </div>
+                      </TextWrapper>
+                    </Description>
+                  </DesWrapper>
+                  <ImageWrapper>
+                    <Row >
                       <SubImg
                         src={products.productImg && products.productImg[0]}
                         alt=""
@@ -180,7 +127,7 @@ export default function ProductDetail() {
                         alt=""
                       />
                     </Row>
-                    <Row>
+                    <Row >
                       <SubImg
                         src={products.productImg && products.productImg[2]}
                         alt=""
@@ -190,9 +137,12 @@ export default function ProductDetail() {
                         alt=""
                       />
                     </Row>
-                  </Col>
+                  </ImageWrapper>
+                </Row>
+              </Col>
             </Row>
-          </Row> */}
+            {/* cdwd */}
+          </Row>
         </Wrapper>
       </Row>
     </Container>

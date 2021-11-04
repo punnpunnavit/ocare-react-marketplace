@@ -25,24 +25,14 @@ function App() {
       <Router>
         <AuthProvider>
           <Switch>
-            <PrivateRoute
-              path="/update-profile"
-              component={UpdateProfilePage}
-            />
-
-            <Route exact path="/home" component={MainFeed} />
-
-            <Route exact path="/addproducts" component={AddProducts} />
-            <Route exact path="/editprofile" component={EditProfile} />
-              {/* finish edit profile product api */}
-
-
-            {/* <Route exact path="/" component={MainFeed} /> */}
-            <Route path="/blogs/:id" component={ProductDetail} />
-            <Route path="/signup" component={SignUpPage} />
-            <Route path="/forgot-password" component={ForgotPasswordPage} />
-            <Route path="/" component={LoginPage} />
-               {/* finish forget password api */}
+            <Route exact path="/signup" component={SignUpPage} />
+            <Route exact path="/forgot-password" component={ForgotPasswordPage} />
+            <Route exact path="/" component={LoginPage} />
+            <PrivateRoute exact path="/home" component={MainFeed} />
+            <PrivateRoute exact path="/addproducts" component={AddProducts} />
+            <PrivateRoute exact path="/editprofile" component={EditProfile} />
+            <PrivateRoute exact path="/blogs/:id" component={ProductDetail} />
+            <Route path="*" component={() => "This page endpoint doesn't exist,please enter the endpoint correctly"} />
           </Switch>
         </AuthProvider>
       </Router>

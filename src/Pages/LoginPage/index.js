@@ -34,8 +34,9 @@ function Login() {
       setLoading(true);
       await login(emailRef.current.value, passwordRef.current.value);
       //get token here
-
-      history.push("/");
+      console.log("hey");
+      history.push("/home");
+      console.log("hey");
     } catch {
       setError("Failed to sign in");
     }

@@ -8,7 +8,8 @@ const UpdateProfileAPI = {
     data.append("firstName", firstName);
     data.append("lastName", lastName);
     data.append("tel", tel);
-    data.append("image", image);
+    data.append("image", image[0]);
+    console.log(image)
     return axiosInstance
       .post("/profile/edit", data, {
         headers: {
@@ -33,6 +34,7 @@ const UpdateProfileAPI = {
         },
       })
       .then((response) => {
+        console.log(response.data)
         return response.data;
       })
       .catch((error) => {

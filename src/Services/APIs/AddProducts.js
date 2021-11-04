@@ -18,6 +18,7 @@ const AddProductsAPI = {
     // data2.append("uploadImages", uploadImages);
     for (let i = 0 ; i < uploadImages.length ; i++) {
       data2.append("uploadImages", uploadImages[i]);
+      console.log(uploadImages)
   }
     data2.append("description", description);
     data2.append("price", price);

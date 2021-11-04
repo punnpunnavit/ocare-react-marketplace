@@ -10,13 +10,28 @@ export function useAuth() {
 export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState();
   const [loading, setLoading] = useState(true);
+  const [isLoggedIn, setLogIn] = useState(false);
 
   function signUp(email, password) {
-    return AuthAPI.signUp(email, password);
+    try {
+      const res = AuthAPI.signUp(email, password);
+      setLogIn(true);
+      return res;
+    } catch {
+      setLogIn(false);
+      return "";
+    }
   }
 
   function login(email, password) {
-    return AuthAPI.login(email, password);
+    try {
+      const res = AuthAPI.login(email, password);
+      setLogIn(true);
+      return res;
+    } catch {
+      setLogIn(false);
+      return "";
+    }
   }
 
   function logout() {
@@ -44,18 +59,12 @@ export function AuthProvider({ children }) {
   }
 
   useEffect(() => {
-     setCurrentUser("wd");
-      setLoading(false);
-
-    // const unsubscribe = auth.onAuthStateChanged((user) => {
-    //   setCurrentUser(user);
-    //   setLoading(false);
-    // });
-    // return unsubscribe;
+    setCurrentUser("wd");
+    setLoading(false);
   }, []);
 
   const value = {
-    currentUser,
+    isLoggedIn,
     signUp,
     login,
     logout,

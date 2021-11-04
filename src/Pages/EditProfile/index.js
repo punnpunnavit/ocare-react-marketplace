@@ -18,6 +18,7 @@ import EditProfileAPI from "../../Services/APIs/UpdateProfile";
 export default function EditProfile() {
   const [userData, setUserData] = useState([]);
   const [file, setFile] = useState();
+  const [uploadFile, setUploadFile] = useState([]);
   const firstName = useRef();
   const lastName = useRef();
   const displayName = useRef();
@@ -31,8 +32,9 @@ export default function EditProfile() {
   };
 
   const fileHandler = (e) => {
+    setFile(URL.createObjectURL(e.target.files[0]));
+    setUploadFile([e.target.files[0]]);
     console.log(file);
-    setFile(e.target.files[0]);
   };
 
   useEffect(() => {
@@ -44,18 +46,25 @@ export default function EditProfile() {
 
     setUserData(currentProfile);
     setFile(currentProfile.imageUser);
-    console.log(file);
+    console.log("hereee");
+    console.log(currentProfile.firstName);
+    console.log("hereee");
   };
 
   const submit = async () => {
     console.log("hi");
     const res = await EditProfileAPI.updateProfile(
-      displayName.current.value,
-      firstName.current.value,
-      lastName.current.value,
-      tel.current.value,
-      file
+      displayName.current.value != ""
+        ? displayName.current.value
+        : userData.displayName,
+      firstName.current.value != ""
+        ? firstName.current.value
+        : userData.firstName,
+      lastName.current.value != "" ? lastName.current.value : userData.lastName,
+      tel.current.value != "" ? tel.current.value : userData.tel,
+      uploadFile != "" ? uploadFile : file
     );
+    setUserData([]);
   };
 
   return (

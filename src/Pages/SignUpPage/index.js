@@ -30,7 +30,7 @@ function SignUp() {
         .then
         //used to get accestoken here
         ();
-      history.push("/");
+      history.push("/home");
     } catch {
       setError("Failed to create an account");
     }

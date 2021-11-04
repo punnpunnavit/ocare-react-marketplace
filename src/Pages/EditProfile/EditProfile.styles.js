@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
 import { Container, Row, Col, Form } from "react-bootstrap";
 import breakpoint from "../../Helpers/Breakpoints";
+import { BsFillPlusCircleFill } from "react-icons/bs";
 
 export const Wrapper = styled(Row)`
   flex: 1;
@@ -51,12 +52,12 @@ export const Horizontal = styled.div`
 export const CircularImage = styled.img`
   justify-content: center;
   border-radius: 90%;
-  width: 175px;
-  height: 175px;
+  width: 300px;
+  height: 300px;
   background-color: gray;
   @media ${breakpoint.device.md} {
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 200px;
   }
 `;
 
@@ -82,5 +83,26 @@ export const SearchBar = styled(Form)`
       color: rgba(168, 168, 168, 0.8);
       font-weight: 100;
     }
+  }
+`;
+
+export const AddIcon = styled(BsFillPlusCircleFill)`
+  font-size: 3rem;
+  color: var(--green);
+  margin-left: -120px;
+  margin-top: -50px;
+  background-color: white;
+  border-radius: 50%;
+  position: absolute;
+  @media only screen and (max-width: 1135px) {
+    margin-top: 250px;
+    margin-left: -420px;
+  }
+  @media ${breakpoint.device.mdg} {
+    margin-left: -420px;
+  }
+  @media ${breakpoint.device.md} {
+    margin-left: -190px;
+    margin-top: -50px;
   }
 `;

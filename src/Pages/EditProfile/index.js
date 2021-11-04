@@ -7,6 +7,7 @@ import {
   Wrapper,
   InstructionWrapper,
   SearchBar,
+  AddIcon,
 } from "./EditProfile.styles";
 import Button from "../../Components/Button";
 import { BsFillPlusCircleFill } from "react-icons/bs";
@@ -68,41 +69,11 @@ export default function EditProfile() {
           display: "flex",
         }}
       >
-        {/* {firstAdded && (
-                <img
-                  style={{
-                    minWidth: "100%",
-                    minHeight: "100%",
-                    objectFit: "cover",
-                  }}
-                  src={selectedFiles[0]}
-                />
-              )}
-            </UploadImageWrapper>
-            <input
-              onChange={handleImageChange}
-              style={{ display: "none" }}
-              ref={fileRef}
-              type="file"
-              accept=".jpg,.jpeg,.png"
-            /> */}
         <InsideNavbar />
         <Wrapper>
           <Header>USER SETTING</Header>
           <Row>
-            <Col>
-              {/* <CircularImage
-                src={file}
-                style={{
-                  display: "flex",
-                  width: "300px",
-                  height: "300px",
-                }}
-                onClick={() => {
-                  fileRef.current.click();
-                }}
-              />
-               <input type="file" onChange={fileHandler} style={{visibility:'hidden'}}  ref={fileRef}/> */}
+            <Col style={{}}>
               <CircularImage
                 onClick={() => {
                   fileRef.current.click();
@@ -115,20 +86,9 @@ export default function EditProfile() {
                 style={{ visibility: "hidden" }}
                 ref={fileRef}
               />
+              <AddIcon />
             </Col>
-            <Col>
-              <BsFillPlusCircleFill
-                style={{
-                  fontSize: "3rem",
-                  color: "var(--green)",
-                  marginLeft: "-80px",
-                  marginTop: "250px",
-                  backgroundColor: "white",
-                  borderRadius: "50%",
-                  position: "absolute",
-                }}
-              />
-            </Col>
+
             <InstructionWrapper>
               Basic Information
               <Row

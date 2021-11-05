@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 import Annulus from "../../Components/Annulus";
-import { Col, Row, Card, Form } from "react-bootstrap";
+import { Col, Row, Card, Form,Image } from "react-bootstrap";
 import breakpoint from "../../Helpers/Breakpoints";
 
 export const Wrapper = styled(Row)`
@@ -84,7 +84,7 @@ justify-content: center;
 
 `
 
-export const SubImg = styled.img`
+export const SubImg = styled(Image)`
   background-color: rgba(168, 168, 168, 0.25);
   width: 200px;
   height: 120px;
@@ -93,9 +93,12 @@ export const SubImg = styled.img`
   align-items: center;
   margin-left: 10px;
   margin-bottom: 10px;
+ 
+  
   @media ${breakpoint.device.md} {
     width: 130px;
     height: 130px;
+    margin-right: 100px;
   }
 `;
 

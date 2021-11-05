@@ -202,18 +202,6 @@ function MainFeed() {
             <Header>YOUR FRIENDS</Header>
             <Row>
               <Col>
-                {/* <FaFilter
-                  style={{
-                    color: "var(--green)",
-                    alignSelf: "center",
-                    fontSize: "1rem",
-                    height: "100px",
-                    lineHeight: "100px",
-                    textAlign: "center",
-
-                    right: "90px",
-                  }}
-                /> */}
               </Col>
               <Col>
                 <StyledSearchBar marginRight="0px">
@@ -230,12 +218,6 @@ function MainFeed() {
           </HeaderWrapper>
 
           {cards}
-          {/* {loading && (
-            <div style={{ display: "flex", marginBottom: "15px" }}>
-              <SkeletonLoadingProfile />
-              <ProductFeedLoading />
-            </div>
-          )} */}
           <div>{error && "Error"}</div>
         </Wrapper>
       </Row>

@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
 import { Container, Col, Row, Button } from "react-bootstrap";
+import breakpoint from "../../Helpers/Breakpoints";
 
 export const ModalBackground = styled(Col)`
   width: 100vw;
@@ -47,6 +48,10 @@ export const ModalContainer = styled(Container)`
   display: flex;
   flex-direction: column;
   padding: 25px;
+  @media ${breakpoint.device.md} {
+    width: 350px;
+  height: 550px;
+  }
 `;
 
 export const Title = styled(Col)`
@@ -59,6 +64,10 @@ export const ModalImage = styled.img`
   width: 100%;
   height: 250px;
   margin-bottom: 20px;
+  @media ${breakpoint.device.md} {
+    width: 60%px;
+  height: 150px;
+  }
 `;
 
 export const Body = styled(Col)`

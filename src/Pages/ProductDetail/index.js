@@ -50,8 +50,6 @@ export default function ProductDetail() {
           display: "flex",
         }}
       >
-        <InsideNavbar />
-        <Wrapper>
           {openModal && (
             <Modal
               closeModal={setOpenModal}
@@ -60,6 +58,8 @@ export default function ProductDetail() {
               productDes={products.productDes}
             />
           )}
+        <InsideNavbar />
+        <Wrapper>
           <StyledAnnulus />
           <Row
             style={{
@@ -81,7 +81,6 @@ export default function ProductDetail() {
                 zIndex: "10",
               }}
             />
-{/* dw */}
             <Row>
               <Col
                 lg={3}

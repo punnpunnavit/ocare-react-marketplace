@@ -9,11 +9,11 @@ const axiosInstance = axios.create({
 
 const requestHandler = (request) => {
   request.headers.Authorization = `Bearer ${window.localStorage.getItem("accessToken")}`;
+  // request.headers.Authorization = 'Bearer eyJhbGciOiJIUzI1NiJ9.YzQ5YzgyZTgwYTA0ZjJhYWI5OWNhMmJjMjhhYzRlZjU1MDFjMzY4MGI0YzdmOWMxMDE4OTE2ZWM4ZjE0NmU5Yg.pDuwuMKI7tqt6ftVkrzZZYZIuoB7lwDyIQykYz5UTYQ';
   console.log("This is request");
   console.log(request);
   console.log(JSON.stringify(request));
   console.log("This is end of request");
-
   return request;
 };
 

@@ -11,7 +11,7 @@ const AuthAPI = {
       })
       .then((response) => {
         console.log(response);
-        return response
+        return response;
       })
       .catch((error) => {
         console.log("Error has occured");
@@ -26,7 +26,7 @@ const AuthAPI = {
         password: password,
       })
       .then((response) => {
-        return response
+        return response;
       })
       .catch((error) => {
         console.error(error);
@@ -35,10 +35,12 @@ const AuthAPI = {
   },
   forgetPassword: async (email) => {
     return axiosInstance
-      .get("/users")
+      .post("/auth/forget", {
+        email: email,
+      })
       .then((response) => {
         console.log("inhere");
-        return JSON.stringify(response.data.map((b) => b.name));
+        return JSON.stringify(response.data);
       })
       .catch((error) => {
         console.error(error);

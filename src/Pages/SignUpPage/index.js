@@ -112,7 +112,7 @@ function SignUp() {
 
             <p className="w-100 text-center mt-4">
               Already have an account{" "}
-              <StyledLink to="/login">Sign In</StyledLink>
+              <StyledLink to="/">Sign In</StyledLink>
             </p>
           </div>
         </Card.Body>

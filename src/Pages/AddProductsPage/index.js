@@ -44,6 +44,21 @@ export default function AddProducts() {
       priceRef.current.value,
       categoryRef.current.value
     );
+    productNameRef.current.value =''
+    setUploadFiles([])
+    setSelectedFiles([])
+    descriptionRef.current.value=''
+    priceRef.current.value=''
+    categoryRef.current.value=''
+  };
+
+  const cancelAdd = async () => {
+    productNameRef.current.value =''
+    setUploadFiles([])
+    setSelectedFiles([])
+    descriptionRef.current.value=''
+    priceRef.current.value=''
+    categoryRef.current.value=''
   };
 
   //edited
@@ -94,6 +109,7 @@ export default function AddProducts() {
               fontColor="black"
               bgColor="rgba(168, 168, 168, 0.25)"
               fontWeight="100"
+              onClick={cancelAdd}
             />
             <Button
               marginRight="0"

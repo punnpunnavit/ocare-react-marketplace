@@ -192,20 +192,10 @@ function MainFeed() {
       >
         <InsideNavbar />
         <Wrapper>
-          {/* here woiiiiiii */}
-          {/* <Button onClick={history.push('/addproducts')}>Add Products</Button>
-          <Button onClick={history.push('/editprofile')}>Edit Profile</Button> */}
-          {window.localStorage.getItem("accessToken")}
-          <StyledLink
-            to={`/addproducts`}
-            style={{ textDecoration: "none" }}
-          >
+          <StyledLink to={`/addproducts`} style={{ textDecoration: "none" }}>
             Add Products
           </StyledLink>
-          <StyledLink
-            to={`/editprofile`}
-            style={{ textDecoration: "none" }}
-          >
+          <StyledLink to={`/editprofile`} style={{ textDecoration: "none" }}>
             Edit Profile
           </StyledLink>
           <HeaderWrapper>

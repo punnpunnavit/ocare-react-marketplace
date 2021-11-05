@@ -14,7 +14,7 @@ import { BsFillPlusCircleFill } from "react-icons/bs";
 import { Container, Row, Col } from "react-bootstrap";
 import { useState, useEffect, useRef } from "react";
 import EditProfileAPI from "../../Services/APIs/UpdateProfile";
-import grayImage from '../../Assets/Images/gray.png'
+import grayImage from "../../Assets/Images/gray.png";
 
 export default function EditProfile() {
   const [userData, setUserData] = useState([]);
@@ -66,6 +66,20 @@ export default function EditProfile() {
       uploadFile != "" ? uploadFile : file
     );
     setUserData([]);
+    displayName.current.value = "";
+    firstName.current.value = "";
+    lastName.current.value = "";
+    tel.current.value = "";
+    uploadFile = "";
+  };
+
+  const cancel = () => {
+    setUserData([]);
+    displayName.current.value = "";
+    firstName.current.value = "";
+    lastName.current.value = "";
+    tel.current.value = "";
+    uploadFile = "";
   };
 
   return (
@@ -166,6 +180,7 @@ export default function EditProfile() {
                   bgColor="rgba(168, 168, 168, 0.25)"
                   fontWeight="100"
                   marginLeft="370px"
+                  onClick={cancel}
                 />
                 <Button
                   text="Confirm"

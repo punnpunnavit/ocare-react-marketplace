@@ -14,6 +14,7 @@ import { BsFillPlusCircleFill } from "react-icons/bs";
 import { Container, Row, Col } from "react-bootstrap";
 import { useState, useEffect, useRef } from "react";
 import EditProfileAPI from "../../Services/APIs/UpdateProfile";
+import grayImage from '../../Assets/Images/gray.png'
 
 export default function EditProfile() {
   const [userData, setUserData] = useState([]);
@@ -45,9 +46,9 @@ export default function EditProfile() {
     const currentProfile = await EditProfileAPI.getCurrentProfile();
 
     setUserData(currentProfile);
-    setFile(currentProfile.imageUser);
+    setFile(currentProfile?.imageUser);
     console.log("hereee");
-    console.log(currentProfile.firstName);
+    console.log(currentProfile?.firstName);
     console.log("hereee");
   };
 
@@ -87,7 +88,7 @@ export default function EditProfile() {
                 onClick={() => {
                   fileRef.current.click();
                 }}
-                src={file}
+                src={file != undefined ? file : grayImage}
               ></CircularImage>
               <input
                 type="file"
@@ -112,7 +113,7 @@ export default function EditProfile() {
                   <SearchBar height="2.5rem" width="300px">
                     <SearchBar.Group id="email" className="text-center">
                       <SearchBar.Control
-                        placeholder={userData.firstName}
+                        placeholder={userData?.firstName}
                         ref={firstName}
                       ></SearchBar.Control>
                     </SearchBar.Group>
@@ -123,7 +124,7 @@ export default function EditProfile() {
                   <SearchBar height="2.5rem" width="100%">
                     <SearchBar.Group id="email" className="text-center">
                       <SearchBar.Control
-                        placeholder={userData.lastName}
+                        placeholder={userData?.lastName}
                         ref={lastName}
                       ></SearchBar.Control>
                     </SearchBar.Group>
@@ -135,7 +136,7 @@ export default function EditProfile() {
                 <SearchBar height="2.5rem" width="100%">
                   <SearchBar.Group id="email" className="text-center">
                     <SearchBar.Control
-                      placeholder={userData.displayName}
+                      placeholder={userData?.displayName}
                       ref={displayName}
                     ></SearchBar.Control>
                   </SearchBar.Group>
@@ -146,7 +147,7 @@ export default function EditProfile() {
                 <SearchBar>
                   <SearchBar.Group id="email" className="text-center">
                     <SearchBar.Control
-                      placeholder={userData.tel}
+                      placeholder={userData?.tel}
                       ref={tel}
                     ></SearchBar.Control>
                   </SearchBar.Group>

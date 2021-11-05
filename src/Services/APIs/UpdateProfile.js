@@ -1,4 +1,5 @@
 import axiosInstance from "../AxiosInstance.js";
+import grayImage from "../../Assets/Images/gray.png";
 
 const UpdateProfileAPI = {
   updateProfile: async (displayName, firstName, lastName, tel, image) => {
@@ -8,14 +9,17 @@ const UpdateProfileAPI = {
     data.append("firstName", firstName);
     data.append("lastName", lastName);
     data.append("tel", tel);
-    data.append("image", image[0]);
-    console.log(image)
+    if (image != undefined) {
+      data.append("image", image[0]);
+    } else {
+      data.append("image", grayImage);
+    }
+    console.log(image);
     return axiosInstance
       .post("/profile/edit", data, {
         headers: {
           "Content-Type": "multipart/form-data",
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiJ9.YzQ5YzgyZTgwYTA0ZjJhYWI5OWNhMmJjMjhhYzRlZjU1MDFjMzY4MGI0YzdmOWMxMDE4OTE2ZWM4ZjE0NmU5Yg.pDuwuMKI7tqt6ftVkrzZZYZIuoB7lwDyIQykYz5UTYQ",
+          Authorization: `Bearer ${window.localStorage.getItem("accessToken")}`,
         },
       })
       .catch((error) => {
@@ -25,16 +29,16 @@ const UpdateProfileAPI = {
       });
   },
   getCurrentProfile: async () => {
+    console.log(window.localStorage.getItem("accessToken"));
     return axiosInstance
       .get("/profile/get/", {
         headers: {
           "Content-Type": "multipart/form-data",
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiJ9.YzQ5YzgyZTgwYTA0ZjJhYWI5OWNhMmJjMjhhYzRlZjU1MDFjMzY4MGI0YzdmOWMxMDE4OTE2ZWM4ZjE0NmU5Yg.pDuwuMKI7tqt6ftVkrzZZYZIuoB7lwDyIQykYz5UTYQ",
+          Authorization: `Bearer ${window.localStorage.getItem("accessToken")}`,
         },
       })
       .then((response) => {
-        console.log(response.data)
+        console.log(response.data);
         return response.data;
       })
       .catch((error) => {

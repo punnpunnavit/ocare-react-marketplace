@@ -27,8 +27,7 @@ const AddProductsAPI = {
       .post("/product/add", data2, {
         headers: {
           "Content-Type": "multipart/form-data",
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiJ9.YzQ5YzgyZTgwYTA0ZjJhYWI5OWNhMmJjMjhhYzRlZjU1MDFjMzY4MGI0YzdmOWMxMDE4OTE2ZWM4ZjE0NmU5Yg.pDuwuMKI7tqt6ftVkrzZZYZIuoB7lwDyIQykYz5UTYQ",
+          Authorization: `Bearer ${window.localStorage.getItem("accessToken")}`,
         },
       })
       .catch((error) => {

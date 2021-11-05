@@ -2,10 +2,12 @@ import React, { useRef, useState } from "react";
 import { Form, Button, Card, Alert } from "react-bootstrap";
 import { useAuth } from "../../Context/AuthContext";
 import { Link, useHistory } from "react-router-dom";
-import { StyledForm, StyledContainer,
+import {
+  StyledForm,
+  StyledContainer,
   StyledButton,
-  StyledLink, } from "./SignUpCard.styles";
-
+  StyledLink,
+} from "./SignUpCard.styles";
 
 function SignUp() {
   const emailRef = useRef();
@@ -26,10 +28,13 @@ function SignUp() {
     try {
       setError("");
       setLoading(true);
-      await signUp(emailRef.current.value, passwordRef.current.value)
-        .then
-        //used to get accestoken here
-        ();
+      const res = await signUp(
+        emailRef.current.value,
+        passwordRef.current.value
+      );
+      window.localStorage.setItem("accessToken", res.data.userToken);
+      console.log(window.localStorage.getItem("accessToken"));
+      console.log('autumn air')
       history.push("/home");
     } catch {
       setError("Failed to create an account");
@@ -106,7 +111,8 @@ function SignUp() {
             </StyledForm>
 
             <p className="w-100 text-center mt-4">
-              Already have an account <StyledLink to="/login">Sign In</StyledLink>
+              Already have an account{" "}
+              <StyledLink to="/login">Sign In</StyledLink>
             </p>
           </div>
         </Card.Body>

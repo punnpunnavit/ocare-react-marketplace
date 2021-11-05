@@ -26,16 +26,16 @@ export function AuthProvider({ children }) {
   function login(email, password) {
     try {
       const res = AuthAPI.login(email, password);
+
       setLogIn(true);
-      return res;
+      return AuthAPI.login(email, password).then((token) => {
+        console.log(token)
+        return token;
+      });
     } catch {
       setLogIn(false);
       return "";
     }
-  }
-
-  function logout() {
-    // return auth.signOut();
   }
 
   function resetPassword(email) {
@@ -67,7 +67,6 @@ export function AuthProvider({ children }) {
     isLoggedIn,
     signUp,
     login,
-    logout,
     resetPassword,
     updateEmail,
     updatePassword,

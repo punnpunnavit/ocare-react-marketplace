@@ -32,13 +32,20 @@ function Login() {
     try {
       setError("");
       setLoading(true);
-      await login(emailRef.current.value, passwordRef.current.value);
-      //get token here
+      const res = await login(
+        emailRef.current.value,
+        passwordRef.current.value
+      )
+      console.log(res.data.userToken)
+      window.localStorage.setItem("accessToken", res.data.userToken);
+      console.log(window.localStorage.getItem("accessToken"));
+
       console.log("hey");
       history.push("/home");
       console.log("hey");
-    } catch {
+    } catch(e){
       setError("Failed to sign in");
+      console.log(e)
     }
     setLoading(false);
   }

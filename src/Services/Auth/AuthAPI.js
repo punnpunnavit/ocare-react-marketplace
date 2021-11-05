@@ -11,8 +11,7 @@ const AuthAPI = {
       })
       .then((response) => {
         console.log(response);
-        console.log(response.status + "yay");
-        console.log(response.statusText);
+        return response
       })
       .catch((error) => {
         console.log("Error has occured");
@@ -27,8 +26,7 @@ const AuthAPI = {
         password: password,
       })
       .then((response) => {
-        console.log(response.status);
-        console.log(response.statusText);
+        return response
       })
       .catch((error) => {
         console.error(error);

@@ -23,14 +23,15 @@ import {
 } from "./MainFeed.styles";
 import { RiDivideFill } from "react-icons/ri";
 import { CircularImageLoading } from "../../Components/Profile/Profile.styles";
-import { Link } from "react-router-dom";
-import { Container, Row, Col, Card } from "react-bootstrap";
+import { Link, useHistory } from "react-router-dom";
+import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import breakpointRes from "../../Helpers/Breakpoints";
-import StyledLink from '../../Components/Link/Link.styles'
+import StyledLink from "../../Components/Link/Link.styles";
 
 function MainFeed() {
   const [category, setCategory] = useState("");
   const [pageNumber, setPageNumber] = useState(0);
+  const history = useHistory();
 
   const { products, hasMore, loading, error } = useMainFeedFetch(
     category,
@@ -191,6 +192,22 @@ function MainFeed() {
       >
         <InsideNavbar />
         <Wrapper>
+          {/* here woiiiiiii */}
+          {/* <Button onClick={history.push('/addproducts')}>Add Products</Button>
+          <Button onClick={history.push('/editprofile')}>Edit Profile</Button> */}
+          {window.localStorage.getItem("accessToken")}
+          <StyledLink
+            to={`/addproducts`}
+            style={{ textDecoration: "none" }}
+          >
+            Add Products
+          </StyledLink>
+          <StyledLink
+            to={`/editprofile`}
+            style={{ textDecoration: "none" }}
+          >
+            Edit Profile
+          </StyledLink>
           <HeaderWrapper>
             <Header>YOUR FRIENDS</Header>
             <Row>
